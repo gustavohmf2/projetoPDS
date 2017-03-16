@@ -32,7 +32,7 @@ public class HomeController {
 		endereco.setNumero(12);
 		
 		cliente.setCpf("09231267384");
-		cliente.setNome("Jõao Maria");
+		cliente.setNome("Joao Maria");
 		cliente.setDataNascimento(new GregorianCalendar(1992,07,07));
 		cliente.setEndereco(endereco);
 		cliente.setSexo("masculino");
