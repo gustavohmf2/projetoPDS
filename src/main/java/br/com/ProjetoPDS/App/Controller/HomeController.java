@@ -10,13 +10,13 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import br.com.ProjetoPDS.App.Models.Cliente;
 import br.com.ProjetoPDS.App.Models.Endereco;
-import br.com.ProjetoPDS.App.Repository.ClienteRepository;
+import br.com.ProjetoPDS.App.Service.IClienteService;
 
 @Controller
 public class HomeController {
 	
 	@Autowired
-	private ClienteRepository clienteRepository;
+	private IClienteService clienteService;
 	
 	@RequestMapping("/hello")
 	public String index(@RequestParam(value="name", required=false, defaultValue="World") String name, Model model){
@@ -26,20 +26,18 @@ public class HomeController {
 		Endereco endereco = new Endereco();
 		
 		endereco.setUf("RN");
-		endereco.setCep("59140-780");
-		endereco.setCidade("Parnamirim");
-		endereco.setBairro("Cohabinal");
-		endereco.setNumero(9);
+		endereco.setCep("58243-770");
+		endereco.setCidade("Patu");
+		endereco.setBairro("Planalto");
+		endereco.setNumero(12);
 		
-		cliente.setCpf("09232578450");
-		cliente.setNome("Gustavo Henrique Miguel Ferreira");
+		cliente.setCpf("09231267384");
+		cliente.setNome("Jõao Maria");
 		cliente.setDataNascimento(new GregorianCalendar(1992,07,07));
 		cliente.setEndereco(endereco);
 		cliente.setSexo("masculino");
 		
-		clienteRepository.save(cliente);
-		
-		clienteRepository.save(cliente);
+		clienteService.inserirCliente(cliente);
 		
 		model.addAttribute("name", name);
         return "hello";
