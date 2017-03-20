@@ -21,6 +21,8 @@ public class Cliente implements Serializable{
 	@Id
 	private String cpf;
 	private String nome;
+	private String telefone;
+	private String email;
 	@DateTimeFormat(pattern="dd/mm/yyyy")
 	private Calendar dataNascimento;
 	@OneToOne
@@ -61,5 +63,13 @@ public class Cliente implements Serializable{
 	}
 	public static long getSerialversionuid() {
 		return serialVersionUID;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
 	}
 }
