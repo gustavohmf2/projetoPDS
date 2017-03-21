@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import br.com.ProjetoPDS.App.Models.Cliente;
 import br.com.ProjetoPDS.App.Models.Endereco;
+import br.com.ProjetoPDS.App.Models.PessoaFisica;
 import br.com.ProjetoPDS.App.Service.IClienteService;
 
 @Controller
@@ -31,7 +32,6 @@ public class HomeController {
 		endereco.setBairro("Planalto");
 		endereco.setNumero(12);
 		
-		cliente.setCpf("09231267384");
 		cliente.setNome("Joao Maria");
 		cliente.setDataNascimento(new GregorianCalendar(1992,07,07));
 		cliente.setEndereco(endereco);

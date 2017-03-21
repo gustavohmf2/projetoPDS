@@ -4,7 +4,6 @@ import java.io.Serializable;
 import java.util.Calendar;
 
 import javax.persistence.Entity;
-import javax.persistence.Id;
 import javax.persistence.OneToOne;
 
 import org.springframework.format.annotation.DateTimeFormat;
@@ -17,26 +16,40 @@ public class Cliente implements Serializable{
 	 */
 	private static final long serialVersionUID = 1L;
 
-	
-	@Id
-	private String cpf;
 	private String nome;
 	private String telefone;
+	private String telefoneAlt;
 	private String email;
-	@DateTimeFormat(pattern="dd/mm/yyyy")
-	private Calendar dataNascimento;
 	@OneToOne
 	private Endereco endereco;
 	private String sexo;
+	@DateTimeFormat(pattern="dd/mm/yyyy")
+	private Calendar dataNascimento;
+	
 	
 	public Cliente(){};
 	
-	public String getCpf() {
-		return cpf;
+	
+	public String getTelefone() {
+		return telefone;
 	}
-	public void setCpf(String cpf) {
-		this.cpf = cpf;
+
+
+	public void setTelefone(String telefone) {
+		this.telefone = telefone;
 	}
+
+
+	public String getTelefoneAlt() {
+		return telefoneAlt;
+	}
+
+
+	public void setTelefoneAlt(String telefoneAlt) {
+		this.telefoneAlt = telefoneAlt;
+	}
+
+
 	public String getNome() {
 		return nome;
 	}

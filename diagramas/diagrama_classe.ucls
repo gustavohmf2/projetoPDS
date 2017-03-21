@@ -3,7 +3,7 @@
   associations="true" dependencies="false" nesting-relationships="true" router="FAN">  
   <class id="1" language="java" name="br.com.ProjetoPDS.App.Models.Veiculo" project="ProjetoPDS" 
     file="/ProjetoPDS/src/main/java/br/com/ProjetoPDS/App/Models/Veiculo.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="189" width="152" x="122" y="312"/>    
+    <position height="-1" width="-1" x="376" y="669"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -12,71 +12,94 @@
   </class>  
   <class id="2" language="java" name="br.com.ProjetoPDS.App.Models.Endereco" project="ProjetoPDS" 
     file="/ProjetoPDS/src/main/java/br/com/ProjetoPDS/App/Models/Endereco.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="369" width="141" x="360" y="793"/>    
+    <position height="369" width="141" x="557" y="893"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <enumeration id="3" language="java" name="br.com.ProjetoPDS.App.Models.MarcasVeiculos" project="ProjetoPDS" 
-    file="/ProjetoPDS/src/main/java/br/com/ProjetoPDS/App/Models/MarcasVeiculos.java" binary="false" 
+  <enumeration id="3" language="java" name="br.com.ProjetoPDS.App.Enumeracoes.EnumMarcasModelos" project="ProjetoPDS" 
+    file="/ProjetoPDS/src/main/java/br/com/ProjetoPDS/App/Enumeracoes/EnumMarcasModelos.java" binary="false" 
     corner="BOTTOM_RIGHT">    
-    <position height="297" width="198" x="122" y="793"/>    
+    <position height="297" width="221" x="105" y="75"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </enumeration>  
-  <class id="4" language="java" name="br.com.ProjetoPDS.App.Models.Servico" project="ProjetoPDS" 
+  <enumeration id="4" language="java" name="br.com.ProjetoPDS.App.Enumeracoes.EnumCores" project="ProjetoPDS" 
+    file="/ProjetoPDS/src/main/java/br/com/ProjetoPDS/App/Enumeracoes/EnumCores.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="225" width="151" x="366" y="75"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </enumeration>  
+  <class id="5" language="java" name="br.com.ProjetoPDS.App.Models.MarcaModelo" project="ProjetoPDS" 
+    file="/ProjetoPDS/src/main/java/br/com/ProjetoPDS/App/Models/MarcaModelo.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="297" width="185" x="317" y="893"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="6" language="java" name="br.com.ProjetoPDS.App.Models.Servico" project="ProjetoPDS" 
     file="/ProjetoPDS/src/main/java/br/com/ProjetoPDS/App/Models/Servico.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="225" width="176" x="218" y="47"/>    
+    <position height="225" width="176" x="557" y="75"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="5" language="java" name="br.com.ProjetoPDS.App.Models.Cliente" project="ProjetoPDS" 
+  <class id="7" language="java" name="br.com.ProjetoPDS.App.Models.Cliente" project="ProjetoPDS" 
     file="/ProjetoPDS/src/main/java/br/com/ProjetoPDS/App/Models/Cliente.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="441" width="193" x="314" y="312"/>    
+    <position height="441" width="193" x="557" y="412"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <association id="6">    
-    <end type="SOURCE" refId="1" navigable="false">      
-      <attribute id="7" name="marca"/>      
-      <multiplicity id="8" minimum="0" maximum="1"/>    
-    </end>    
-    <end type="TARGET" refId="3" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="9">    
-    <end type="SOURCE" refId="4" navigable="false">      
-      <attribute id="10" name="veiculo"/>      
-      <multiplicity id="11" minimum="0" maximum="1"/>    
+  <association id="8">    
+    <end type="SOURCE" refId="6" navigable="false">      
+      <attribute id="9" name="veiculo">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </attribute>      
+      <multiplicity id="10" minimum="0" maximum="1">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
     </end>    
     <end type="TARGET" refId="1" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <association id="12">    
-    <end type="SOURCE" refId="4" navigable="false">      
-      <attribute id="13" name="responsavel"/>      
-      <multiplicity id="14" minimum="0" maximum="1"/>    
-    </end>    
-    <end type="TARGET" refId="5" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="15">    
-    <end type="SOURCE" refId="5" navigable="false">      
-      <attribute id="16" name="endereco"/>      
-      <multiplicity id="17" minimum="0" maximum="1"/>    
+  <association id="11">    
+    <end type="SOURCE" refId="7" navigable="false">      
+      <attribute id="12" name="endereco">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </attribute>      
+      <multiplicity id="13" minimum="0" maximum="1">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
     </end>    
     <end type="TARGET" refId="2" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="14">    
+    <end type="SOURCE" refId="6" navigable="false">      
+      <attribute id="15" name="responsavel">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </attribute>      
+      <multiplicity id="16" minimum="0" maximum="1">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="7" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
   <classifier-display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 

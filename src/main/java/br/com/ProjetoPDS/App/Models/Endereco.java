@@ -20,6 +20,11 @@ public class Endereco implements Serializable{
 	private String bairro;
 	private int numero;
 	
+	public Endereco() {
+		// TODO Auto-generated constructor stub
+	}
+	
+	
 	public String getCep() {
 		return cep;
 	}

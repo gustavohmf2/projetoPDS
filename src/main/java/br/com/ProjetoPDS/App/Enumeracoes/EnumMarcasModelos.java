@@ -1,8 +1,8 @@
-package br.com.ProjetoPDS.App.Models;
+package br.com.ProjetoPDS.App.Enumeracoes;
 
 import java.util.ArrayList;
 
-public enum MarcasVeiculos {
+public enum EnumMarcasModelos {
 
 	
 	FIAT(modelosFiat()), VOLKSWAGEN(modelosVW())
@@ -10,7 +10,8 @@ public enum MarcasVeiculos {
 	
 	
 	public ArrayList<String> modelos;
-	MarcasVeiculos(ArrayList<String> modelos){
+	
+	EnumMarcasModelos(ArrayList<String> modelos){
 		this.modelos = modelos;
 	}
 	
@@ -62,6 +63,7 @@ public enum MarcasVeiculos {
 	}
 	
 	public static ArrayList<String> modelosRenault(){
+		
 		ArrayList<String> modelos = new ArrayList<String>();
 		modelos.add("Clio");
 		modelos.add("Duster");
@@ -82,11 +84,11 @@ public enum MarcasVeiculos {
 	 * @param id
 	 * @return
 	 */
-	public static MarcasVeiculos getMarcaById(int id){
+	public static EnumMarcasModelos getMarcaById(int id){
 		
-		for (MarcasVeiculos marca : MarcasVeiculos.values()) {
-			if(MarcasVeiculos.valueOf(marca.toString()).ordinal() == id){
-				return MarcasVeiculos.valueOf(marca.toString());
+		for (EnumMarcasModelos marca : EnumMarcasModelos.values()) {
+			if(EnumMarcasModelos.valueOf(marca.toString()).ordinal() == id){
+				return EnumMarcasModelos.valueOf(marca.toString());
 			}
 		}
 
@@ -95,7 +97,7 @@ public enum MarcasVeiculos {
 	
 	public static ArrayList<String> listaMarcas(){
 		ArrayList<String> lista = new ArrayList<String>();
-		for (MarcasVeiculos marca : MarcasVeiculos.values()) {
+		for (EnumMarcasModelos marca : EnumMarcasModelos.values()) {
 			lista.add(marca.toString());
 		}
 		return lista;
