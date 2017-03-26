@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css" />
+	<script src="http://code.jquery.com/jquery-2.0.1.min.js"></script>
+	<script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+	<meta charset="UTF-8"/>
+<title>Insert title here</title>
+</head>
+<body>
+	
+	<div>
+		<h1>Cadastro de veículo</h1>
+	</div>
+	<form method="POST" th:action="@{/adicionarVeiculo}">
+		<input hidden="true" th:="@{cliente.cpf}"/>
+		<div>
+			<div>
+				<div>Chassi e Placa:</div>
+				<input type="text" placeholder="numero do chassi" 
+							autofocus="autofocus" name="numeroChassi"/>
+				<input type="text" placeholder="XXX-9999" name="placa"/>
+			</div>
+			<div>
+				<div><span>Fabricante e modelo:</span></div>
+				<select name="marcaModelo.marca">
+					<option th:text="@{marcaModelo.marca}"></option>
+				</select>
+			
+				<select th:each="marcaModelo : @{marcaModelos}">
+					<option th:text="@{marcaModelo.modelo}"></option>
+				</select>
+			</div>
+			<div>
+				<div><span>Cor:</span></div>
+				<input type="text" name="cor"/>
+			</div>
+			<div>
+				<div><span>Ano de fabricação:</span></div>
+				<input type="text" placeholder="  01/04/1998   " name="ano"/>
+			</div>
+			<div>
+				<button>Cadastrar Veículo</button>
+			</div>
+			
+		</div>
+	
+	</form>
+	
+</body>
+</html>

@@ -4,6 +4,7 @@ import java.io.Serializable;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 
 @Entity
 public class Endereco implements Serializable{
@@ -19,6 +20,7 @@ public class Endereco implements Serializable{
 	private String cidade;
 	private String bairro;
 	private int numero;
+	private Cliente cliente;
 	
 	public Endereco() {
 		// TODO Auto-generated constructor stub

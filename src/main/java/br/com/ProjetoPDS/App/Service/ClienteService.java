@@ -21,4 +21,19 @@ public class ClienteService implements IClienteService{
 		enderecoRepository.save(cliente.getEndereco());
 		clienteRepository.save(cliente);
 	}
+	
+	public Cliente buscarPF(String cpf){
+		
+		return clienteRepository.findOne(cpf);
+	}
+	
+	public Cliente buscarPJ(String cnpj){
+		
+		return clienteRepository.findOne(cnpj);
+	}
+	
+	public void inserir(Cliente cliente){
+		
+		clienteRepository.save(cliente);
+	}
 }

@@ -1,7 +1,13 @@
 package br.com.ProjetoPDS.App.Models;
 
 
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToOne;
 
 /**
  * Definico com id e nome de marca e modelo
@@ -10,26 +16,25 @@ import javax.persistence.Entity;
  */
 @Entity
 public class MarcaModelo {
-	private int idMarca;
-	private String marca;
 	
-	private int idModelo;
+	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@Column(name="id_marcaModelo")
+	private Long id;
+	private String marca;
 	private String modelo;
+	@OneToOne(mappedBy="marcaModelo", cascade=CascadeType.ALL)
+	private Veiculo veiculo;
 
-	public MarcaModelo(int idMarca, String marca, int idModelo, String modelo){
-		this.idMarca = idMarca;
-		this.marca = marca;
-		
-		this.idModelo = idModelo;
-		this.modelo = modelo;
+	public MarcaModelo(){
 	}
 
-	public int getIdMarca() {
-		return idMarca;
+	public Long getId() {
+		return id;
 	}
 
-	public void setIdMarca(int idMarca) {
-		this.idMarca = idMarca;
+	public void setId(Long idMarca) {
+		this.id = idMarca;
 	}
 
 	public String getMarca() {
@@ -40,20 +45,20 @@ public class MarcaModelo {
 		this.marca = marca;
 	}
 
-	public int getIdModelo() {
-		return idModelo;
-	}
-
-	public void setIdModelo(int idModelo) {
-		this.idModelo = idModelo;
-	}
-
 	public String getModelo() {
 		return modelo;
 	}
 
 	public void setModelo(String modelo) {
 		this.modelo = modelo;
+	}
+	
+	public Veiculo getVeiculo() {
+		return veiculo;
+	}
+
+	public void setVeiculo(Veiculo veiculo) {
+		this.veiculo = veiculo;
 	}
 	
 }

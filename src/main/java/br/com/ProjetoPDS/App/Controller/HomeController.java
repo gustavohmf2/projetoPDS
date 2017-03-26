@@ -8,9 +8,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import br.com.ProjetoPDS.App.Enumeracoes.TipoPessoa;
 import br.com.ProjetoPDS.App.Models.Cliente;
 import br.com.ProjetoPDS.App.Models.Endereco;
-import br.com.ProjetoPDS.App.Models.PessoaFisica;
 import br.com.ProjetoPDS.App.Service.IClienteService;
 
 @Controller
@@ -32,6 +32,8 @@ public class HomeController {
 		endereco.setBairro("Planalto");
 		endereco.setNumero(12);
 		
+		cliente.setId("0873427629");
+		cliente.setTipo(TipoPessoa.FISICA);
 		cliente.setNome("Joao Maria");
 		cliente.setDataNascimento(new GregorianCalendar(1992,07,07));
 		cliente.setEndereco(endereco);
@@ -42,5 +44,7 @@ public class HomeController {
 		model.addAttribute("name", name);
         return "hello";
 	}
+	
+	
 
 }

@@ -1,31 +1,43 @@
 package br.com.ProjetoPDS.App.Models;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.List;
 
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+
 import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
 public class Servico implements Serializable{
 
 
-	/**
-	 * 
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 	
 	@Id
-	private Integer idServico;
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@Column(name="id_servico")
+	private Integer id;
 	private Integer status;
 	@DateTimeFormat(pattern="dd/mm/yyyy")
 	private Calendar dataRequerimento;
-	private Cliente responsavel;
+	@ManyToOne(fetch=FetchType.EAGER)
+	@JoinColumn(insertable=false, name="id_cliente")
+	private Cliente cliente;
 	private Veiculo veiculo;
 	private String notaFiscal;
-	private Orcamento orcamento;
+	@OneToMany(mappedBy="servico", fetch=FetchType.LAZY, cascade=CascadeType.ALL)
+	private List<Orcamento> orcamento;
 	private String descricao;
 	private String obs;
 	
@@ -36,10 +48,10 @@ public class Servico implements Serializable{
 	
 	
 	public Integer getIdServico() {
-		return idServico;
+		return id;
 	}
 	public void setIdServico(Integer idServico) {
-		this.idServico = idServico;
+		this.id = idServico;
 	}
 	public Integer getStatus() {
 		return status;
@@ -54,10 +66,10 @@ public class Servico implements Serializable{
 		this.dataRequerimento = dataRequerimento;
 	}
 	public Cliente getResponsavel() {
-		return responsavel;
+		return cliente;
 	}
-	public void setResponsavel(Cliente responsavel) {
-		this.responsavel = responsavel;
+	public void setResponsavel(Cliente cliente) {
+		this.cliente = cliente;
 	}
 	public Veiculo getVeiculo() {
 		return veiculo;
@@ -71,11 +83,16 @@ public class Servico implements Serializable{
 	public void setNotaFiscal(String notaFiscal) {
 		this.notaFiscal = notaFiscal;
 	}
-	public Orcamento getOrcamento() {
+	public List<Orcamento> getOrcamento() {
 		return orcamento;
 	}
-	public void setOrcamento(Orcamento orcamento) {
+	public void setOrcamento(List<Orcamento> orcamento) {
 		this.orcamento = orcamento;
+	}
+	public void addOrcamento(Orcamento orcamento){
+		
+		setOrcamento(new ArrayList<Orcamento>());
+		this.orcamento.add(orcamento);
 	}
 	public String getDescricao() {
 		return descricao;
