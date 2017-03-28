@@ -5,7 +5,6 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.ComponentScan;
 
 import br.com.ProjetoPDS.App.Controller.HomeController;
-import br.com.ProjetoPDS.App.Enumeracoes.EnumMarcasModelos;
 import br.com.ProjetoPDS.App.Service.ClienteService;
 
 @SpringBootApplication

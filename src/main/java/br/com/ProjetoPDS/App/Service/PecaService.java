@@ -2,19 +2,10 @@ package br.com.ProjetoPDS.App.Service;
 
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
-import br.com.ProjetoPDS.App.Models.Servico;
-
-public class ServicoService implements IServicoService, IDataService{
-
-	@Autowired
-	private DataFacadeService dataFacade;
-
-	@Override
-	public List<Servico> buscarServicosPorIdCliente(String idCliente) {
-		return dataFacade.getClienteRepository().findOne(idCliente).getServico();
-	}
+@Service
+public class PecaService implements IPecaService, IDataService{
 
 	@Override
 	public void inserir(Object objeto) {
@@ -45,7 +36,5 @@ public class ServicoService implements IServicoService, IDataService{
 		// TODO Auto-generated method stub
 		
 	}
-	
-	
 
 }
