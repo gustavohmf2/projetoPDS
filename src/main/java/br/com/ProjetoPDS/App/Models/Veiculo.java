@@ -2,8 +2,10 @@ package br.com.ProjetoPDS.App.Models;
 
 import java.io.Serializable;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -31,21 +33,15 @@ public class Veiculo implements Serializable{
 	private Integer ano;
 	private Integer cor = new Integer(EnumCores.BRANCO.getId());
 	private Integer cambio;
-	@OneToOne
+	@OneToOne(cascade=CascadeType.PERSIST)
 	@JoinColumn(name="id_infoExtraVeiculo")
 	private InfoExtraVeiculo infoExtraVeiculo;
-	@ManyToOne
-	@JoinColumn(name="id_numeroChassi", insertable=false, updatable=false)
+	@ManyToOne(fetch=FetchType.EAGER)
+	@JoinColumn(name="id_cliente", insertable=false, updatable=false)
 	private Cliente cliente;
 	
 	
 
-	public InfoExtraVeiculo getInfoExtra() {
-		return infoExtraVeiculo;
-	}
-	public void setInfoExtra(InfoExtraVeiculo infoExtraVeiculo) {
-		this.infoExtraVeiculo = infoExtraVeiculo;
-	}
 	public String getNumeroChassi() {
 		return numeroChassi;
 	}
@@ -81,6 +77,18 @@ public class Veiculo implements Serializable{
 	}
 	public void setCambio(Integer cambio) {
 		this.cambio = cambio;
+	}
+	public InfoExtraVeiculo getInfoExtraVeiculo() {
+		return infoExtraVeiculo;
+	}
+	public void setInfoExtraVeiculo(InfoExtraVeiculo infoExtraVeiculo) {
+		this.infoExtraVeiculo = infoExtraVeiculo;
+	}
+	public Cliente getCliente() {
+		return cliente;
+	}
+	public void setCliente(Cliente cliente) {
+		this.cliente = cliente;
 	}
 
 	

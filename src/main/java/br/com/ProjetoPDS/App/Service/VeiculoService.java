@@ -1,5 +1,6 @@
 package br.com.ProjetoPDS.App.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -43,6 +44,19 @@ public class VeiculoService implements IVeiculoService{
 	public void excluir() {
 		// TODO Auto-generated method stub
 		
+	}
+
+	public ArrayList<Veiculo> listarVeiculos(String id) {
+		
+		ArrayList<Veiculo> v = veiculoRepository.listarPorId(id);
+		return veiculoRepository.listarPorId(id);
+	}
+
+	@Override
+	public Veiculo buscarVeiculo(String numeroChassi) {
+	
+		
+		return veiculoRepository.findOne(numeroChassi);
 	}
 
 }

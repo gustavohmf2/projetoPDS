@@ -31,6 +31,8 @@ public class Servico implements Serializable{
 	private Integer status;
 	@DateTimeFormat(pattern="dd/mm/yyyy")
 	private Calendar dataRequerimento;
+	@DateTimeFormat(pattern="dd/mm/yyyy")
+	private Calendar prazoFinal;
 	@ManyToOne(fetch=FetchType.EAGER)
 	@JoinColumn(insertable=false, name="id_cliente")
 	private Cliente cliente;
@@ -40,6 +42,7 @@ public class Servico implements Serializable{
 	private List<Orcamento> orcamento;
 	private String descricao;
 	private String obs;
+	
 	
 	public Servico() {
 		// TODO Auto-generated constructor stub

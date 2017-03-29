@@ -2,8 +2,7 @@ package br.com.ProjetoPDS.App.Exceptions;
 
 public class RepositoryException extends Exception{
 
-	
-	
+
 	@Override
 	public String toString(){
 		

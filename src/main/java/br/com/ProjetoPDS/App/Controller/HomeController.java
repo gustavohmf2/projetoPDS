@@ -27,21 +27,21 @@ public class HomeController {
 		Endereco endereco = new Endereco();
 		
 		endereco.setUf("RN");
-		endereco.setCep("58243-770");
-		endereco.setCidade("Patu");
-		endereco.setBairro("Planalto");
-		endereco.setNumero(12);
+		endereco.setCep("51234-730");
+		endereco.setCidade("Nova Cruz");
+		endereco.setBairro("Bela Vista");
+		endereco.setNumero(32);
 		
-		cliente.setId("0873427629");
+		cliente.setId("12398754380");
 		cliente.setTipo(TipoPessoa.FISICA);
-		cliente.setNome("Joao Maria");
-		cliente.setDataNascimento(new GregorianCalendar(1992,07,07));
+		cliente.setNome("Roberval Camargo");
+		cliente.setDataNascimento(new GregorianCalendar(1974,05, 8));
 		cliente.setEndereco(endereco);
 		cliente.setSexo("masculino");
 		
 		clienteService.inserirCliente(cliente);
 		
-		model.addAttribute("name", name);
+		model.addAttribute("name", cliente.getNome());
         return "hello";
 	}
 	

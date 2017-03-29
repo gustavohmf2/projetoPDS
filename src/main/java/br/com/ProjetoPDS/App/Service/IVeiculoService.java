@@ -12,5 +12,6 @@ public interface IVeiculoService {
 	public void atualizar(Veiculo veiculo);
 	public List<MarcaModelo> listarMarcaModelo();
 	public void excluir();
+	public Veiculo buscarVeiculo(String numeroChassi);
 	
 }

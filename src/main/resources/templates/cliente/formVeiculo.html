@@ -12,40 +12,41 @@
 	<div>
 		<h1>Cadastro de veículo</h1>
 	</div>
-	<form method="POST" th:action="@{/adicionarVeiculo}">
-		<input hidden="true" th:="@{cliente.cpf}"/>
+	<!-- 
+	<form method="POST" th:action="@{formVeiculo/adicionar}" th:object="${cliente}">
 		<div>
+			<div>Cliente:<span th:text="${cliente.nome}"></span></div>
 			<div>
 				<div>Chassi e Placa:</div>
 				<input type="text" placeholder="numero do chassi" 
-							autofocus="autofocus" name="numeroChassi"/>
-				<input type="text" placeholder="XXX-9999" name="placa"/>
+							autofocus="autofocus" name="cliente.veiculo.numeroChassi"/>
+				<input type="text" placeholder="XXX-9999" name="cliente.veiculo.placa"/>
 			</div>
 			<div>
 				<div><span>Fabricante e modelo:</span></div>
-				<select name="marcaModelo.marca">
-					<option th:text="@{marcaModelo.marca}"></option>
+				<select name="cliente.veiculo.marcaModelo.marca">
+					<option th:each="fab : ${marcaModelos}" th:value="${fab.marca}" th:text="${fab.marca}"></option>
 				</select>
 			
-				<select th:each="marcaModelo : @{marcaModelos}">
-					<option th:text="@{marcaModelo.modelo}"></option>
+				<select name="cliente.veiculo.marcaModelo.modelo">
+					<option th:each="fab : ${marcaModelos}" th:value="${fab.modelo}" th:text="${fab.modelo}"></option>
 				</select>
 			</div>
 			<div>
 				<div><span>Cor:</span></div>
-				<input type="text" name="cor"/>
+				<input type="text" name="cliente.veiculo.cor"/>
 			</div>
 			<div>
 				<div><span>Ano de fabricação:</span></div>
-				<input type="text" placeholder="  01/04/1998   " name="ano"/>
+				<input type="text" placeholder="  01/04/1998   " name="cliente.veiculo.ano"/>
 			</div>
 			<div>
-				<button>Cadastrar Veículo</button>
+				<button type="submit">Cadastrar Veículo</button>
 			</div>
 			
 		</div>
 	
 	</form>
-	
+	 -->
 </body>
 </html>

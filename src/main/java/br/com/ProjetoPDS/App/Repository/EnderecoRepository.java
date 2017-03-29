@@ -7,5 +7,6 @@ import br.com.ProjetoPDS.App.Models.Endereco;
 
 @Repository
 public interface EnderecoRepository extends JpaRepository<Endereco, String>{
-
+	
+	
 }

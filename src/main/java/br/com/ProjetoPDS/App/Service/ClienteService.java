@@ -1,5 +1,6 @@
 package br.com.ProjetoPDS.App.Service;
 
+import org.hibernate.PersistentObjectException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -36,4 +37,16 @@ public class ClienteService implements IClienteService{
 		
 		clienteRepository.save(cliente);
 	}
+
+	@Override
+	public void atualizarCliente(Cliente cliente) {
+		
+		try{
+			
+			clienteRepository.save(cliente);
+		}catch(PersistentObjectException e){
+			
+			e.printStackTrace();
+		}
+		}
 }

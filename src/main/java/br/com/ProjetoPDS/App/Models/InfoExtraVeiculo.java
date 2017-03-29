@@ -1,10 +1,13 @@
 package br.com.ProjetoPDS.App.Models;
 
+import java.io.Serializable;
 import java.util.Calendar;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
 
@@ -16,18 +19,26 @@ import org.springframework.format.annotation.DateTimeFormat;
  *
  */
 @Entity
-public class InfoExtraVeiculo {
+public class InfoExtraVeiculo implements Serializable{
 		
+		/**
+	 * 
+	 */
+	private static final long serialVersionUID = 6577873998629678366L;
+	
 		@Id
 		@Column(name="id_infoExtraVeiculo")
-		private Long id;
+		private String id;
 		private Double kmTotal;
 		private Double kmMedia;
+		private Double kmAnterior;
 		@DateTimeFormat(pattern="dd/mm/yyyy")
 		private Calendar ultimaTrocaOleo;
 		@DateTimeFormat(pattern="dd/mm/yyyy")
 		private Calendar ultimaTrocaPneu;
-		@OneToOne(mappedBy="infoExtraVeiculo", cascade=CascadeType.ALL)
+		@DateTimeFormat(pattern="dd/mm/yyyy")
+		private Calendar ultimaRevisao;
+		@OneToOne
 		private Veiculo veiculo;
 		
 		public Veiculo getVeiculo() {
@@ -74,13 +85,28 @@ public class InfoExtraVeiculo {
 			this.ultimaTrocaPneu = ultimaTrocaPneu;
 		}
 		
-		public Long getId() {
+		public String getId() {
 			return id;
 		}
 
-		public void setId(Long id) {
+		public void setId(String id) {
 			this.id = id;
 		}
+		public Calendar getUltimaRevisao() {
+			return ultimaRevisao;
+		}
+
+		public void setUltimaRevisao(Calendar ultimaRevisao) {
+			this.ultimaRevisao = ultimaRevisao;
+		}
+		public Double getKmAnterior() {
+			return kmAnterior;
+		}
+
+		public void setKmAnterior(Double kmAnterior) {
+			this.kmAnterior = kmAnterior;
+		}
+
 		
 		
 		

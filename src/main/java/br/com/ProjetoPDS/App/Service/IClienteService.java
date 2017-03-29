@@ -5,4 +5,5 @@ import br.com.ProjetoPDS.App.Models.Cliente;
 public interface IClienteService {
 	
 	public void inserirCliente(Cliente cliente);
+	public void atualizarCliente(Cliente cliente);
 }
