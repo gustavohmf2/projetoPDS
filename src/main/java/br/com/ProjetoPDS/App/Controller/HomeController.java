@@ -35,27 +35,17 @@ public class HomeController {
 		endereco.setBairro("Bela Vista");
 		endereco.setNumero(32);
 		
-<<<<<<< HEAD
-		cliente.setId("12398754380");
-		cliente.setTipo(TipoPessoa.FISICA);
-		cliente.setNome("Roberval Camargo");
-		cliente.setDataNascimento(new GregorianCalendar(1974,05, 8));
-=======
+
 		cliente.setId("0873427222");
 		cliente.setTipo(TipoPessoa.FISICA);
 		cliente.setNome("dudu");
 		cliente.setDataNascimento(new GregorianCalendar(1992,07,07));
->>>>>>> 88fe9789479a91a1d24f331a70c8ec3f484d75b7
 		cliente.setEndereco(endereco);
 		cliente.setSexo("masculino");
 		
-		
-<<<<<<< HEAD
+
 		model.addAttribute("name", cliente.getNome());
-=======
-		clienteService.inserir(cliente);
-		model.addAttribute("name", name);
->>>>>>> 88fe9789479a91a1d24f331a70c8ec3f484d75b7
+		
         return "hello";
 	}
 	

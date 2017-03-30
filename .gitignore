@@ -1,2 +1,7 @@
 /target/
 /bin/
+
+.properties
+.class
+.classpath
+.project

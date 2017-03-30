@@ -1,17 +1,12 @@
 package br.com.ProjetoPDS.App.Service;
 
-<<<<<<< HEAD
-import org.hibernate.PersistentObjectException;
-=======
+
 import java.util.List;
 
->>>>>>> 88fe9789479a91a1d24f331a70c8ec3f484d75b7
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import br.com.ProjetoPDS.App.Models.Cliente;
-import br.com.ProjetoPDS.App.Repository.ClienteRepository;
-import br.com.ProjetoPDS.App.Repository.EnderecoRepository;
 
 @Service
 public class ClienteService implements IClienteService, IDataService{
@@ -58,23 +53,6 @@ public class ClienteService implements IClienteService, IDataService{
 		
 	}
 
-	@Override
-<<<<<<< HEAD
-	public void atualizarCliente(Cliente cliente) {
-		
-		try{
-			
-			clienteRepository.save(cliente);
-		}catch(PersistentObjectException e){
-			
-			e.printStackTrace();
-		}
-		}
-=======
-	public List<Object> buscarTodos() {
-		// TODO Auto-generated method stub
-		return null;
-	}
 
 	@Override
 	public Object buscarPorId(Integer id) {
@@ -88,6 +66,22 @@ public class ClienteService implements IClienteService, IDataService{
 		
 	}
 
-	
->>>>>>> 88fe9789479a91a1d24f331a70c8ec3f484d75b7
+
+
+	@Override
+	public List<Object> buscarTodos() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+
+	@Override
+	public void atualizarCliente(Cliente cliente) {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+
 }
