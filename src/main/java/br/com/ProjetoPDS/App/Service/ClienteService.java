@@ -1,12 +1,15 @@
 package br.com.ProjetoPDS.App.Service;
 
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import br.com.ProjetoPDS.App.Models.Alerta;
 import br.com.ProjetoPDS.App.Models.Cliente;
+import br.com.ProjetoPDS.App.Models.Veiculo;
 
 @Service
 public class ClienteService implements IClienteService, IDataService{
@@ -16,6 +19,9 @@ public class ClienteService implements IClienteService, IDataService{
 	@Autowired
 	private DataFacadeService dataFacade;
 	
+	@Autowired
+	private LogicaAcompanhamento logicaAcompanhamento;
+	
 	public void inserirCliente(Cliente cliente){
 		
 		//enderecoRepository.save(cliente.getEndereco());
@@ -24,7 +30,24 @@ public class ClienteService implements IClienteService, IDataService{
 		dataFacade.getClienteRepository().save(cliente);
 	}
 	
+	public void verificaVeiculo(Cliente cliente){
 	
+		Veiculo veiculo = cliente.getVeiculo().get(0);
+		List<Alerta> alertas = new ArrayList<Alerta>();
+		
+		alertas.add(logicaAcompanhamento.verificarRevisao(veiculo));
+		alertas.add(logicaAcompanhamento.alinhamentoBalanceamento(veiculo));
+		
+		if(!alertas.isEmpty()){
+			
+			for(int i = 0; i < alertas.size(); i++){
+				
+				cliente.addAlertas(alertas.get(i));
+			}
+			
+		}
+			
+	}
 
 	public Cliente buscarPF(String cpf){
 		
