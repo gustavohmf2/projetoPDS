@@ -1,0 +1,21 @@
+
+OBS: criar tabela com especificações veiculos para referência
+
+ * GUSTAVO
+- Alerta de manutenção preventiva:
+	- alertar troca de oleo
+	- alertar revisão 
+	- alerta de troca de pneu
+	- modificação de status de serviço
+
+- historico de serviço - entidade - (todo serviço finalizado é inativo e vai para o histórico)
+
+
+* CARLOS
+
+
+- CRUDs de todas as entidades
+- crias strategy 
+- Acompanhamento de cliente
+	- buscar informações (busca pelo id do cliente e mostra a lista de serviços)
+	

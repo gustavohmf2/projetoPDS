@@ -1,10 +1,10 @@
 package br.com.ProjetoPDS.App.Service;
 
+import java.util.List;
+
 import br.com.ProjetoPDS.App.Models.Servico;
 
 public interface IServicoService {
 
-	public void cadastrarServico(Servico servico);
-	public void atualizarServico(Servico servico);
-	public void excluirServico();
+	public List<Servico> buscarServicosPorIdCliente(String idCliente);
 }

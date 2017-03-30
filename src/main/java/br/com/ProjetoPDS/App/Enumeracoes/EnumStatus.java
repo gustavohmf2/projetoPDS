@@ -2,12 +2,13 @@ package br.com.ProjetoPDS.App.Enumeracoes;
 
 public enum EnumStatus {
 	VISTORIA_PENDENTE("Vistoria pendente"), 
-	APROVACAO_PENDETE("Aprovação pendente"), 
-	SERVICO_APROVADO("Serviço aprovado"), 
-	SERVICO_NAO_APROVADO("Serviço não aprovado"), 
+	AUTORIZACAO_PENDENTE("Autorizacao pendente"), 
+	SERVICO_AUTORIZADO("Serviço autorizado"), 
+	SERVICO_NAO_AUTORIZADO("Serviço não autorizado"), 
 	AGUARDANDO_PECAS("Aguardando peças"), 
 	AGUARDANDO_CLIENTE("Aguardando cliente"), 
-	EM_ANDAMENTO("Em andamento"), 
+	EM_ANDAMENTO("Em andamento"),
+	AGUARDANDO_COMPLEMENTO("Aguardando complemento"),
 	FINALIZADO("Finalizado");
 	
 	private String titulo;
