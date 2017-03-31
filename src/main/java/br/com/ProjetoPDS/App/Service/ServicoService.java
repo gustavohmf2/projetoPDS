@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import br.com.ProjetoPDS.App.Models.Servico;
 
-public class ServicoService implements IServicoService, IDataService{
+public class ServicoService implements IServicoService{
 
 	@Autowired
 	private DataFacadeService dataFacade;
@@ -17,35 +17,26 @@ public class ServicoService implements IServicoService, IDataService{
 	}
 
 	@Override
-	public void inserir(Object objeto) {
-		// TODO Auto-generated method stub
-		
+	public void inserir(Servico servico) {
+		dataFacade.getServicoRepository().save(servico);
 	}
 
 	@Override
-	public void deletar(Object objeto) {
-		// TODO Auto-generated method stub
-		
+	public void deletar(Servico servico) {
+		dataFacade.getServicoRepository().delete(servico);
 	}
 
 	@Override
-	public List<Object> buscarTodos() {
-		// TODO Auto-generated method stub
-		return null;
+	public Servico buscarPorId(Integer id) {
+		return dataFacade.getServicoRepository().getOne(id);
 	}
 
 	@Override
-	public Object buscarPorId(Integer id) {
-		// TODO Auto-generated method stub
-		return null;
+	public List<Servico> buscarTodos() {
+		return dataFacade.getServicoRepository().findAll();
 	}
 
-	@Override
-	public void atualizarPorId(Integer id, Object objeto) {
-		// TODO Auto-generated method stub
-		
-	}
-	
+
 	
 
 }

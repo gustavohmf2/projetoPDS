@@ -71,7 +71,7 @@ public class ClienteController {
 		
 		veiculo.setCliente(cliente);
 		
-		clienteService.atualizarCliente(cliente);
+		clienteService.inserir(cliente);
 		
 		
 		return "cliente/formVeiculo";
@@ -107,7 +107,7 @@ public class ClienteController {
 		
 		System.out.println(id);
 		
-		Veiculo veiculo = veiculoService.buscarVeiculo(id);
+		Veiculo veiculo = veiculoService.buscarPorId(id);
 		
 		InfoExtraVeiculo infoExtraVeiculo = new InfoExtraVeiculo();
 		
@@ -123,7 +123,7 @@ public class ClienteController {
 		veiculo.setInfoExtraVeiculo(infoExtraVeiculo);
 
 
-		veiculoService.atualizar(veiculo);
+		veiculoService.inserir(veiculo);
 		
 		model.addAttribute("cliente", clienteService.buscarPF(id));
 		

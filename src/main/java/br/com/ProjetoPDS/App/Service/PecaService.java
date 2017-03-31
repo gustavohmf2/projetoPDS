@@ -2,39 +2,37 @@ package br.com.ProjetoPDS.App.Service;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import br.com.ProjetoPDS.App.Models.Peca;
+
 @Service
-public class PecaService implements IPecaService, IDataService{
+public class PecaService implements IPecaService{
 
+	@Autowired
+	private DataFacadeService datafacade;
+	
 	@Override
-	public void inserir(Object objeto) {
-		// TODO Auto-generated method stub
-		
+	public void inserir(Peca peca) {
+		datafacade.getPecaRepository().save(peca);
 	}
 
 	@Override
-	public void deletar(Object objeto) {
-		// TODO Auto-generated method stub
-		
+	public void deletar(Peca peca) {
+		datafacade.getPecaRepository().delete(peca);
 	}
 
 	@Override
-	public List<Object> buscarTodos() {
-		// TODO Auto-generated method stub
-		return null;
+	public List<Peca> buscarTodos() {
+		return datafacade.getPecaRepository().findAll();
 	}
 
 	@Override
-	public Object buscarPorId(Integer id) {
-		// TODO Auto-generated method stub
-		return null;
+	public Peca buscarPorId(Long id) {
+		return datafacade.getPecaRepository().getOne(id);
 	}
 
-	@Override
-	public void atualizarPorId(Integer id, Object objeto) {
-		// TODO Auto-generated method stub
-		
-	}
+	
 
 }

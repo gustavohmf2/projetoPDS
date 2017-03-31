@@ -2,16 +2,20 @@ package br.com.ProjetoPDS.App.Service;
 
 import java.util.List;
 
+import br.com.ProjetoPDS.App.Models.Cliente;
 import br.com.ProjetoPDS.App.Models.MarcaModelo;
 import br.com.ProjetoPDS.App.Models.Veiculo;
 
 public interface IVeiculoService {
 	
 	
-	public void cadastrar(Veiculo veiculo);
-	public void atualizar(Veiculo veiculo);
+	
 	public List<MarcaModelo> listarMarcaModelo();
-	public void excluir();
-	public Veiculo buscarVeiculo(String numeroChassi);
+	
+	//acesso ao banco
+	public void inserir(Veiculo veiculo);
+	public void deletar(Veiculo veiculo);
+	public Veiculo buscarPorId(String id);
+	public List<Veiculo> buscarTodos();
 	
 }
