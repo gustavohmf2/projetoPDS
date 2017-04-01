@@ -2,6 +2,7 @@ package br.com.ProjetoPDS.App.Models;
 
 import java.io.Serializable;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
@@ -20,6 +21,7 @@ public class Endereco implements Serializable{
 	private String cidade;
 	private String bairro;
 	private int numero;
+	@OneToOne(cascade= CascadeType.PERSIST)
 	private Cliente cliente;
 	
 	public Endereco() {

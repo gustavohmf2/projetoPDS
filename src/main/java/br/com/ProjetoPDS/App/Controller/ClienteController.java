@@ -1,16 +1,22 @@
 package br.com.ProjetoPDS.App.Controller;
 
 import java.util.GregorianCalendar;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import br.com.ProjetoPDS.App.Models.Cliente;
 import br.com.ProjetoPDS.App.Models.InfoExtraVeiculo;
 import br.com.ProjetoPDS.App.Models.Veiculo;
+import br.com.ProjetoPDS.App.Repository.MarcaModeloRepository;
 import br.com.ProjetoPDS.App.Service.AcompanhamentoService;
 import br.com.ProjetoPDS.App.Service.ClienteService;
 import br.com.ProjetoPDS.App.Service.VeiculoService;
@@ -29,6 +35,9 @@ public class ClienteController {
 	@Autowired
 	private AcompanhamentoService acompanhamentoService;
 	
+	@Autowired
+	private MarcaModeloRepository mmRepository;
+	
 	@RequestMapping(method=RequestMethod.GET)
 	public String cliente( Model model){
 		
@@ -36,48 +45,44 @@ public class ClienteController {
 		return "cliente/cliente";
 	}
 	
-	@RequestMapping("/form")
-	public String formCliente(Model model){
+	@GetMapping("/novo")
+	public ModelAndView formCliente(){
 		
+		ModelAndView mv = new ModelAndView("cliente/form");
 		
-		return "cliente/form";
+		Cliente cliente = new Cliente();
+		mv.addObject("cliente", cliente);
+		return mv;
 		
 	}
 	
-	@RequestMapping("/salvar")
-	public String salvarCliente(@RequestParam(name="cliente") Cliente cliente, Model model){
+	@PostMapping("/novo")
+	public ModelAndView salvarCliente(Cliente cliente,RedirectAttributes attributes){
 		
+		ModelAndView mv = new ModelAndView("redirect:/cliente/novo");
 		System.out.println(cliente.getNome());
 		
-		return "cliente/form";
+		clienteService.inserir(cliente);
+		attributes.addFlashAttribute("message", "O cliente foi cadastrado!");
+		return mv;
 		
 	}
 	
-	@RequestMapping("/formVeiculo")
-	public String formVeiculo(@RequestParam(name="cpf", required=false, defaultValue="12398754380") String cpf, Model model){
+	@GetMapping("/novoVeiculo")
+	public ModelAndView formVeiculo(@RequestParam(name="cpf", required=true) String cpf){
+		
+		
+		ModelAndView mv = new ModelAndView("cliente/formVeiculo");
 		
 		Cliente cliente = clienteService.buscarPF(cpf);
 		
 		
-		Veiculo veiculo = new Veiculo();
+		mv.addObject("cliente", cliente);
 		
-								 
-		veiculo.setNumeroChassi("562nkadh92390");
-		veiculo.setPlaca("JVM-7321");
-		veiculo.setMarcaModelo(veiculoService.listarMarcaModelo().get(1));
-		veiculo.setCor(1);
-		
-		cliente.addVeiculo(veiculo);
-		
-		veiculo.setCliente(cliente);
-		
-		clienteService.atualizarCliente(cliente);
-		
-		
-		return "cliente/formVeiculo";
+		return mv;
 	}
 	
-	@RequestMapping("formVeiculo/adicionar")
+	@PostMapping("/novoVeiculo")
 	public String cadastrarVeiculo(@RequestParam(name="cliente", required=true) Cliente cliente, Model model){
 		
 		clienteService.inserir(cliente);
@@ -102,6 +107,7 @@ public class ClienteController {
 		
 	}
 	
+	//@GetMapping("/addInfoExtraVeiculo)
 	@RequestMapping("/addInfoExtraVeiculo")
 	public String addInfoExtraVeiculo(@RequestParam(name="id", required=true) String id, Model model){
 		
@@ -132,6 +138,10 @@ public class ClienteController {
 	}
 	
 	
+	
+	
+	
+
 	
 	
 	

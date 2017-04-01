@@ -1,5 +1,7 @@
-<!DOCTYPE HTML>
-<html xmlns:th="http://www.thymeleaf.org">
+<!DOCTYPE html>
+<html lang="pt"
+	  xmlns="http://www.w3.org/1999/xhtml" 
+	  xmlns:th="http://www.thymeleaf.org">
 <head>
 	<link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css" />
 	<script src="http://code.jquery.com/jquery-2.0.1.min.js"></script>
@@ -8,7 +10,8 @@
 <title>Área do Cliente</title>
 </head>
 <body>
-
+	
+	<div>Cliente:<span th:text="${cliente.nome}"></span></div>
 
 	<table data-role="table" id="table-1" class="ui-responsive">
 		<thead>

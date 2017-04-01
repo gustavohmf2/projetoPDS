@@ -65,7 +65,7 @@ public class ClienteService implements IClienteService, IDataService{
 	public void inserir(Object objeto) {
 		// TODO Auto-generated method stub
 		Cliente cliente = (Cliente)objeto;
-		dataFacade.getEnderecoRepository().save(cliente.getEndereco());
+		//dataFacade.getEnderecoRepository().save(cliente.getEndereco());
 		dataFacade.getClienteRepository().save(cliente);
 		
 	}

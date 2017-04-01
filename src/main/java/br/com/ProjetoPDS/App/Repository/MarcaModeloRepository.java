@@ -7,4 +7,5 @@ import br.com.ProjetoPDS.App.Models.MarcaModelo;
 @Repository
 public interface MarcaModeloRepository extends JpaRepository<MarcaModelo, Long>{
 
+
 }
