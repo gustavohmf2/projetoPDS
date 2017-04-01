@@ -76,6 +76,10 @@ public class ClienteController {
 		
 		Cliente cliente = clienteService.buscarPF(cpf);
 		
+<<<<<<< HEAD
+=======
+		clienteService.inserir(cliente);
+>>>>>>> ac639ab8f1ffc140a4f3be31c30eb7eb97a88aee
 		
 		mv.addObject("cliente", cliente);
 		
@@ -113,7 +117,7 @@ public class ClienteController {
 		
 		System.out.println(id);
 		
-		Veiculo veiculo = veiculoService.buscarVeiculo(id);
+		Veiculo veiculo = veiculoService.buscarPorId(id);
 		
 		InfoExtraVeiculo infoExtraVeiculo = new InfoExtraVeiculo();
 		
@@ -129,7 +133,7 @@ public class ClienteController {
 		veiculo.setInfoExtraVeiculo(infoExtraVeiculo);
 
 
-		veiculoService.atualizar(veiculo);
+		veiculoService.inserir(veiculo);
 		
 		model.addAttribute("cliente", clienteService.buscarPF(id));
 		

@@ -12,7 +12,7 @@ import br.com.ProjetoPDS.App.Models.Cliente;
 import br.com.ProjetoPDS.App.Models.Veiculo;
 
 @Service
-public class ClienteService implements IClienteService, IDataService{
+public class ClienteService implements IClienteService{
 
 
 	
@@ -22,14 +22,7 @@ public class ClienteService implements IClienteService, IDataService{
 	@Autowired
 	private LogicaAcompanhamento logicaAcompanhamento;
 	
-	public void inserirCliente(Cliente cliente){
-		
-		//enderecoRepository.save(cliente.getEndereco());
-		//clienteRepository.save(cliente);
-		dataFacade.getEnderecoRepository().save(cliente.getEndereco());
-		dataFacade.getClienteRepository().save(cliente);
-	}
-	
+	@Override
 	public void verificaVeiculo(Cliente cliente){
 	
 		Veiculo veiculo = cliente.getVeiculo().get(0);
@@ -48,63 +41,40 @@ public class ClienteService implements IClienteService, IDataService{
 		}
 			
 	}
-
+	@Override
 	public Cliente buscarPF(String cpf){
-		
 		return dataFacade.getClienteRepository().findOne(cpf);
 	}
-	
+	@Override
 	public Cliente buscarPJ(String cnpj){
-		
 		return dataFacade.getClienteRepository().findOne(cnpj);
 	}
 	
-	
-
 	@Override
+<<<<<<< HEAD
 	public void inserir(Object objeto) {
 		// TODO Auto-generated method stub
 		Cliente cliente = (Cliente)objeto;
 		//dataFacade.getEnderecoRepository().save(cliente.getEndereco());
+=======
+	public void inserir(Cliente cliente) {
+>>>>>>> ac639ab8f1ffc140a4f3be31c30eb7eb97a88aee
 		dataFacade.getClienteRepository().save(cliente);
-		
+	}
+	@Override
+	public void deletar(Cliente cliente) {
+		dataFacade.getClienteRepository().delete(cliente);
 	}
 
 	@Override
-	public void deletar(Object objeto) {
-		// TODO Auto-generated method stub
-		
-	}
-
-
-	@Override
-	public Object buscarPorId(Integer id) {
-		// TODO Auto-generated method stub
-		return null;
+	public Cliente buscarPorId(String id) {
+		return dataFacade.getClienteRepository().findOne(id);	
 	}
 
 	@Override
-	public void atualizarPorId(Integer id, Object objeto) {
-		// TODO Auto-generated method stub
-		
+	public List<Cliente> buscarTodos() {
+		return dataFacade.getClienteRepository().findAll();
 	}
-
-
-
-	@Override
-	public List<Object> buscarTodos() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-
-
-	@Override
-	public void atualizarCliente(Cliente cliente) {
-		// TODO Auto-generated method stub
-		
-	}
-
 
 
 }

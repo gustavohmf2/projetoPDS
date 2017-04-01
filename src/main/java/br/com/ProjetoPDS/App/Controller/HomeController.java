@@ -1,6 +1,7 @@
 package br.com.ProjetoPDS.App.Controller;
 
 import java.util.GregorianCalendar;
+import java.util.Iterator;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -27,7 +28,9 @@ public class HomeController {
 	@RequestMapping("/hello")
 	public String index(@RequestParam(value="name", required=false, defaultValue="World") String name, Model model){
 		
-		
+	 Cliente cli = (Cliente) clienteService.buscarTodos().get(0);
+	System.out.println(cli.getNome());
+	
 		Cliente cliente = new Cliente();
 		Endereco endereco = new Endereco();
 		

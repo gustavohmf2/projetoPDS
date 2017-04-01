@@ -15,48 +15,33 @@ import br.com.ProjetoPDS.App.Repository.VeiculoRepository;
 public class VeiculoService implements IVeiculoService{
 
 	@Autowired
-	private VeiculoRepository veiculoRepository;
-	
-	@Autowired
-	private MarcaModeloRepository marcaModeloRepository;
-	
-	@Override
-	public void cadastrar(Veiculo veiculo) {
-		// TODO Auto-generated method stub
-		veiculoRepository.save(veiculo);
-		
-	}
-
-	@Override
-	public void atualizar(Veiculo veiculo) {
-		
-		veiculoRepository.save(veiculo);
-		
-	}
+	private DataFacadeService dataFacade;
 
 	@Override
 	public List<MarcaModelo> listarMarcaModelo() {
+		return null;
 		
-		return marcaModeloRepository.findAll();
 	}
 
 	@Override
-	public void excluir() {
-		// TODO Auto-generated method stub
-		
-	}
-
-	public ArrayList<Veiculo> listarVeiculos(String id) {
-		
-		ArrayList<Veiculo> v = veiculoRepository.listarPorId(id);
-		return veiculoRepository.listarPorId(id);
+	public void inserir(Veiculo veiculo) {
+		dataFacade.getVeiculoRepository().save(veiculo);
 	}
 
 	@Override
-	public Veiculo buscarVeiculo(String numeroChassi) {
+	public Veiculo buscarPorId(String id) {
+		return dataFacade.getVeiculoRepository().getOne(id);
+	}
+
+	@Override
+	public List<Veiculo> buscarTodos() {
+		return dataFacade.getVeiculoRepository().findAll();
+	}
+
+	@Override
+	public void deletar(Veiculo veiculo) {
+		dataFacade.getVeiculoRepository().delete(veiculo);
+	}
 	
-		
-		return veiculoRepository.findOne(numeroChassi);
-	}
 
 }

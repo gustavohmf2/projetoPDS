@@ -2,39 +2,38 @@ package br.com.ProjetoPDS.App.Service;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import br.com.ProjetoPDS.App.Models.Orcamento;
+
 @Service
-public class OrcamentoService implements IOrcamentoService, IDataService{
+public class OrcamentoService implements IOrcamentoService{
 
+	@Autowired
+	private DataFacadeService dataFacade;
+	
+	
+	
+	// acesso banco de dados
 	@Override
-	public void inserir(Object objeto) {
-		// TODO Auto-generated method stub
-		
+	public void inserir(Orcamento orcamento) {
+		dataFacade.getOrcamentoRepository().save(orcamento);
 	}
 
 	@Override
-	public void deletar(Object objeto) {
-		// TODO Auto-generated method stub
-		
+	public void deletar(Orcamento orcamento) {
+		dataFacade.getOrcamentoRepository().delete(orcamento);
 	}
 
 	@Override
-	public List<Object> buscarTodos() {
-		// TODO Auto-generated method stub
-		return null;
+	public Orcamento buscarPorId(Long id) {
+		return dataFacade.getOrcamentoRepository().getOne(id);
 	}
 
 	@Override
-	public Object buscarPorId(Integer id) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public void atualizarPorId(Integer id, Object objeto) {
-		// TODO Auto-generated method stub
-		
+	public List<Orcamento> buscarTodos() {
+		return dataFacade.getOrcamentoRepository().findAll();
 	}
 
 }
