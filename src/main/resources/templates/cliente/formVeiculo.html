@@ -1,11 +1,13 @@
 <!DOCTYPE html>
-<html>
+<html lang="pt"
+	  xmlns="http://www.w3.org/1999/xhtml" 
+	  xmlns:th="http://www.thymeleaf.org">
 <head>
 	<link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css" />
 	<script src="http://code.jquery.com/jquery-2.0.1.min.js"></script>
 	<script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
 	<meta charset="UTF-8"/>
-<title>Insert title here</title>
+<title>Adicionar Veículo</title>
 </head>
 <body>
 	
@@ -13,35 +15,38 @@
 		<h1>Cadastro de veículo</h1>
 	</div>
 	
-	<form method="POST" th:action="@{formVeiculo/adicionar}" th:object="${cliente}">
+	<form  th:action="@{/cliente/novoVeiculo}" th:object="${veiculo}" method="post">
 		<div>
-			<div>Cliente:<span th:text="${cliente.nome}"></span></div>
+			<div>Cliente:<span th:text="${session.usuario.nome}"></span></div>
 			<div>
 				<div>Chassi e Placa:</div>
 				<input type="text" placeholder="numero do chassi" 
-							autofocus="autofocus" name="cliente.veiculo.numeroChassi"/>
-				<input type="text" placeholder="XXX-9999" name="cliente.veiculo.placa"/>
+							autofocus="autofocus" th:field="*{numeroChassi}"/>
+							
+				<input type="text" placeholder="XXX-9999" th:field="*{placa}"/>
 			</div>
+			<!-- 
 			<div>
 				<div><span>Fabricante e modelo:</span></div>
-				<select name="cliente.veiculo.marcaModelo.marca">
+				<select th:field="*{marcaModelo.marca}">
 					<option th:each="fab : ${marcaModelos}" th:value="${fab.marca}" th:text="${fab.marca}"></option>
 				</select>
 			
-				<select name="cliente.veiculo.marcaModelo.modelo">
+				<select th:field="*{marcaModelo.modelo}">
 					<option th:each="fab : ${marcaModelos}" th:value="${fab.modelo}" th:text="${fab.modelo}"></option>
 				</select>
 			</div>
+			 -->
 			<div>
 				<div><span>Cor:</span></div>
-				<input type="text" name="cliente.veiculo.cor"/>
+				<input type="text" th:field="*{cor}"/>
 			</div>
 			<div>
 				<div><span>Ano de fabricação:</span></div>
-				<input type="text" placeholder="  01/04/1998   " name="cliente.veiculo.ano"/>
+				<input type="text" placeholder="  01/04/1998   " th:field="*{ano}"/>
 			</div>
 			<div>
-				<button type="submit">Cadastrar Veículo</button>
+				<input type="submit" value="Cadastrar Veículo"/>
 			</div>
 			
 		</div>

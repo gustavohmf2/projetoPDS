@@ -2,6 +2,8 @@ package br.com.ProjetoPDS.App.Controller;
 
 import java.util.GregorianCalendar;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -10,6 +12,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -69,42 +72,44 @@ public class ClienteController {
 	}
 	
 	@GetMapping("/novoVeiculo")
-	public ModelAndView formVeiculo(@RequestParam(name="cpf", required=true) String cpf){
+	public ModelAndView formVeiculo(@RequestParam(name="id", required=true) String id){
 		
 		
 		ModelAndView mv = new ModelAndView("cliente/formVeiculo");
+
+		Veiculo veiculo = new Veiculo();
 		
-		Cliente cliente = clienteService.buscarPF(cpf);
-		
-<<<<<<< HEAD
-=======
-		clienteService.inserir(cliente);
->>>>>>> ac639ab8f1ffc140a4f3be31c30eb7eb97a88aee
-		
-		mv.addObject("cliente", cliente);
+		mv.addObject("veiculo", veiculo);
 		
 		return mv;
 	}
 	
 	@PostMapping("/novoVeiculo")
-	public String cadastrarVeiculo(@RequestParam(name="cliente", required=true) Cliente cliente, Model model){
+	public ModelAndView cadastrarVeiculo(@RequestParam(name="veiculo", required=true) Veiculo veiculo, HttpSession session, RedirectAttributes attributes){
+		
+		ModelAndView mv = new ModelAndView("redirect:/cliente/formVeiculo");
+		
+		Cliente cliente = (Cliente) session.getAttribute("usuario");
+		
+		veiculo.setCliente(cliente);
+		cliente.addVeiculo(veiculo);
 		
 		clienteService.inserir(cliente);
+		attributes.addAttribute("message", "veículo cadastrado!");
 		
-		return "cliente/formVeiculo";
+		return mv;
 		
 	}
 	
 	@RequestMapping("/meusVeiculos")
-	public String cadastrarVeiculo(@RequestParam(name="id", required=true, defaultValue="12398754380") String id, Model model){
+	public String cadastrarVeiculo(@RequestParam(name="id", required=true) String id, Model model){
 		
 		
 		//descer para a camada de validação
 		Cliente cliente = clienteService.buscarPF(id);
 		
-		System.out.println(cliente.getVeiculo().get(0).getInfoExtraVeiculo().getUltimaRevisao().getTime());
-		//verifica se há alguma manutenção preventiva em vista
-		acompanhamentoService.verificaVeiculo(cliente);
+		clienteService.verificaVeiculo(id);
+	
 		
 		model.addAttribute("cliente", cliente);
 		return "cliente/meusVeiculos";

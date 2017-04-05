@@ -23,13 +23,19 @@ public class ClienteService implements IClienteService{
 	private LogicaAcompanhamento logicaAcompanhamento;
 	
 	@Override
-	public void verificaVeiculo(Cliente cliente){
-	
-		Veiculo veiculo = cliente.getVeiculo().get(0);
+	public void verificaVeiculo(String cpf){
+		
+		Cliente cliente = dataFacade.getClienteRepository().findOne(cpf);
+
+		ArrayList<Veiculo> veiculos = (ArrayList<Veiculo>) cliente.getVeiculo();
+		
 		List<Alerta> alertas = new ArrayList<Alerta>();
 		
-		alertas.add(logicaAcompanhamento.verificarRevisao(veiculo));
-		alertas.add(logicaAcompanhamento.alinhamentoBalanceamento(veiculo));
+		for(int i = 0;  i < veiculos.size(); i++){
+			
+			alertas.add(logicaAcompanhamento.verificarRevisao(veiculos.get(i)));
+			alertas.add(logicaAcompanhamento.alinhamentoBalanceamento(veiculos.get(i)));
+		}
 		
 		if(!alertas.isEmpty()){
 			
@@ -41,6 +47,7 @@ public class ClienteService implements IClienteService{
 		}
 			
 	}
+	
 	@Override
 	public Cliente buscarPF(String cpf){
 		return dataFacade.getClienteRepository().findOne(cpf);
@@ -51,14 +58,7 @@ public class ClienteService implements IClienteService{
 	}
 	
 	@Override
-<<<<<<< HEAD
-	public void inserir(Object objeto) {
-		// TODO Auto-generated method stub
-		Cliente cliente = (Cliente)objeto;
-		//dataFacade.getEnderecoRepository().save(cliente.getEndereco());
-=======
 	public void inserir(Cliente cliente) {
->>>>>>> ac639ab8f1ffc140a4f3be31c30eb7eb97a88aee
 		dataFacade.getClienteRepository().save(cliente);
 	}
 	@Override

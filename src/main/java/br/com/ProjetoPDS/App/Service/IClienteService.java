@@ -9,11 +9,11 @@ import br.com.ProjetoPDS.App.Models.Veiculo;
 
 public interface IClienteService {
 	
-	public void verificaVeiculo(Cliente cliente);
 	public Cliente buscarPF(String cpf);
 	public Cliente buscarPJ(String cnpj);
 	public void inserir(Cliente cliente);
 	public void deletar(Cliente cliente);
 	public Cliente buscarPorId(String id);
 	public List<Cliente> buscarTodos();
+	void verificaVeiculo(String cpf);
 }
