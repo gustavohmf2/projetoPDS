@@ -27,7 +27,7 @@ public class ClienteService implements IClienteService{
 		
 		Cliente cliente = dataFacade.getClienteRepository().findOne(cpf);
 
-		ArrayList<Veiculo> veiculos = (ArrayList<Veiculo>) cliente.getVeiculo();
+		List<Veiculo> veiculos = cliente.getVeiculo();
 		
 		List<Alerta> alertas = new ArrayList<Alerta>();
 		

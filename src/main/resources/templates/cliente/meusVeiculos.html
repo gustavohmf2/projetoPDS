@@ -1,60 +1,66 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html lang="pt" xmlns="http://www.w3.org/1999/xhtml" 
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="layout/LayoutPadrao">
+	
 <head>
 	<link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css" />
 	<script src="http://code.jquery.com/jquery-2.0.1.min.js"></script>
 	<script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
 	<meta charset="UTF-8"/>
-<title>Insert title here</title>
+	
+<title>Meus Veículos</title>
 </head>
+
 <body>
+	<section layout:fragment="conteudo">
 	
-	<div>
-		<h1>Veiculos Cadastrados</h1>
-	</div>
-	
-	<div>Cliente:<span th:text="${cliente.nome}"></span></div>
-	<table data-role="table" id="table-1" class="ui-responsive">
-		<thead>
-			<tr>
-				<th>Montadora</th>
-				<th data-priority="1">Placa</th>
-				<th data-priority="2">Modelo</th>
-			</tr>
-		</thead>
-		<tbody>
-			<tr th:each="veiculo : ${cliente.veiculo}">
-				<td th:text="${veiculo.marcaModelo.marca}"></td>
-				<td th:text="${veiculo.placa}"></td>
-				<td th:text="${veiculo.marcaModelo.modelo}"></td>
-				<td><a th:href="@{addInfoExtraVeiculo(id=${veiculo.numeroChassi})}">Adicionar Informações Extras</a></td>
-			</tr>
-		</tbody>
-	</table>
-	
-	<!--     Bloco 2 de informações       -->
-	
-	<div>
-		<h1>Alertas de Manutenção</h1>
-	</div>
-	<table data-role="table" id="table-1" class="ui-responsive">
-		<thead>
-			<tr>
-				<th data-priority="1">Modelo</th>
-				<th>Revisão</th>
-				<th>Alinhamento Balanceamento</th>
-			</tr>
-		</thead>
-		<tbody>
-			<tr th:each="veiculo : ${cliente.veiculo}">
-				<td th:text="${veiculo.marcaModelo.modelo + ' - ' +   veiculo.placa}"></td>
-				<tr th:each="alerta : ${cliente.alertas}">
-					<td th:text="${alerta.descricao}"></td>
+		<div>
+			<h1>Veiculos Cadastrados</h1>
+		</div>
+		
+		<div>Cliente:<span th:text="${cliente.nome}"></span></div>
+		<table data-role="table" id="table-1" class="ui-responsive">
+			<thead>
+				<tr>
+					<th>Montadora</th>
+					<th data-priority="1">Placa</th>
+					<th data-priority="2">Modelo</th>
 				</tr>
-			</tr>
-			
-		</tbody>
-	</table>
+			</thead>
+			<tbody>
+				<tr th:each="veiculo : ${cliente.veiculo}">
+					<td th:text="${veiculo.placa}"></td>
+					<td><a th:href="@{addInfoExtraVeiculo(id=${veiculo.numeroChassi})}">Adicionar Informações Extras</a></td>
+				</tr>
+			</tbody>
+		</table>
+		
+		<!--     Bloco 2 de informações       -->
+		
+		<div>
+			<h1>Alertas de Manutenção</h1>
+		</div>
+		<table data-role="table" id="table-1" class="ui-responsive">
+			<thead>
+				<tr>
+					<th data-priority="1">Modelo</th>
+					<th>Revisão</th>
+					<th>Alinhamento Balanceamento</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="veiculo : ${cliente.veiculo}">
+					
+					<tr th:each="alerta : ${cliente.alertas}">
+						<td th:text="${alerta.descricao}"></td>
+					</tr>
+				</tr>
+				
+			</tbody>
+		</table>
 	
+	</section>
 </body>
 </html>

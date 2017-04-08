@@ -5,20 +5,36 @@
 <head>
 <meta charset="ISO-8859-1"/>
 <title>Login</title>
+<link rel="stylesheet" type="text/css" th:href="@{/layout/stylesheets/bootstrap.min.css}"/>
 </head>
 <body>
+	
+	<div class="col-md-4"></div>
+	<div  class="col-md-4"  align="center" >
 	<form id="form-login" th:action="login" th:method="post">
-		<div>
-			<label >Login:</label>
-				<input name="login" placeholder="email or cpf" type="text"/>
+	
+		<div class="panel panel-primary">
+		 <div class="panel-heading">
+	    	<h3 class="panel-title">Login</h3>
+	 	 </div>
+	 	 
+	 	<div class="panel-body" align="center"> 
+			<div>
+				<label >Login:</label>
+					<input name="login" placeholder="email or cpf" type="text"/>
+			</div>
+			
+			<div>
+				<label >Senha:</label>
+					<input name="senha" placeholder="senha" type="password"/>
+			</div>
+			
+			<div>
+					<input type="submit" value="Entrar"/>
+			</div>
 		</div>
-		<div>
-			<label >Senha:</label>
-				<input name="senha" placeholder="senha" type="password"/>
-		</div>
-		<div>
-				<input type="submit" value="Entrar"/>
 		</div>
 	</form>
+	</div>
 </body>
 </html>

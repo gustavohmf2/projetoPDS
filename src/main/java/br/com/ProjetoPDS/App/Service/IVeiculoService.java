@@ -10,7 +10,7 @@ public interface IVeiculoService {
 	
 	
 	
-	public List<MarcaModelo> listarMarcaModelo();
+	public List<MarcaModelo> listarMarcaModelo(String marca);
 	
 	//acesso ao banco
 	public void inserir(Veiculo veiculo);

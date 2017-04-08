@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="pt" xmlns="http://www.w3.org/1999/xhtml" 
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="layout/LayoutPadrao">
+<head>
+	<link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css" />
+	<script src="http://code.jquery.com/jquery-2.0.1.min.js"></script>
+	<script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+	<meta charset="UTF-8"/>
+<title>Informações Extras do Veículo</title>
+</head>
+<body>
+	
+	<section layout:fragment="conteudo">
+	
+	<div>
+		<h1>Informações Extras do Veículo</h1>
+	</div>
+	
+	<div>Cliente:<span th:text="${session.usuario.nome}"></span></div>
+	<div>Carro:<span th:text="${veiculo.placa}"></span></div>
+	
+	<form  th:action="@{/cliente/addInfoExtraVeiculo}" th:object="${infoExtraVeiculo}" method="post">
+		<div>
+			
+			<div>
+				<label>Quilometragem total:</label>
+				<input type="text"  th:field="*{kmTotal}"/>
+			</div>
+			
+			
+			<div>
+				<label>Data da ultima revisão:</label>
+				<input type="text"  th:field="*{ultimaRevisao}"/>
+			</div>
+			
+			
+			<div>
+				<div><span>Data da ultima troca de òleo:</span></div>
+				<input type="text" th:field="*{ultimaTrocaOleo}"/>
+			</div>
+			
+			<div>
+				<div><span>Data da ultima troca de pneu:</span></div>
+				<input type="text"  th:field="*{ultimaTrocaPneu}"/>
+			</div>
+			
+			<div>
+				<input type="submit" value="Inserir"/>
+			</div>
+			
+		</div>
+	
+	</form>
+	
+	</section>
+</body>
+</html>

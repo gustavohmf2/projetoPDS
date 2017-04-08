@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -34,12 +33,6 @@ public class ClienteController {
 	
 	@Autowired
 	private VeiculoService veiculoService;
-	
-	@Autowired
-	private AcompanhamentoService acompanhamentoService;
-	
-	@Autowired
-	private MarcaModeloRepository mmRepository;
 	
 	@RequestMapping(method=RequestMethod.GET)
 	public String cliente( Model model){
@@ -85,10 +78,12 @@ public class ClienteController {
 	}
 	
 	@PostMapping("/novoVeiculo")
-	public ModelAndView cadastrarVeiculo(@RequestParam(name="veiculo", required=true) Veiculo veiculo, HttpSession session, RedirectAttributes attributes){
+	public ModelAndView cadastrarVeiculo(Veiculo veiculo, HttpSession session, RedirectAttributes attributes){
 		
 		ModelAndView mv = new ModelAndView("redirect:/cliente/formVeiculo");
+		System.out.println(veiculo.getPlaca());
 		
+	
 		Cliente cliente = (Cliente) session.getAttribute("usuario");
 		
 		veiculo.setCliente(cliente);
@@ -96,6 +91,7 @@ public class ClienteController {
 		
 		clienteService.inserir(cliente);
 		attributes.addAttribute("message", "veículo cadastrado!");
+	
 		
 		return mv;
 		
@@ -116,36 +112,31 @@ public class ClienteController {
 		
 	}
 	
-	//@GetMapping("/addInfoExtraVeiculo)
-	@RequestMapping("/addInfoExtraVeiculo")
-	public String addInfoExtraVeiculo(@RequestParam(name="id", required=true) String id, Model model){
-		
-		System.out.println(id);
-		
-		Veiculo veiculo = veiculoService.buscarPorId(id);
+	@GetMapping("/addInfoExtraVeiculo")
+	public ModelAndView formInfoExtraVeiculo(@RequestParam(name="id", required=true) String id){
+
+		ModelAndView mv = new ModelAndView("cliente/formInfoExtra");
 		
 		InfoExtraVeiculo infoExtraVeiculo = new InfoExtraVeiculo();
+		Veiculo veiculo = veiculoService.buscarPorId(id);
 		
-		infoExtraVeiculo.setKmAnterior(12000.0);
-		infoExtraVeiculo.setKmMedia(13.0);
-		infoExtraVeiculo.setKmTotal(25000.0);
-		infoExtraVeiculo.setUltimaRevisao(new GregorianCalendar(2015,01,04));
-		infoExtraVeiculo.setUltimaTrocaOleo(new GregorianCalendar(2015,01,01));
-		infoExtraVeiculo.setUltimaTrocaPneu(new GregorianCalendar(2015,02, 9));
+		mv.addObject("veiculo", veiculo);
+		mv.addObject("infoExtraVeiculo", infoExtraVeiculo);
 		
-		infoExtraVeiculo.setVeiculo(veiculo);
-		infoExtraVeiculo.setId(veiculo.getNumeroChassi());
-		veiculo.setInfoExtraVeiculo(infoExtraVeiculo);
-
-
-		veiculoService.inserir(veiculo);
-		
-		model.addAttribute("cliente", clienteService.buscarPF(id));
-		
-		return "cliente/meusVeiculos";
+		return mv;
 		
 	}
 	
+	@PostMapping("/addInfoExtraVeiculo")
+	public ModelAndView saveInfoExtraVeiculo(InfoExtraVeiculo infoExtraVeiculo, RedirectAttributes attributes){
+	
+		ModelAndView mv = new ModelAndView("redirect:cliente/formInfoExtra");
+		
+		System.out.println(infoExtraVeiculo.getUltimaRevisao());
+		
+		attributes.addAttribute("mesagem", "Informações adicionadas");
+		return mv;
+	}
 	
 	
 	

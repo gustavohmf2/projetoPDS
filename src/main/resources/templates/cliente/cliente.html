@@ -1,33 +1,60 @@
 <!DOCTYPE html>
-<html lang="pt"
-	  xmlns="http://www.w3.org/1999/xhtml" 
-	  xmlns:th="http://www.thymeleaf.org">
+<html lang="pt" xmlns="http://www.w3.org/1999/xhtml" 
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="layout/LayoutPadrao">
+	
 <head>
 	<link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css" />
 	<script src="http://code.jquery.com/jquery-2.0.1.min.js"></script>
 	<script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
-	<meta charset="ISO-8859-1"/>
-<title>Área do Cliente</title>
+	<meta charset="UTF-8"/>
+<title>Ãrea do Cliente</title>
 </head>
 <body>
+	<section layout:fragment="conteudo">
+	<div>
+		<span th:text="${session.usuario.nome}"></span>
+	</div>
 	
-	<div>Cliente:<span th:text="${session.usuario.nome}"></span></div>
-
-	<table data-role="table" id="table-1" class="ui-responsive">
-		<thead>
-			<tr>
-				<th>A</th>
-				<th data-priority="1">B</th>
-				<th data-priority="2">C</th>
-			</tr>
-		</thead>
-		<tbody>
-			<tr>
-				<td><a th:href="@{cliente/novoVeiculo(id=${cliente.id})}">Cadastrar Veiculo</a></td>
-				<td><a th:href="@{#}">Listar veiculos</a></td>
-				<td><a th:href="@{cliente/meusVeiculos}">Informações Extras</a></td>
-			</tr>
-		</tbody>
-	</table>
+	<h2 class="sub-header">Ultimos ServiÃ§os Realizados</h2>
+	<div class="table-responsive">
+            <table class="table table-striped">
+              <thead>
+                <tr>
+                  <th>Tipo</th>
+                  <th>Data</th>
+                  <th>VeÃ­culo</th>
+                  <th>DescriÃ§Ã£o</th>
+                  <th>Valor</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Lanternagem</td>
+                  <td>30/03/2015</td>
+                  <td>Wolksvagem Golf - KXJ-1023</td>
+                  <td>Reparo no para-choque dianteiro</td>
+                  <td>750,00</td>
+                </tr>
+                <tr>
+                  <td>1,002</td>
+                  <td>amet</td>
+                  <td>consectetur</td>
+                  <td>adipiscing</td>
+                  <td>elit</td>
+                </tr>
+                <tr>
+                  <td>1,003</td>
+                  <td>Integer</td>
+                  <td>nec</td>
+                  <td>odio</td>
+                  <td>Praesent</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+	
+	</section>
 </body>
 </html>

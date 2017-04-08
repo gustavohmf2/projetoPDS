@@ -27,49 +27,52 @@ public class LogicaAcompanhamento {
 		
 		Alerta alerta = new Alerta();
 		
-		Double infoKmTotal = veiculo.getInfoExtraVeiculo().getKmTotal();
+		if( veiculo.getInfoExtraVeiculo() != null){
 		
-		Calendar ultimaRevisao = veiculo.getInfoExtraVeiculo().getUltimaRevisao();
-		
-		Long dias = hoje.getTimeInMillis() - ultimaRevisao.getTimeInMillis() / MILLIS_IN_DAY;
-		Long meses = dias / 30;
-		
-		
-		if((infoKmTotal >= 10000 && infoKmTotal < 20000) || meses >= 6){
+			Double infoKmTotal = veiculo.getInfoExtraVeiculo().getKmTotal();
 			
-			alerta.setData(hoje);
-			alerta.setDescricao("Revisão dos 10.000 Km");
-			alerta.setTipo(TipoAlerta.REVISAO);
+			Calendar ultimaRevisao = veiculo.getInfoExtraVeiculo().getUltimaRevisao();
 			
-		}else if((infoKmTotal >= 20000 && infoKmTotal < 30000) || meses >= 12){
+			Long dias = hoje.getTimeInMillis() - ultimaRevisao.getTimeInMillis() / MILLIS_IN_DAY;
+			Long meses = dias / 30;
 			
-			alerta.setData(hoje);
-			alerta.setDescricao("Revisão dos 20.000 Km");
-			alerta.setTipo(TipoAlerta.REVISAO);
 			
-		}else if((infoKmTotal >= 30000 && infoKmTotal < 40000) || meses >= 18){
-			
-			alerta.setData(hoje);
-			alerta.setDescricao("Revisão dos 30.000 Km");
-			alerta.setTipo(TipoAlerta.REVISAO);
-			
-		}else if((infoKmTotal >= 40000 && infoKmTotal < 50000)  || meses >= 24){
-			
-			alerta.setData(hoje);
-			alerta.setDescricao("Revisão dos 40.000 Km");
-			alerta.setTipo(TipoAlerta.REVISAO);
-			
-		}else if((infoKmTotal >= 50000 && infoKmTotal < 60000)  || meses >= 30){
-			
-			alerta.setData(hoje);
-			alerta.setDescricao("Revisão dos 50.000 Km");
-			alerta.setTipo(TipoAlerta.REVISAO);
-			
-		}else if((infoKmTotal >= 60000   && infoKmTotal < 70000)|| meses >= 36){
-			
-			alerta.setData(hoje);
-			alerta.setDescricao("Revisão dos 60.000 Km");
-			alerta.setTipo(TipoAlerta.REVISAO);
+			if((infoKmTotal >= 10000 && infoKmTotal < 20000) || meses >= 6){
+				
+				alerta.setData(hoje);
+				alerta.setDescricao("Revisão dos 10.000 Km");
+				alerta.setTipo(TipoAlerta.REVISAO);
+				
+			}else if((infoKmTotal >= 20000 && infoKmTotal < 30000) || meses >= 12){
+				
+				alerta.setData(hoje);
+				alerta.setDescricao("Revisão dos 20.000 Km");
+				alerta.setTipo(TipoAlerta.REVISAO);
+				
+			}else if((infoKmTotal >= 30000 && infoKmTotal < 40000) || meses >= 18){
+				
+				alerta.setData(hoje);
+				alerta.setDescricao("Revisão dos 30.000 Km");
+				alerta.setTipo(TipoAlerta.REVISAO);
+				
+			}else if((infoKmTotal >= 40000 && infoKmTotal < 50000)  || meses >= 24){
+				
+				alerta.setData(hoje);
+				alerta.setDescricao("Revisão dos 40.000 Km");
+				alerta.setTipo(TipoAlerta.REVISAO);
+				
+			}else if((infoKmTotal >= 50000 && infoKmTotal < 60000)  || meses >= 30){
+				
+				alerta.setData(hoje);
+				alerta.setDescricao("Revisão dos 50.000 Km");
+				alerta.setTipo(TipoAlerta.REVISAO);
+				
+			}else if((infoKmTotal >= 60000   && infoKmTotal < 70000)|| meses >= 36){
+				
+				alerta.setData(hoje);
+				alerta.setDescricao("Revisão dos 60.000 Km");
+				alerta.setTipo(TipoAlerta.REVISAO);
+			}
 		}
 		
 		return alerta;
@@ -77,12 +80,15 @@ public class LogicaAcompanhamento {
 	
 	public List<Alerta> verificaPneu(Veiculo veiculo){
 		
-		Calendar ultimaTroca = veiculo.getInfoExtraVeiculo().getUltimaTrocaPneu();
+		if( veiculo.getInfoExtraVeiculo() != null){
 		
-		Long meses = hoje.getTimeInMillis() - ultimaTroca.getTimeInMillis();
-		
-		if(meses >= 10){
+			Calendar ultimaTroca = veiculo.getInfoExtraVeiculo().getUltimaTrocaPneu();
 			
+			Long meses = hoje.getTimeInMillis() - ultimaTroca.getTimeInMillis();
+			
+			if(meses >= 10){
+				
+			}
 		}
 		
 		return null;
@@ -92,14 +98,16 @@ public class LogicaAcompanhamento {
 		
 		Alerta alerta = new Alerta();
 		
-		Double ultimaKilometragem = veiculo.getInfoExtraVeiculo().getKmAnterior();
-		
-		if(ultimaKilometragem >= 10000){
+		if( veiculo.getInfoExtraVeiculo() != null){
+			Double ultimaKilometragem = veiculo.getInfoExtraVeiculo().getKmAnterior();
 			
-			alerta.setData(hoje);
-			alerta.setTipo(TipoAlerta.ALINHAMENTO_BALANCEAMENTO);
-			alerta.setDescricao("Possível necessidade de realizar os serviços de alinhamento e balanceamento");
-			
+			if(ultimaKilometragem >= 10000){
+				
+				alerta.setData(hoje);
+				alerta.setTipo(TipoAlerta.ALINHAMENTO_BALANCEAMENTO);
+				alerta.setDescricao("Possível necessidade de realizar os serviços de alinhamento e balanceamento");
+				
+			}
 		}
 		
 		return alerta;

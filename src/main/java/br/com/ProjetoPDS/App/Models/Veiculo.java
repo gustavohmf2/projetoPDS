@@ -33,11 +33,11 @@ public class Veiculo implements Serializable{
 	private Integer ano;
 	private Integer cor = new Integer(EnumCores.BRANCO.getId());
 	private Integer cambio;
-	@OneToOne(cascade=CascadeType.PERSIST)
+	@OneToOne(cascade=CascadeType.MERGE)
 	@JoinColumn(name="id_infoExtraVeiculo")
 	private InfoExtraVeiculo infoExtraVeiculo;
-	@ManyToOne(fetch=FetchType.EAGER)
-	@JoinColumn(name="id_cliente", insertable=false, updatable=false)
+	@ManyToOne(fetch=FetchType.EAGER, cascade= CascadeType.ALL)
+	@JoinColumn(name="id_cliente")
 	private Cliente cliente;
 	
 	
