@@ -13,4 +13,6 @@ public interface IServicoService {
 	public void deletar(Servico servico);
 	public Servico buscarPorId(Integer id);
 	public List<Servico> buscarTodos();
+
+	void aprovarOrcamentoServico(Integer idServico);
 }

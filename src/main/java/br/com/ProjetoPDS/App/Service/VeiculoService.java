@@ -19,6 +19,7 @@ public class VeiculoService implements IVeiculoService{
 	@Autowired
 	private DataFacadeService dataFacade;
 
+	
 	@Override
 	public List<MarcaModelo> listarMarcaModelo(String marca) {
 		return dataFacade.getMarcaModeloRepository().findByMarca(marca);
@@ -60,6 +61,7 @@ public class VeiculoService implements IVeiculoService{
 		dataFacade.getVeiculoRepository().save(veiculo);
 		
 	}
+
 	
 
 }
