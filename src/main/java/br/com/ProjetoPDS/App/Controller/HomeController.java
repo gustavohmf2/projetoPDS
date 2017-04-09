@@ -1,8 +1,5 @@
 package br.com.ProjetoPDS.App.Controller;
 
-import java.util.GregorianCalendar;
-import java.util.Iterator;
-
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,26 +8,27 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-
-import br.com.ProjetoPDS.App.Enumeracoes.TipoPessoa;
 import br.com.ProjetoPDS.App.Models.Cliente;
-import br.com.ProjetoPDS.App.Models.Endereco;
 import br.com.ProjetoPDS.App.Service.ClienteService;
 
 @Controller
+@RequestMapping("/")
 public class HomeController {
 	
 	@Autowired
 	private ClienteService clienteService;
 	
 	
-	@RequestMapping("/hello")
-	public String index(@RequestParam(value="name", required=false, defaultValue="World") String name, Model model){
+	@RequestMapping(method= RequestMethod.GET)
+	public ModelAndView index(){
 		
-        return "hello";
+		ModelAndView mv = new ModelAndView("index");
+		
+        return mv;
 	}
 	
 	

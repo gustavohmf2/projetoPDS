@@ -15,52 +15,62 @@
 
 <body>
 	<section layout:fragment="conteudo">
-	
-		<div>
-			<h1>Veiculos Cadastrados</h1>
+		
+		<div class="col-sm-9 col-md-10">
+			<h1><span th:text="${session.usuario.nome}"></span></h1>
 		</div>
+		<div class="row"></div>
 		
-		<div>Cliente:<span th:text="${cliente.nome}"></span></div>
-		<table data-role="table" id="table-1" class="ui-responsive">
-			<thead>
-				<tr>
-					<th>Montadora</th>
-					<th data-priority="1">Placa</th>
-					<th data-priority="2">Modelo</th>
-				</tr>
-			</thead>
-			<tbody>
-				<tr th:each="veiculo : ${cliente.veiculo}">
-					<td th:text="${veiculo.placa}"></td>
-					<td><a th:href="@{addInfoExtraVeiculo(id=${veiculo.numeroChassi})}">Adicionar Informações Extras</a></td>
-				</tr>
-			</tbody>
-		</table>
+			<div class="col-sm-9 col-md-10">
+				<h1>Veiculos Cadastrados</h1>
+			</div>
+			<div class="row"></div>
+			
+			<div class="table-responsive">
+            	<table class="table table-striped">
+					<thead>
+						<tr>
+							<th>Montadora</th>
+							<th data-priority="1">Placa</th>
+							<th data-priority="2">Modelo</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="veiculo : ${cliente.veiculo}">
+							<td th:text="${veiculo.placa}"></td>
+							<td><a th:href="@{addInfoExtraVeiculo(id=${veiculo.numeroChassi})}">Adicionar Informações Extras</a></td>
+						</tr>
+					</tbody>
+				</table>
 		
-		<!--     Bloco 2 de informações       -->
-		
-		<div>
-			<h1>Alertas de Manutenção</h1>
+			<!--     Bloco 2 de informações       -->
+			
+			<div class="col-sm-9 col-md-10">
+				<h1>Alertas de Manutenção</h1>
+			</div>
+			<div class="row"></div>
+			<div class="table-responsive">
+	            <table class="table table-striped">
+					<thead>
+						<tr>
+							<th data-priority="1">Modelo</th>
+							<th>Revisão</th>
+							<th>Alinhamento Balanceamento</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:if="${veiculo.alertas.size() != 0}" th:each="veiculo : ${cliente.veiculo}" >
+							<td th:text="${veiculo.placa}"></td>
+							<tr th:if="${alerta != null}" th:each="alerta : ${veiculo.alertas}" >
+								<td th:text="${alerta.descricao}"></td>
+							</tr>
+						</tr>
+						
+					</tbody>
+				</table>
+			</div>
+			
 		</div>
-		<table data-role="table" id="table-1" class="ui-responsive">
-			<thead>
-				<tr>
-					<th data-priority="1">Modelo</th>
-					<th>Revisão</th>
-					<th>Alinhamento Balanceamento</th>
-				</tr>
-			</thead>
-			<tbody>
-				<tr th:each="veiculo : ${cliente.veiculo}">
-					
-					<tr th:each="alerta : ${cliente.alertas}">
-						<td th:text="${alerta.descricao}"></td>
-					</tr>
-				</tr>
-				
-			</tbody>
-		</table>
-	
 	</section>
 </body>
 </html>

@@ -28,7 +28,7 @@ public class LogicaAcompanhamento {
 		Alerta alerta = new Alerta();
 		
 		if( veiculo.getInfoExtraVeiculo() != null){
-		
+			System.out.println("verificando revisão");
 			Double infoKmTotal = veiculo.getInfoExtraVeiculo().getKmTotal();
 			
 			Calendar ultimaRevisao = veiculo.getInfoExtraVeiculo().getUltimaRevisao();
@@ -36,7 +36,7 @@ public class LogicaAcompanhamento {
 			Long dias = hoje.getTimeInMillis() - ultimaRevisao.getTimeInMillis() / MILLIS_IN_DAY;
 			Long meses = dias / 30;
 			
-			
+		
 			if((infoKmTotal >= 10000 && infoKmTotal < 20000) || meses >= 6){
 				
 				alerta.setData(hoje);
@@ -98,7 +98,7 @@ public class LogicaAcompanhamento {
 		
 		Alerta alerta = new Alerta();
 		
-		if( veiculo.getInfoExtraVeiculo() != null){
+		if( veiculo.getInfoExtraVeiculo().getKmAnterior() != null){
 			Double ultimaKilometragem = veiculo.getInfoExtraVeiculo().getKmAnterior();
 			
 			if(ultimaKilometragem >= 10000){

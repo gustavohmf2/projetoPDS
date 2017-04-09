@@ -13,39 +13,41 @@
 <body>
 	
 	<section layout:fragment="conteudo">
-	<div>
+	<div class="col-sm-9 col-md-10">
 		<h1>Cadastro de veículo</h1>
 	</div>
 	
-	<div>Cliente:<span th:text="${session.usuario.nome}"></span></div>
+	<div class="row"></div>
 	
-	<form  th:action="@{/cliente/novoVeiculo}" th:object="${veiculo}" method="post">
-		<div>
-			
+	<div class="col-sm-9 col-md-10">
+		<form  th:action="@{/cliente/novoVeiculo}" th:object="${veiculo}" method="post">
 			<div>
-				<div>Chassi e Placa:</div>
-				<input type="text"  th:field="*{numeroChassi}"/>
-							
-				<input type="text"  th:field="*{placa}"/>
+				
+				<div>
+					<div>Chassi e Placa:</div>
+					<input type="text"  th:field="*{numeroChassi}"/>
+								
+					<input type="text"  th:field="*{placa}"/>
+				</div>
+				
+				<div>
+					<div><span>Cor:</span></div>
+					<input type="text" th:field="*{cor}"/>
+				</div>
+				
+				<div>
+					<div><span>Ano de fabricação:</span></div>
+					<input type="text"  th:field="*{ano}"/>
+				</div>
+				
+				<div>
+					<input type="submit" value="Cadastrar Veículo"/>
+				</div>
+				
 			</div>
-			
-			<div>
-				<div><span>Cor:</span></div>
-				<input type="text" th:field="*{cor}"/>
-			</div>
-			
-			<div>
-				<div><span>Ano de fabricação:</span></div>
-				<input type="text"  th:field="*{ano}"/>
-			</div>
-			
-			<div>
-				<input type="submit" value="Cadastrar Veículo"/>
-			</div>
-			
-		</div>
-	
-	</form>
+		
+		</form>
+	</div>
 	
 	</section>
 </body>

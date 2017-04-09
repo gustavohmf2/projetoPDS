@@ -40,8 +40,7 @@ public class Cliente implements Serializable{
 	private List<Servico> servico;
 	@OneToMany(mappedBy="cliente", fetch=FetchType.LAZY, cascade=CascadeType.ALL)
 	private List<Veiculo> veiculo;
-	@OneToMany(mappedBy="cliente", fetch=FetchType.LAZY, cascade=CascadeType.ALL)
-	private List<Alerta> alertas;
+	
 	
 	
 
@@ -102,16 +101,6 @@ public class Cliente implements Serializable{
 	public void addServico(Servico servico){
 		setServico();
 		this.servico.add(servico);
-	}
-	public List<Alerta> getAlertas() {
-		return alertas;
-	}
-	public void setAlertas() {
-		this.alertas = new ArrayList<Alerta>();
-	}
-	public void addAlertas(Alerta novoAlerta){
-		setServico();
-		this.alertas.add(novoAlerta);
 	}
 	public TipoPessoa getTipo() {
 		return tipo;

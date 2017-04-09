@@ -35,10 +35,11 @@ public class ClienteController {
 	private VeiculoService veiculoService;
 	
 	@RequestMapping(method=RequestMethod.GET)
-	public String cliente( Model model){
+	public ModelAndView cliente( Model model){
 		
-	
-		return "cliente/cliente";
+		ModelAndView mv = new ModelAndView("cliente/cliente");
+		
+		return mv;
 	}
 	
 	@GetMapping("/novo")
@@ -56,7 +57,6 @@ public class ClienteController {
 	public ModelAndView salvarCliente(Cliente cliente,RedirectAttributes attributes){
 		
 		ModelAndView mv = new ModelAndView("redirect:/cliente/novo");
-		System.out.println(cliente.getNome());
 		
 		clienteService.inserir(cliente);
 		attributes.addFlashAttribute("message", "O cliente foi cadastrado!");
@@ -98,17 +98,18 @@ public class ClienteController {
 	}
 	
 	@RequestMapping("/meusVeiculos")
-	public String cadastrarVeiculo(@RequestParam(name="id", required=true) String id, Model model){
+	public ModelAndView cadastrarVeiculo(HttpSession session){
 		
-		
+		ModelAndView mv = new ModelAndView("cliente/meusVeiculos");
 		//descer para a camada de validação
-		Cliente cliente = clienteService.buscarPF(id);
+		Cliente temp = (Cliente) session.getAttribute("usuario");
+		Cliente cliente = clienteService.buscarPorId(temp.getId());
 		
-		clienteService.verificaVeiculo(id);
+		clienteService.verificaVeiculo(cliente.getId());
 	
 		
-		model.addAttribute("cliente", cliente);
-		return "cliente/meusVeiculos";
+		mv.addObject("cliente", cliente);
+		return mv;
 		
 	}
 	
@@ -124,15 +125,14 @@ public class ClienteController {
 		mv.addObject("infoExtraVeiculo", infoExtraVeiculo);
 		
 		return mv;
-		
 	}
 	
 	@PostMapping("/addInfoExtraVeiculo")
-	public ModelAndView saveInfoExtraVeiculo(InfoExtraVeiculo infoExtraVeiculo, RedirectAttributes attributes){
+	public ModelAndView saveInfoExtraVeiculo(InfoExtraVeiculo infoExtraVeiculo, HttpSession session, RedirectAttributes attributes, String id){
 	
 		ModelAndView mv = new ModelAndView("redirect:cliente/formInfoExtra");
 		
-		System.out.println(infoExtraVeiculo.getUltimaRevisao());
+		veiculoService.adicionarInfoExtra(infoExtraVeiculo);
 		
 		attributes.addAttribute("mesagem", "Informações adicionadas");
 		return mv;

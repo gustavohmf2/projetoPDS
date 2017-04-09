@@ -30,9 +30,10 @@ public class AcompanhamentoService {
 	private AlertaRepository alerta;
 	
 
-	public void verificaVeiculo(Cliente cliente){
+	public void verificaVeiculo(Cliente cliente, String idVeiculo){
 		
-		Veiculo veiculo = cliente.getVeiculo().get(0);
+		Veiculo veiculo = veiculoRepository.findOne(idVeiculo);
+		
 		List<Alerta> alertas = new ArrayList<Alerta>();
 		
 		alertas.add(logicaAcompanhamento.verificarRevisao(veiculo));
@@ -42,7 +43,7 @@ public class AcompanhamentoService {
 			
 			for(int i = 0; i < alertas.size(); i++){
 				
-				cliente.addAlertas(alertas.get(i));
+				veiculo.addAlertas(alertas.get(i));
 			}
 			
 		}

@@ -6,6 +6,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import br.com.ProjetoPDS.App.Models.Cliente;
+import br.com.ProjetoPDS.App.Models.InfoExtraVeiculo;
 import br.com.ProjetoPDS.App.Models.MarcaModelo;
 import br.com.ProjetoPDS.App.Models.Veiculo;
 import br.com.ProjetoPDS.App.Repository.MarcaModeloRepository;
@@ -41,6 +43,22 @@ public class VeiculoService implements IVeiculoService{
 	@Override
 	public void deletar(Veiculo veiculo) {
 		dataFacade.getVeiculoRepository().delete(veiculo);
+	}
+
+	@Override
+	public void adicionarInfoExtra(InfoExtraVeiculo infoExtra) {
+		
+		System.out.println(infoExtra.getKmTotal());
+		System.out.println(infoExtra.getId());
+		
+		Veiculo veiculo = dataFacade.getVeiculoRepository().findOne(infoExtra.getId());
+		System.out.println(veiculo.getPlaca());
+		
+		
+		veiculo.setInfoExtraVeiculo(infoExtra);
+		
+		dataFacade.getVeiculoRepository().save(veiculo);
+		
 	}
 	
 

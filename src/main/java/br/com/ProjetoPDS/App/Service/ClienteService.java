@@ -29,23 +29,27 @@ public class ClienteService implements IClienteService{
 
 		List<Veiculo> veiculos = cliente.getVeiculo();
 		
-		List<Alerta> alertas = new ArrayList<Alerta>();
-		
 		for(int i = 0;  i < veiculos.size(); i++){
 			
-			alertas.add(logicaAcompanhamento.verificarRevisao(veiculos.get(i)));
-			alertas.add(logicaAcompanhamento.alinhamentoBalanceamento(veiculos.get(i)));
+			if(veiculos.get(i).getInfoExtraVeiculo() != null){
+				
+				System.out.println(veiculos.get(i).getInfoExtraVeiculo().getKmTotal());
+			
+				Alerta alerta1 = logicaAcompanhamento.verificarRevisao(veiculos.get(i));
+				Alerta alerta2 = logicaAcompanhamento.alinhamentoBalanceamento(veiculos.get(i));
+				
+				System.out.println(alerta1.getTipo());
+				alerta1.setVeiculo(veiculos.get(i));
+				alerta2.setVeiculo(veiculos.get(i));
+				
+				cliente.getVeiculo().get(i).addAlertas(alerta1);
+				cliente.getVeiculo().get(i).addAlertas(alerta2);
+			}
+	
 		}
 		
-		if(!alertas.isEmpty()){
-			
-			for(int i = 0; i < alertas.size(); i++){
-				
-				cliente.addAlertas(alertas.get(i));
-			}
-			
-		}
-			
+		dataFacade.getClienteRepository().save(cliente);
+		
 	}
 	
 	@Override

@@ -3,38 +3,33 @@
 	  xmlns="http://www.w3.org/1999/xhtml" 
 	  xmlns:th="http://www.thymeleaf.org">
 <head>
-<meta charset="ISO-8859-1"/>
+<meta charset="UTF-8"/>
 <title>Login</title>
 <link rel="stylesheet" type="text/css" th:href="@{/layout/stylesheets/bootstrap.min.css}"/>
 </head>
 <body>
+
+	<div class="container">
+
+      <form class="form-signin"  th:action="login" th:method="post"> 
+        <h2 class="form-signin-heading">Acesse sua conta</h2>
+        
+        <label for="inputEmail" class="sr-only">Login:</label>
+        <input name="login" type="text" class="form-control" placeholder="email or cpf" autofocus=""/>
+        
+        <label for="inputPassword" class="sr-only">Senha</label>
+        <input name="senha" type="password"  class="form-control" placeholder="senha"/>
+        
+        <div class="checkbox">
+          <label>
+            <input type="checkbox" value="lembrar-me"/> Lembrar-me
+          </label>
+        </div>
+        
+        <button class="btn btn-lg btn-primary btn-block" type="submit">Entrar</button>
+      </form>
+
+    </div>
 	
-	<div class="col-md-4"></div>
-	<div  class="col-md-4"  align="center" >
-	<form id="form-login" th:action="login" th:method="post">
-	
-		<div class="panel panel-primary">
-		 <div class="panel-heading">
-	    	<h3 class="panel-title">Login</h3>
-	 	 </div>
-	 	 
-	 	<div class="panel-body" align="center"> 
-			<div>
-				<label >Login:</label>
-					<input name="login" placeholder="email or cpf" type="text"/>
-			</div>
-			
-			<div>
-				<label >Senha:</label>
-					<input name="senha" placeholder="senha" type="password"/>
-			</div>
-			
-			<div>
-					<input type="submit" value="Entrar"/>
-			</div>
-		</div>
-		</div>
-	</form>
-	</div>
 </body>
 </html>

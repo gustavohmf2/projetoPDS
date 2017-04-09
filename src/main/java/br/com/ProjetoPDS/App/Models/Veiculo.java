@@ -1,7 +1,8 @@
 package br.com.ProjetoPDS.App.Models;
 
 import java.io.Serializable;
-
+import java.util.ArrayList;
+import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -9,6 +10,7 @@ import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
 import br.com.ProjetoPDS.App.Enumeracoes.EnumCores;
@@ -39,7 +41,8 @@ public class Veiculo implements Serializable{
 	@ManyToOne(fetch=FetchType.EAGER, cascade= CascadeType.ALL)
 	@JoinColumn(name="id_cliente")
 	private Cliente cliente;
-	
+	@OneToMany(mappedBy="veiculo", fetch=FetchType.LAZY, cascade=CascadeType.ALL)
+	private List<Alerta> alertas;
 	
 
 	public String getNumeroChassi() {
@@ -90,7 +93,16 @@ public class Veiculo implements Serializable{
 	public void setCliente(Cliente cliente) {
 		this.cliente = cliente;
 	}
-
+	public List<Alerta> getAlertas() {
+		return alertas;
+	}
+	public void setAlertas() {
+		this.alertas = new ArrayList<Alerta>();
+	}
+	public void addAlertas(Alerta novoAlerta){
+		setAlertas();
+		this.alertas.add(novoAlerta);
+	}
 	
 	
 }

@@ -3,6 +3,7 @@ package br.com.ProjetoPDS.App.Service;
 import java.util.List;
 
 import br.com.ProjetoPDS.App.Models.Cliente;
+import br.com.ProjetoPDS.App.Models.InfoExtraVeiculo;
 import br.com.ProjetoPDS.App.Models.MarcaModelo;
 import br.com.ProjetoPDS.App.Models.Veiculo;
 
@@ -17,5 +18,6 @@ public interface IVeiculoService {
 	public void deletar(Veiculo veiculo);
 	public Veiculo buscarPorId(String id);
 	public List<Veiculo> buscarTodos();
+	public void adicionarInfoExtra(InfoExtraVeiculo infoExtra);
 	
 }
