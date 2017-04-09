@@ -3,10 +3,12 @@ package br.com.ProjetoPDS.App.Service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import br.com.ProjetoPDS.App.Enumeracoes.EnumStatus;
 import br.com.ProjetoPDS.App.Models.Servico;
 
+@Service
 public class ServicoService implements IServicoService{
 
 	@Autowired

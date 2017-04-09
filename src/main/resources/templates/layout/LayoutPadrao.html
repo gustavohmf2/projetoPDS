@@ -23,7 +23,7 @@
 	  <div class="container-fluid">
 
 	    <div class="navbar-header">
-	      <a class="navbar-brand  hidden-xs" href="#">
+	      <a class="navbar-brand  hidden-xs">
 	        <span>Monitor de Oficina</span>
 	      </a>
 
@@ -92,6 +92,13 @@
 	        		</li>
 	        		
 	        		<li class="aw-menu__item">
+          			<a th:href="@{../servico/novoServico(id=${session.usuario.id})}">
+          				<i class="fa  fa-fw  fa-plus-circle"></i>
+          				<span>Marcar uma visita</span>
+          			</a>
+	        		</li>
+	        		
+	        		<li class="aw-menu__item">
           			<a th:href="@{cliente/meusVeiculos(id=${session.usuario.id})}">
           				<i class="fa  fa-fw  fa-search"></i>
           				<span>Meus Veículos</span>
@@ -105,19 +112,9 @@
           			</a>
 	        		</li>
 	        		
-	        		<li class="aw-menu__item">
-          			<a th:href="@{/404}">
-          				<i class="fa fa-line-chart"></i>
-          				<span>Acompanhamento de Serviços</span>
-          			</a>
-	        		</li>
+	 
 	        		
-	        		<li class="aw-menu__item">
-          			<a th:href="@{/500}">
-          				<i class="fa  fa-fw  fa-arrow-circle-o-right"></i>
-          				<span>500</span>
-          			</a>
-	        		</li>
+
 	
 	      	</ul>
 	    	</nav>
@@ -128,7 +125,7 @@
 	
 	<footer class="aw-layout-footer  js-content">
 		<div class="container-fluid">
-			<span class="aw-footer-disclaimer">&copy; 2016 AlgaWorks. Todos os direitos reservados.</span>
+			<span class="aw-footer-disclaimer"></span>
 		</div>
 	</footer>
 </div>
