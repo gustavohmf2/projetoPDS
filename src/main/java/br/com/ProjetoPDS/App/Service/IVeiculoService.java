@@ -9,7 +9,7 @@ import br.com.ProjetoPDS.App.Models.Veiculo;
 
 public interface IVeiculoService {
 
-	public List<MarcaModelo> listarMarcaModelo(String marca);
+	public List<String> listarMarcaModelo(String marca);
 	
 	//acesso ao banco
 	public void inserir(Veiculo veiculo);
@@ -17,5 +17,7 @@ public interface IVeiculoService {
 	public Veiculo buscarPorId(String id);
 	public List<Veiculo> buscarTodos();
 	public void adicionarInfoExtra(InfoExtraVeiculo infoExtra);
+
+	List<String> listarMarcas();
 	
 }

@@ -21,8 +21,14 @@ public class VeiculoService implements IVeiculoService{
 
 	
 	@Override
-	public List<MarcaModelo> listarMarcaModelo(String marca) {
-		return dataFacade.getMarcaModeloRepository().findByMarca(marca);
+	public List<String> listarMarcaModelo(String marca) {
+		return dataFacade.getMarcaModeloRepository().buscarModelosPorMarca(marca);
+		
+	}
+	
+	@Override
+	public List<String> listarMarcas() {
+		return dataFacade.getMarcaModeloRepository().buscarModelos();
 		
 	}
 

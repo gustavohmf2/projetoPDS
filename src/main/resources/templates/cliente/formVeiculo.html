@@ -10,6 +10,46 @@
 	<meta charset="UTF-8"/>
 <title>Adicionar Veículo</title>
 </head>
+
+<script type="text/javascript">
+
+	(document).ready(function($) {
+		$("#search").change(function(event) {
+	
+			// Prevent the form from submitting via the browser.
+			listarModelos();
+	
+		});
+	});
+
+  fuction listarModelos(){
+
+		var marca ´$("#search").value();
+
+		$.ajax({
+
+			type: "GET",
+			url: "cliente/listarModelos",
+			data: listarModelos,
+			sucess:function(data){
+				console.log("SUCESS", marca);
+				display(e);
+				
+				var html = '<option value=""></option>';
+				var len = data.length;
+				
+				for ( var i = 0; i < len; i++) {
+					html += '<option value="' + data[i] + '">'
+							+ data[i] + '</option>';
+				}
+				html += '</option>';
+	                        //now that we have our 
+			}
+
+		});
+  }
+	
+</script>
 <body>
 	
 	<section layout:fragment="conteudo">
@@ -34,6 +74,21 @@
 					<div><span>Cor:</span></div>
 					<input type="text" th:field="*{cor}"/>
 				</div>
+				
+				<div>
+					<div><span>Marca:</span></div>
+					<select id="search" th:field="*{marcaModelo.marca}">
+						<option th:each="marca : ${marcas}" th:text="${marca}" th:value="${marca}"></option>
+					</select>
+				</div>
+				
+				<div>
+					<div><span>Modelo:</span></div>
+					<select id="modelo" th:field="*{marcaModelo.modelo}" >
+						<option  th:value="${modelo}"></option>
+					</select>
+				</div>
+				
 				
 				<div>
 					<div><span>Ano de fabricação:</span></div>

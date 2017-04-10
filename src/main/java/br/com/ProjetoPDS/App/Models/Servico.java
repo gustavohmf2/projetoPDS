@@ -33,8 +33,8 @@ public class Servico implements Serializable{
 	private Calendar dataRequerimento;
 	@DateTimeFormat(pattern="dd/mm/yyyy")
 	private Calendar prazoFinal;
-	@ManyToOne(fetch=FetchType.EAGER)
-	@JoinColumn(insertable=false, name="id_cliente")
+	@ManyToOne(fetch=FetchType.EAGER, cascade= CascadeType.ALL)
+	@JoinColumn(name="id_cliente")
 	private Cliente cliente;
 	private Veiculo veiculo;
 	private String notaFiscal;

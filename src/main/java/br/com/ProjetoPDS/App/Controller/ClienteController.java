@@ -1,6 +1,6 @@
 package br.com.ProjetoPDS.App.Controller;
 
-import java.util.GregorianCalendar;
+import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
@@ -18,8 +18,6 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import br.com.ProjetoPDS.App.Models.Cliente;
 import br.com.ProjetoPDS.App.Models.InfoExtraVeiculo;
 import br.com.ProjetoPDS.App.Models.Veiculo;
-import br.com.ProjetoPDS.App.Repository.MarcaModeloRepository;
-import br.com.ProjetoPDS.App.Service.AcompanhamentoService;
 import br.com.ProjetoPDS.App.Service.ClienteService;
 import br.com.ProjetoPDS.App.Service.VeiculoService;
 
@@ -46,7 +44,7 @@ public class ClienteController {
 	public ModelAndView formCliente(){
 		
 		ModelAndView mv = new ModelAndView("cliente/form");
-		
+	
 		Cliente cliente = new Cliente();
 		mv.addObject("cliente", cliente);
 		return mv;
@@ -71,7 +69,8 @@ public class ClienteController {
 		ModelAndView mv = new ModelAndView("cliente/formVeiculo");
 
 		Veiculo veiculo = new Veiculo();
-		
+		List<String> marcas = veiculoService.listarMarcas();
+		mv.addObject("marcas", marcas);
 		mv.addObject("veiculo", veiculo);
 		
 		return mv;
@@ -106,7 +105,10 @@ public class ClienteController {
 		Cliente cliente = clienteService.buscarPorId(temp.getId());
 		
 		clienteService.verificaVeiculo(cliente.getId());
-	
+		
+		for(int i = 0; i < cliente.getVeiculo().get(0).getAlertas().size();i++){
+			System.out.println(cliente.getVeiculo().get(0).getAlertas().get(i).getDescricao());;
+		}
 		
 		mv.addObject("cliente", cliente);
 		return mv;
@@ -136,6 +138,13 @@ public class ClienteController {
 		
 		attributes.addAttribute("mesagem", "Informações adicionadas");
 		return mv;
+	}
+	
+	@GetMapping("/listarModelos")
+	public List<String> listarModelos(@RequestParam(name="marca", defaultValue="Fiat") String marca){
+		
+		return veiculoService.listarMarcaModelo(marca);
+		
 	}
 	
 	

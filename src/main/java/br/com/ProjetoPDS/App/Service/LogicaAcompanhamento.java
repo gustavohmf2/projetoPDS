@@ -37,7 +37,10 @@ public class LogicaAcompanhamento {
 			Long meses = dias / 30;
 			
 		
+			System.out.println(infoKmTotal);
 			if((infoKmTotal >= 10000 && infoKmTotal < 20000) || meses >= 6){
+				
+				
 				
 				alerta.setData(hoje);
 				alerta.setDescricao("Revisão dos 10.000 Km");
@@ -45,11 +48,15 @@ public class LogicaAcompanhamento {
 				
 			}else if((infoKmTotal >= 20000 && infoKmTotal < 30000) || meses >= 12){
 				
+				
+				
 				alerta.setData(hoje);
 				alerta.setDescricao("Revisão dos 20.000 Km");
 				alerta.setTipo(TipoAlerta.REVISAO);
 				
 			}else if((infoKmTotal >= 30000 && infoKmTotal < 40000) || meses >= 18){
+				
+				
 				
 				alerta.setData(hoje);
 				alerta.setDescricao("Revisão dos 30.000 Km");
@@ -57,11 +64,15 @@ public class LogicaAcompanhamento {
 				
 			}else if((infoKmTotal >= 40000 && infoKmTotal < 50000)  || meses >= 24){
 				
+				
+				
 				alerta.setData(hoje);
 				alerta.setDescricao("Revisão dos 40.000 Km");
 				alerta.setTipo(TipoAlerta.REVISAO);
 				
 			}else if((infoKmTotal >= 50000 && infoKmTotal < 60000)  || meses >= 30){
+				
+				
 				
 				alerta.setData(hoje);
 				alerta.setDescricao("Revisão dos 50.000 Km");
@@ -69,6 +80,7 @@ public class LogicaAcompanhamento {
 				
 			}else if((infoKmTotal >= 60000   && infoKmTotal < 70000)|| meses >= 36){
 				
+				alerta.setId(6);
 				alerta.setData(hoje);
 				alerta.setDescricao("Revisão dos 60.000 Km");
 				alerta.setTipo(TipoAlerta.REVISAO);
@@ -102,6 +114,7 @@ public class LogicaAcompanhamento {
 			Double ultimaKilometragem = veiculo.getInfoExtraVeiculo().getKmAnterior();
 			
 			if(ultimaKilometragem >= 10000){
+				
 				
 				alerta.setData(hoje);
 				alerta.setTipo(TipoAlerta.ALINHAMENTO_BALANCEAMENTO);

@@ -3,6 +3,7 @@ package br.com.ProjetoPDS.App.Service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import br.com.ProjetoPDS.App.Repository.AlertaRepository;
 import br.com.ProjetoPDS.App.Repository.ClienteRepository;
 import br.com.ProjetoPDS.App.Repository.EnderecoRepository;
 import br.com.ProjetoPDS.App.Repository.InfoExtraVeiculoRepository;
@@ -31,8 +32,18 @@ public class DataFacadeService {
 	private VeiculoRepository veiculoRepository;
 	@Autowired
 	private ServicoRepository servicoRepository;
+	@Autowired
+	private AlertaRepository alertaRepository;
 
 	
+
+	public AlertaRepository getAlertaRepository() {
+		return alertaRepository;
+	}
+
+	public void setAlertaRepository(AlertaRepository alertaRepository) {
+		this.alertaRepository = alertaRepository;
+	}
 
 	public InfoExtraVeiculoRepository getInfoExtraVeiculoRepository() {
 		return infoExtraVeiculoRepository;

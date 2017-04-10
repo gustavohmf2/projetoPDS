@@ -1,7 +1,9 @@
 package br.com.ProjetoPDS.App.Models;
+import java.io.Serializable;
 import java.util.Calendar;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -13,12 +15,15 @@ import javax.persistence.ManyToOne;
 import br.com.ProjetoPDS.App.Enumeracoes.TipoAlerta;
 
 @Entity
-public class Alerta {
+public class Alerta implements Serializable{
 
 	
+
+	private static final long serialVersionUID = 1L;
 	
-	@Id@GeneratedValue(strategy=GenerationType.AUTO)
-	private Long id;
+	@Id@GeneratedValue(strategy=GenerationType.TABLE)
+	@Column(name="id_alerta")
+	private Integer id;
 	private String descricao;
 	private Calendar data;
 	private TipoAlerta tipo;
@@ -27,10 +32,10 @@ public class Alerta {
 	private Veiculo veiculo;
 	
 	
-	public Long getId() {
+	public Integer getId() {
 		return id;
 	}
-	public void setId(Long id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 	

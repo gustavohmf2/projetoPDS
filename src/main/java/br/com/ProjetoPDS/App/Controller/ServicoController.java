@@ -39,11 +39,13 @@ public class ServicoController {
 	public ModelAndView cadastrarServico(Servico servico, HttpSession session, RedirectAttributes attributes){
 		
 		ModelAndView mv = new ModelAndView("redirect:/cliente");
-		Cliente cliente = (Cliente) session.getAttribute("usuario");
-
-		cliente.setNome("Carlos Henrique");
-		clienteService.inserir(cliente);
+		Cliente tmp = (Cliente) session.getAttribute("usuario");
+		
+		Cliente cliente = clienteService.buscarPorId(tmp.getId());
+		
+		cliente.addServico(servico);
 		servico.setResponsavel(cliente);
+		
 		servicoService.inserir(servico);
 		attributes.addAttribute("message", "nova visita marcada!");
 	

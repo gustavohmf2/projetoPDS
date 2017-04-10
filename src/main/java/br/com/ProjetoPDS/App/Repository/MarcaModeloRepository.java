@@ -12,8 +12,10 @@ import br.com.ProjetoPDS.App.Models.MarcaModelo;
 public interface MarcaModeloRepository extends JpaRepository<MarcaModelo, Long>{
 
 
-	public List<MarcaModelo> findByMarca(String marca);
+	@Query("SELECT m.modelo FROM MarcaModelo m WHERE m.marca =:marca ")
+	public List<String> buscarModelosPorMarca(@Param("marca")String marca);
 	
-	@Query("select m.modelo from MarcaModelo m where m.marca =:marca ")
-	List<String> buscarListaModelosPorMarca(@Param("marca")String marca);
+	
+	@Query("SELECT DISTINCT(m.marca) FROM MarcaModelo m ")
+	public List<String> buscarModelos();
 }

@@ -59,9 +59,10 @@
 						</tr>
 					</thead>
 					<tbody>
-						<tr th:if="${veiculo.alertas.size() != 0}" th:each="veiculo : ${cliente.veiculo}" >
+						<tr th:each="veiculo : ${cliente.veiculo}" >
 							<td th:text="${veiculo.placa}"></td>
-							<tr th:if="${alerta != null}" th:each="alerta : ${veiculo.alertas}" >
+							
+							<tr  th:each="alerta : ${veiculo.alertas}" >
 								<td th:text="${alerta.descricao}"></td>
 							</tr>
 						</tr>

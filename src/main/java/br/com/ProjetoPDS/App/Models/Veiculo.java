@@ -20,9 +20,7 @@ import br.com.ProjetoPDS.App.Enumeracoes.EnumCores;
 public class Veiculo implements Serializable{
 
 	
-	/**
-	 * 
-	 */
+
 	private static final long serialVersionUID = 1L;
 	
 	@Id
