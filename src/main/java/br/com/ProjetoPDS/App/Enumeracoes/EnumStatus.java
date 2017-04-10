@@ -1,6 +1,7 @@
 package br.com.ProjetoPDS.App.Enumeracoes;
 
 public enum EnumStatus {
+	PRE_DIGNOSTICO("pré-diagnostico"),
 	VISTORIA_PENDENTE("Vistoria pendente"), 
 	AUTORIZACAO_PENDENTE("Autorizacao pendente"), 
 	SERVICO_AUTORIZADO("Serviço autorizado"), 
@@ -21,7 +22,9 @@ public enum EnumStatus {
 		return titulo;
 	}
 
-	
+	public Integer getId(){
+		return this.ordinal();
+	}
 	
 	
 }

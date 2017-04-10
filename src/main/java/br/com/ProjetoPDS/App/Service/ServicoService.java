@@ -3,14 +3,32 @@ package br.com.ProjetoPDS.App.Service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
+import br.com.ProjetoPDS.App.Enumeracoes.EnumStatus;
 import br.com.ProjetoPDS.App.Models.Servico;
 
+@Service
 public class ServicoService implements IServicoService{
 
 	@Autowired
 	private DataFacadeService dataFacade;
 
+	
+	/**
+	 * Requisito gera uma atualização do status do serviço
+	 * 
+	 * 
+	 * @param idServico
+	 */
+	@Override
+	public void aprovarOrcamentoServico(Integer idServico){
+		Servico ServicoAtualizado = buscarPorId(idServico);
+		ServicoAtualizado.setStatus(EnumStatus.SERVICO_AUTORIZADO.getId());
+		inserir(ServicoAtualizado);
+	}
+	
+	
 	@Override
 	public List<Servico> buscarServicosPorIdCliente(String idCliente) {
 		return dataFacade.getClienteRepository().findOne(idCliente).getServico();

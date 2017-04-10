@@ -8,9 +8,7 @@ import br.com.ProjetoPDS.App.Models.MarcaModelo;
 import br.com.ProjetoPDS.App.Models.Veiculo;
 
 public interface IVeiculoService {
-	
-	
-	
+
 	public List<MarcaModelo> listarMarcaModelo(String marca);
 	
 	//acesso ao banco

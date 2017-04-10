@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="pt" xmlns="http://www.w3.org/1999/xhtml" 
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="layout/LayoutPadrao">
+	
+<head>
+	<link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css" />
+	<script src="http://code.jquery.com/jquery-2.0.1.min.js"></script>
+	<script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+	<meta charset="UTF-8"/>
+<title>Área do Cliente</title>
+</head>
+<body>
+	<section layout:fragment="conteudo">
+	<div class="col-sm-9 col-md-10">
+		<h1><span th:text="${session.usuario.nome}"></span></h1>
+	</div>
+	<div class="row"></div>
+	<h2 class="col-sm-9 col-md-10 sub-header">Ultimos Serviços Realizados</h2>
+	<div class="row"></div>
+	<div class="table-responsive">
+            <table class="table table-striped">
+              <thead>
+                <tr>
+                  <th>Tipo</th>
+                  <th>Data</th>
+                  <th>Veículo</th>
+                  <th>Descrição</th>
+                  <th>Valor</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Lanternagem</td>
+                  <td>30/03/2015</td>
+                  <td>Wolksvagem Golf - KXJ-1023</td>
+                  <td>Reparo no para-choque dianteiro</td>
+                  <td>750,00</td>
+                </tr>
+                <tr>
+                  <td>Pintura</td>
+                  <td>01/04/2015</td>
+                  <td>Wolksvagem Golf - KXJ-1023</td>
+                  <td>Pintura do para-choque dianteiro</td>
+                  <td>200,00</td>
+                </tr>
+                <tr>
+                  <td>1,003</td>
+                  <td>Integer</td>
+                  <td>nec</td>
+                  <td>odio</td>
+                  <td>Praesent</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+	
+	</section>
+</body>
+</html>

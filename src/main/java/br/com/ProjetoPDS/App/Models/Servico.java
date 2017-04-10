@@ -43,6 +43,41 @@ public class Servico implements Serializable{
 	private String descricao;
 	private String obs;
 	
+	public Integer getId() {
+		return id;
+	}
+
+
+
+	public void setId(Integer id) {
+		this.id = id;
+	}
+
+
+
+	public Calendar getPrazoFinal() {
+		return prazoFinal;
+	}
+
+
+
+	public void setPrazoFinal(Calendar prazoFinal) {
+		this.prazoFinal = prazoFinal;
+	}
+
+
+
+	public Cliente getCliente() {
+		return cliente;
+	}
+
+
+
+	public void setCliente(Cliente cliente) {
+		this.cliente = cliente;
+	}
+	
+	
 	
 	public Servico() {
 		// TODO Auto-generated constructor stub
