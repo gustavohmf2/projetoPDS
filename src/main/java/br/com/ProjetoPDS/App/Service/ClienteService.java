@@ -42,13 +42,15 @@ public class ClienteService implements IClienteService{
 				alerta1.setVeiculo(veiculos.get(i));
 				alerta2.setVeiculo(veiculos.get(i));
 				
-				cliente.getVeiculo().get(i).addAlertas(alerta1);
-				cliente.getVeiculo().get(i).addAlertas(alerta2);
+				veiculos.get(i).addAlertas(alerta1);
+				veiculos.get(i).addAlertas(alerta2);
+				
+				dataFacade.getClienteRepository().save(cliente);
 			}
 	
 		}
 		
-		dataFacade.getClienteRepository().save(cliente);
+	
 		
 	}
 	
