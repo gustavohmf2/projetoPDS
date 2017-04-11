@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -44,7 +45,6 @@ public class ClienteController {
 	public ModelAndView formCliente(){
 		
 		ModelAndView mv = new ModelAndView("cliente/form");
-	
 		Cliente cliente = new Cliente();
 		mv.addObject("cliente", cliente);
 		return mv;
@@ -143,7 +143,19 @@ public class ClienteController {
 	@GetMapping("/listarModelos")
 	public List<String> listarModelos(@RequestParam(name="marca", defaultValue="Fiat") String marca){
 		
+		System.out.println("Aqui");
+		
 		return veiculoService.listarMarcaModelo(marca);
+		
+	}
+	
+	
+	@GetMapping("/test")
+	public @ResponseBody String test(){
+		
+		System.out.println("Aqui");
+		
+		return "TEST";
 		
 	}
 	

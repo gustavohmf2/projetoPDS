@@ -1,7 +1,6 @@
 package br.com.ProjetoPDS.App.Service;
 
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,7 +9,6 @@ import org.springframework.stereotype.Service;
 import br.com.ProjetoPDS.App.Models.Alerta;
 import br.com.ProjetoPDS.App.Models.Cliente;
 import br.com.ProjetoPDS.App.Models.Veiculo;
-import ch.qos.logback.core.net.SyslogOutputStream;
 
 @Service
 public class ClienteService implements IClienteService{
@@ -40,31 +38,21 @@ public class ClienteService implements IClienteService{
 				alerta1.setVeiculo(veiculos.get(i));
 				if((dataFacade.getAlertaRepository().findByDescricaoVeiculo(alerta1.getDescricao(), alerta1.getVeiculo()).isEmpty()) && (!alerta1.getDescricao().isEmpty())){
 					
-					System.out.println("Comparação 1!");
+					
 					cliente.getVeiculo().get(i).addAlertas(alerta1);
 					dataFacade.getClienteRepository().save(cliente);	
 				}
 				
 				alerta2.setVeiculo(veiculos.get(i));
 				if((dataFacade.getAlertaRepository().findByDescricaoVeiculo(alerta2.getDescricao(), alerta2.getVeiculo()).isEmpty()) && (alerta2.getDescricao() != null)){
-					
-					System.out.println("Comparação 2!");
+						
 					cliente.getVeiculo().get(i).addAlertas(alerta2);
 					dataFacade.getClienteRepository().save(cliente);
 				}
-				
-				
-				
-				
-
-				
-				
+					
 			}
-			
-			
-		}
-		
 	
+		}
 		
 	}
 	

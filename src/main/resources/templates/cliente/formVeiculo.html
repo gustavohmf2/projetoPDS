@@ -5,57 +5,22 @@
 	layout:decorator="layout/LayoutPadrao">
 <head>
 	<link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css" />
-	<script src="http://code.jquery.com/jquery-2.0.1.min.js"></script>
-	<script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+	<link rel="stylesheet" th:href="@{/layout/jquery/jquery.min.css}" />
 	<meta charset="UTF-8"/>
 <title>Adicionar Veículo</title>
+
 </head>
 
-<script type="text/javascript">
-
-	(document).ready(function($) {
-		$("#search").change(function(event) {
-	
-			// Prevent the form from submitting via the browser.
-			listarModelos();
-	
-		});
-	});
-
-  fuction listarModelos(){
-
-		var marca ´$("#search").value();
-
-		$.ajax({
-
-			type: "GET",
-			url: "cliente/listarModelos",
-			data: listarModelos,
-			sucess:function(data){
-				console.log("SUCESS", marca);
-				display(e);
-				
-				var html = '<option value=""></option>';
-				var len = data.length;
-				
-				for ( var i = 0; i < len; i++) {
-					html += '<option value="' + data[i] + '">'
-							+ data[i] + '</option>';
-				}
-				html += '</option>';
-	                        //now that we have our 
-			}
-
-		});
-  }
-	
-</script>
 <body>
 	
 	<section layout:fragment="conteudo">
+	
+	
 	<div class="col-sm-9 col-md-10">
 		<h1>Cadastro de veículo</h1>
 	</div>
+	
+
 	
 	<div class="row"></div>
 	
@@ -84,8 +49,8 @@
 				
 				<div>
 					<div><span>Modelo:</span></div>
-					<select id="modelo" th:field="*{marcaModelo.modelo}" >
-						<option  th:value="${modelo}"></option>
+					<select th:field="*{marcaModelo.modelo}" >
+						<option  id="modelo" value=""></option>
 					</select>
 				</div>
 				
@@ -104,6 +69,11 @@
 		</form>
 	</div>
 	
+	
 	</section>
+	
+	
+	
+	
 </body>
 </html>

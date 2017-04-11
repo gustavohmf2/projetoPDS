@@ -7,6 +7,20 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 	<link rel="stylesheet" type="text/css" th:href="@{/layout/stylesheets/bootstrap.min.css}"/>
 	<link rel="stylesheet" type="text/css" th:href="@{/layout/stylesheets/custom.css}"/>
+	
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script type="text/javascript">
+
+		$(document).ready(function() {
+		    $.ajax({
+		        url: "http://rest-service.guides.spring.io/greeting"
+		    }).then(function(data) {
+		       $('.greeting-id').append(data.id);
+		       $('.greeting-content').append(data.content);
+		    });
+		});
+	
+	</script>
 </head>
 <body>
 	
@@ -26,6 +40,16 @@
 	  	</div>
 	  </div>
 	</nav>
-    
+	
+
+	
+	
+  
+    <div>
+        <p class="greeting-id">The ID is </p>
+        <p class="greeting-content">The content is </p>
+    </div>
+        
+   
 </body>
 </html>

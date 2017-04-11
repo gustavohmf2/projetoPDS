@@ -14,6 +14,7 @@
 	<link rel="stylesheet" type="text/css" th:href="@{/layout/stylesheets/algaworks.min.css}"/>
 	<link rel="stylesheet" type="text/css" th:href="@{/layout/stylesheets/application.css}"/>
 	
+	
 </head>
 <body>
 
@@ -23,7 +24,7 @@
 	  <div class="container-fluid">
 
 	    <div class="navbar-header">
-	      <a class="navbar-brand  hidden-xs">
+	      <a th:href="@{~/cliente}" class="navbar-brand  hidden-xs">
 	        <span>Monitor de Oficina</span>
 	      </a>
 
@@ -85,21 +86,21 @@
 	    	<nav class="aw-menu  js-menu">
 	      		<ul class="aw-menu__list">
 	        		<li class="aw-menu__item">
-          			<a th:href="@{cliente/novoVeiculo(id=${session.usuario.id})}">
+          			<a th:href="@{~/cliente/novoVeiculo(id=${session.usuario.id})}">
           				<i class="fa  fa-fw  fa-plus-circle"></i>
           				<span>Novo Veículo</span>
           			</a>
 	        		</li>
 	        		
 	        		<li class="aw-menu__item">
-          			<a th:href="@{../servico/novoServico(id=${session.usuario.id})}">
+          			<a th:href="@{~/../servico/novoServico(id=${session.usuario.id})}">
           				<i class="fa  fa-fw  fa-plus-circle"></i>
           				<span>Marcar uma visita</span>
           			</a>
 	        		</li>
 	        		
 	        		<li class="aw-menu__item">
-          			<a th:href="@{cliente/meusVeiculos(id=${session.usuario.id})}">
+          			<a th:href="@{~/cliente/meusVeiculos(id=${session.usuario.id})}">
           				<i class="fa  fa-fw  fa-search"></i>
           				<span>Meus Veículos</span>
           			</a>
@@ -111,10 +112,6 @@
           				<span>Agendamento de Serviços</span>
           			</a>
 	        		</li>
-	        		
-	 
-	        		
-
 	
 	      	</ul>
 	    	</nav>
@@ -129,8 +126,11 @@
 		</div>
 	</footer>
 </div>
+
 <script th:src="@{/layout/javascripts/vendors.min.js}"></script>
 <script th:src="@{/layout/javascripts/algaworks.min.js}"></script>
+
+
 
 </body>
 </html>
