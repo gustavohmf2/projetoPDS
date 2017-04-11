@@ -1,5 +1,6 @@
 package br.com.ProjetoPDS.App.Controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -15,10 +16,14 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import br.com.ProjetoPDS.App.Enumeracoes.EnumStatus;
+import br.com.ProjetoPDS.App.Enumeracoes.TipoPessoa;
 import br.com.ProjetoPDS.App.Models.Cliente;
 import br.com.ProjetoPDS.App.Models.InfoExtraVeiculo;
+import br.com.ProjetoPDS.App.Models.Servico;
 import br.com.ProjetoPDS.App.Models.Veiculo;
 import br.com.ProjetoPDS.App.Service.ClienteService;
+import br.com.ProjetoPDS.App.Service.ServicoService;
 import br.com.ProjetoPDS.App.Service.VeiculoService;
 
 @Controller
@@ -31,20 +36,33 @@ public class ClienteController {
 	
 	@Autowired
 	private VeiculoService veiculoService;
+	@Autowired
+	private ServicoService servicoService;
 	
 	@RequestMapping(method=RequestMethod.GET)
-	public ModelAndView cliente( Model model){
-		
+	public ModelAndView cliente(Model model, HttpSession session){
 		ModelAndView mv = new ModelAndView("cliente/cliente");
+		//buscar cliente pelo id
+		Cliente cliente = (Cliente) session.getAttribute("usuario");
+		ArrayList<Servico> listaServicos = (ArrayList<Servico>) servicoService.buscarServicosPorIdCliente(cliente);
+		ArrayList<String> listaStatus = new ArrayList<String>();
+		
+		for (Servico servico : listaServicos) {
+			listaStatus.add(EnumStatus.getTitulo(servico.getStatus()));
+		}
+		
+		mv.addObject("listaServicos",listaServicos);
+		mv.addObject("listaStatus",listaStatus);
 		
 		return mv;
+		
 	}
 	
 	@GetMapping("/novo")
 	public ModelAndView formCliente(){
 		
 		ModelAndView mv = new ModelAndView("cliente/form");
-	
+	System.out.println("cadastro oficina");
 		Cliente cliente = new Cliente();
 		mv.addObject("cliente", cliente);
 		return mv;
@@ -55,7 +73,7 @@ public class ClienteController {
 	public ModelAndView salvarCliente(Cliente cliente,RedirectAttributes attributes){
 		
 		ModelAndView mv = new ModelAndView("redirect:/cliente/novo");
-		
+		cliente.setTipo(TipoPessoa.FISICA.ordinal());
 		clienteService.inserir(cliente);
 		attributes.addFlashAttribute("message", "O cliente foi cadastrado!");
 		return mv;
@@ -76,25 +94,7 @@ public class ClienteController {
 		return mv;
 	}
 	
-	@PostMapping("/novoVeiculo")
-	public ModelAndView cadastrarVeiculo(Veiculo veiculo, HttpSession session, RedirectAttributes attributes){
-		
-		ModelAndView mv = new ModelAndView("redirect:/cliente/formVeiculo");
-		System.out.println(veiculo.getPlaca());
-		
 	
-		Cliente cliente = (Cliente) session.getAttribute("usuario");
-		
-		veiculo.setCliente(cliente);
-		cliente.addVeiculo(veiculo);
-		
-		clienteService.inserir(cliente);
-		attributes.addAttribute("message", "veículo cadastrado!");
-	
-		
-		return mv;
-		
-	}
 	
 	@RequestMapping("/meusVeiculos")
 	public ModelAndView cadastrarVeiculo(HttpSession session){
@@ -146,17 +146,6 @@ public class ClienteController {
 		return veiculoService.listarMarcaModelo(marca);
 		
 	}
-	
-	
-	
-	
-
-	
-	
-	
-	
-	
-	
 	
 	
 	

@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="pt" xmlns="http://www.w3.org/1999/xhtml" 
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="layout/LayoutPadraoOficina">
+	
+<head>
+	<link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css" />
+	<script src="http://code.jquery.com/jquery-2.0.1.min.js"></script>
+	<script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+	<meta charset="UTF-8"/>
+<title>Área da oficina</title>
+
+<style type="text/css">
+	
+.tabela tbody tr:hover{
+    background-color: rgba(220, 220, 220, 1);
+}
+.tabela tbody td{
+
+	
+}
+.botaoAcompanhar{
+	padding-left:5px;
+	padding-right: 5px;
+	margin-top:10px;
+	width: 150px;
+	color:rgb(0,0,0);
+}
+
+</style>
+
+</head>
+<body>
+	<section layout:fragment="conteudo">
+	<div class="col-sm-9 col-md-10">
+		<h1><span th:text="${session.usuario.nome}"></span></h1>
+	</div>
+	<div class="row"></div>
+	<h2 class="col-sm-9 col-md-10 sub-header">Serviços em andamento</h2>
+	<div class="row"></div>
+	<div class="table-responsive">
+            <table class="table table-striped tabela">
+              <thead>
+                <tr>
+                  
+                  <th>Responsável</th>
+                  <th>Data</th>
+                  <th>Veículo</th>
+                  <th>Descrição</th>
+           		<th>Status</th>
+                  <th>Ações</th>
+                </tr>
+              </thead>
+              <tbody>
+              
+             
+                <tr th:each="lista,iter: ${listaServicos}" th:object="${listaStatus}">
+                  
+                  <td th:text="${lista.nome}">fulano</td>
+                  <td >30/03/2015</td>
+                  <td >Wolksvagem Golf - KXJ-1023</td>
+                  <td th:text="${lista.descricao}" >Reparo no para-choque dianteiro</td>
+                  <td th:text="${listaStatus[iter.index]}">30/03/2015</td>
+                  
+                  <td>
+                  <session  th:if="${lista.status} == 2">
+                  <a  class="btn btn-default botaoAcompanhar" th:href="@{../servico/aprovarServico(id=${lista.id})}"> Aprovar serviço</a>
+                  </session>
+                  <br/>
+                  <a class="btn btn-default botaoAcompanhar" th:href="@{cliente/relatorio}"> ...</a>
+                  <br/>
+                  <a class="btn btn-default botaoAcompanhar" th:href="@{../servico/relatorio(id=${lista.id})}"> relatorio</a>
+                 
+                 
+                  </td>
+                
+                </tr>
+              
+               
+              </tbody>
+            </table>
+          </div>
+	
+	</section>
+</body>
+</html>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="pt" xmlns="http://www.w3.org/1999/xhtml" 
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+	<link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css" />
+	<script src="http://code.jquery.com/jquery-2.0.1.min.js"></script>
+	<script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+	<meta charset="ISO-8859-1"/>
+	<title>Nova oficina</title>
+</head>
+<body>
+	
+	
+	<div class="row"></div>
+	
+	<div class="col-sm-9 col-md-10">
+		<form th:action="@{/oficina/cadastro}" th:object="${cliente}" method="post">
+			
+			<div class="alert  alert-danger  alert-dismissible" role="alert" th:if="${#fields.hasAnyErrors()}">
+				<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+				<th:block th:each="error : ${#fields.detailedErrors()}">
+					<div>
+						<i class="fa  fa-exclamation-circle"></i>
+						<span th:text="${error.message}"></span>
+					</div>
+				</th:block>
+			</div>
+			
+			<div>
+				<label >Nome:</label>
+				<input type="text" th:field="*{nome}"/>
+			</div>
+			<div>
+				<label >CNPJ:</label>
+				<input type="text" th:field="*{id}"/>
+			</div>
+			<div>
+				<label for="email">Email:</label>
+				<input type="text" th:field="*{email}"/>
+			</div>
+			
+			<div>
+				<label >Telefone:</label>
+				<input type="text" th:field="*{telefone}"/>
+			</div>
+			
+			<input type="submit" value="Cadastrar" />
+		</form>
+	</div>
+
+</body>
+</html>

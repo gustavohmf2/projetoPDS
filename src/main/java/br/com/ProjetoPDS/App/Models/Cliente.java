@@ -31,7 +31,7 @@ public class Cliente implements Serializable{
 	private String telefoneAlt;
 	private String email;
 	private String sexo;
-	private TipoPessoa tipo;
+	private Integer tipo;
 	@OneToOne
 	private Endereco endereco;
 	@DateTimeFormat(pattern="dd/mm/yyyy")
@@ -102,10 +102,10 @@ public class Cliente implements Serializable{
 		setServico();
 		this.servico.add(servico);
 	}
-	public TipoPessoa getTipo() {
+	public Integer getTipo() {
 		return tipo;
 	}
-	public void setTipo(TipoPessoa tipo) {
+	public void setTipo(Integer tipo) {
 		this.tipo = tipo;
 	}
 	public List<Veiculo> getVeiculo() {

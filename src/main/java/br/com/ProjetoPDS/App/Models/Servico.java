@@ -3,6 +3,7 @@ package br.com.ProjetoPDS.App.Models;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -30,7 +31,7 @@ public class Servico implements Serializable{
 	private Integer id;
 	private Integer status;
 	@DateTimeFormat(pattern="dd/mm/yyyy")
-	private Calendar dataRequerimento;
+	private Date dataRequerimento;
 	@DateTimeFormat(pattern="dd/mm/yyyy")
 	private Calendar prazoFinal;
 	@ManyToOne(fetch=FetchType.EAGER, cascade= CascadeType.ALL)
@@ -97,10 +98,10 @@ public class Servico implements Serializable{
 	public void setStatus(Integer status) {
 		this.status = status;
 	}
-	public Calendar getDataRequerimento() {
+	public Date getDataRequerimento() {
 		return dataRequerimento;
 	}
-	public void setDataRequerimento(Calendar dataRequerimento) {
+	public void setDataRequerimento(Date dataRequerimento) {
 		this.dataRequerimento = dataRequerimento;
 	}
 	public Cliente getResponsavel() {

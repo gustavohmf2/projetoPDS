@@ -2,6 +2,7 @@ package br.com.ProjetoPDS.App.Service;
 
 import java.util.List;
 
+import br.com.ProjetoPDS.App.Models.Cliente;
 import br.com.ProjetoPDS.App.Models.Servico;
 
 public interface IServicoService {
@@ -15,4 +16,6 @@ public interface IServicoService {
 	public List<Servico> buscarTodos();
 
 	void aprovarOrcamentoServico(Integer idServico);
+
+	List<Servico> buscarServicosPorIdCliente(Cliente idCliente);
 }

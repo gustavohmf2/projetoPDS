@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import br.com.ProjetoPDS.App.Enumeracoes.EnumStatus;
+import br.com.ProjetoPDS.App.Models.Cliente;
 import br.com.ProjetoPDS.App.Models.Servico;
 
 @Service
@@ -30,8 +31,8 @@ public class ServicoService implements IServicoService{
 	
 	
 	@Override
-	public List<Servico> buscarServicosPorIdCliente(String idCliente) {
-		return dataFacade.getClienteRepository().findOne(idCliente).getServico();
+	public List<Servico> buscarServicosPorIdCliente(Cliente idCliente) {
+		return dataFacade.getServicoRepository().listarServicoPorId(idCliente);
 	}
 
 	@Override
@@ -52,6 +53,13 @@ public class ServicoService implements IServicoService{
 	@Override
 	public List<Servico> buscarTodos() {
 		return dataFacade.getServicoRepository().findAll();
+	}
+
+
+	@Override
+	public List<Servico> buscarServicosPorIdCliente(String idCliente) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 

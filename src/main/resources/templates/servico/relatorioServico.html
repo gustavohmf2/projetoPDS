@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="pt" xmlns="http://www.w3.org/1999/xhtml" 
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="layout/LayoutPadrao">
+<head>
+	<link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css" />
+	<script src="http://code.jquery.com/jquery-2.0.1.min.js"></script>
+	<script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+	<meta charset="UTF-8"/>
+	<style type="text/css">
+		.relatorio{
+			padding: 30px;
+			
+			box-shadow: 10px 10px 5px #888888;
+			margin-left:100px;
+			border: 2px solid rgba(10,10,10,.5);
+		}
+		.relatorio h2{
+			margin-top: 30px;
+			
+		}
+		.relatorio span{
+			padding-left:50px;
+			font-style: italic;
+    		word-wrap: break-word;
+		}
+		section h1{
+			padding-top:20px;
+			text-align:center;
+			
+		}
+	</style>
+<title>Relatorio de serviço</title>
+</head>
+<body>
+	<section layout:fragment="conteudo">
+	<h1> Reátorio de serviço </h1>
+	<div class="col-md-push-1 col-md-8 relatorio">
+	
+				
+			<h2> Veiculo:</h2>
+			<span th:text="${servico.veiculo}"></span>
+				
+			<h2> Status atual:</h2>
+			<span th:text="${status}"></span>
+			
+			<h2> descrição do serviço:</h2>
+			<span th:text="${servico.descricao}"></span>
+			
+			<h2> Data de requerimento do serviço:</h2>
+			<span th:text="${servico.dataRequerimento}"></span>
+			
+			<h2> Prazo final estimado:</h2>
+			<span th:text="${servico.prazoFinal}"></span>
+			
+            <h2> Observações:</h2>
+			<span th:text="${servico.obs}"></span>
+	
+	</div>
+	
+	</section>
+</body>
+</html>
