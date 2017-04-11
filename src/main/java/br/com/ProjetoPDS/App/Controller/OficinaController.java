@@ -10,12 +10,12 @@ import org.springframework.web.servlet.ModelAndView;
 import br.com.ProjetoPDS.App.Enumeracoes.TipoPessoa;
 import br.com.ProjetoPDS.App.Models.Cliente;
 import br.com.ProjetoPDS.App.Service.ClienteService;
+import br.com.ProjetoPDS.App.Service.OficinaService;
 
 @Controller
 @RequestMapping("/oficina")
 public class OficinaController {
-
-
+	
 	@Autowired
 	private ClienteService clienteService;
 	

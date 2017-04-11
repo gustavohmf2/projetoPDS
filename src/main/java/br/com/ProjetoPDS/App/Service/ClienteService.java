@@ -38,7 +38,8 @@ public class ClienteService implements IClienteService{
 				Alerta alerta2 = logicaAcompanhamento.alinhamentoBalanceamento(veiculos.get(i));
 				
 				alerta1.setVeiculo(veiculos.get(i));
-				if((dataFacade.getAlertaRepository().findByDescricaoVeiculo(alerta1.getDescricao(), alerta1.getVeiculo()).isEmpty()) && (!alerta1.getDescricao().isEmpty())){
+				if((dataFacade.getAlertaRepository().findByDescricaoVeiculo(alerta1.getDescricao(), alerta1.getVeiculo()).isEmpty())
+						&& (!alerta1.getDescricao().isEmpty())){
 					
 					System.out.println("Comparação 1!");
 					cliente.getVeiculo().get(i).addAlertas(alerta1);
@@ -46,26 +47,15 @@ public class ClienteService implements IClienteService{
 				}
 				
 				alerta2.setVeiculo(veiculos.get(i));
-				if((dataFacade.getAlertaRepository().findByDescricaoVeiculo(alerta2.getDescricao(), alerta2.getVeiculo()).isEmpty()) && (alerta2.getDescricao() != null)){
+				if((dataFacade.getAlertaRepository().findByDescricaoVeiculo(alerta2.getDescricao(), alerta2.getVeiculo()).isEmpty()) 
+						&& (alerta2.getDescricao() != null)){
 					
 					System.out.println("Comparação 2!");
 					cliente.getVeiculo().get(i).addAlertas(alerta2);
 					dataFacade.getClienteRepository().save(cliente);
 				}
-				
-				
-				
-				
-
-				
-				
 			}
-			
-			
 		}
-		
-	
-		
 	}
 	
 	@Override
@@ -95,6 +85,5 @@ public class ClienteService implements IClienteService{
 	public List<Cliente> buscarTodos() {
 		return dataFacade.getClienteRepository().findAll();
 	}
-
 
 }

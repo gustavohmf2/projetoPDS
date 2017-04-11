@@ -62,7 +62,7 @@ public class ClienteController {
 	public ModelAndView formCliente(){
 		
 		ModelAndView mv = new ModelAndView("cliente/form");
-	System.out.println("cadastro oficina");
+		System.out.println("cadastro oficina");
 		Cliente cliente = new Cliente();
 		mv.addObject("cliente", cliente);
 		return mv;

@@ -9,6 +9,8 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
@@ -32,6 +34,9 @@ public class Cliente implements Serializable{
 	private String email;
 	private String sexo;
 	private Integer tipo;
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name="id_oficina")
+	private Oficina oficina;
 	@OneToOne
 	private Endereco endereco;
 	@DateTimeFormat(pattern="dd/mm/yyyy")
@@ -40,8 +45,6 @@ public class Cliente implements Serializable{
 	private List<Servico> servico;
 	@OneToMany(mappedBy="cliente", fetch=FetchType.LAZY, cascade=CascadeType.ALL)
 	private List<Veiculo> veiculo;
-	
-	
 	
 
 	public Cliente(){};

@@ -6,6 +6,7 @@ import org.springframework.context.annotation.ComponentScan;
 
 import br.com.ProjetoPDS.App.Controller.HomeController;
 import br.com.ProjetoPDS.App.Service.ClienteService;
+import br.com.ProjetoPDS.App.Service.OficinaService;
 
 @SpringBootApplication
 @ComponentScan(basePackageClasses={HomeController.class, ClienteService.class})

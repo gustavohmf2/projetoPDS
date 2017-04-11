@@ -1,7 +1,7 @@
 package br.com.ProjetoPDS.App.Models;
 
 import java.io.Serializable;
-import java.util.Calendar;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -12,14 +12,13 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
-import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
 public class Oficina implements Serializable{
-	private static final long serialVersionUID = 1L;
+	
 
 	@Id
-	@Column(name="id_cliente")
+	@Column(name="id_oficina")
 	private String id;
 	private String nome;
 	private String telefone;
@@ -68,13 +67,16 @@ public class Oficina implements Serializable{
 	public void setEndereco(Endereco endereco) {
 		this.endereco = endereco;
 	}
-	public List<Cliente> getClientes() {
+	
+/*	public List<Cliente> getClientes() {
 		return clientes;
 	}
-	public void setClientes(List<Cliente> clientes) {
-		this.clientes = clientes;
+	public void setClientes() {
+		this.clientes = new ArrayList<Cliente>();
 	}
-	public static long getSerialversionuid() {
-		return serialVersionUID;
-	}
+	public void addCliente(Cliente cliente){
+		setClientes();
+		this.clientes.add(cliente);
+	}*/
+	
 }
