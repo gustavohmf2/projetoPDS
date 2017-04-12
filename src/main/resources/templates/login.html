@@ -6,8 +6,26 @@
 <meta charset="UTF-8"/>
 <title>Login</title>
 <link rel="stylesheet" type="text/css" th:href="@{/layout/stylesheets/bootstrap.min.css}"/>
+<link rel="stylesheet" type="text/css" th:href="@{/layout/stylesheets/custom.css}"/>
 </head>
 <body>
+
+	<nav class="navbar navbar-fixed-top navbar-custom" style="color:green;">
+	  <div class="container">
+	    	<div class="navbar-header">
+          <a  style="text-color=white;" class="navbar-brand" href="#">Monitor de Oficina</a>
+        </div>
+        
+        <div id="navbar" class="navbar-collapse">
+          <ul class="nav navbar-nav">
+            <li class="active"><a class="nav-item" href="/">Home</a></li>
+            <li><a  class="nav-item" href="#">Entrar</a></li>
+            <li><a  class="nav-item" href="cliente/novo">Cadastro cliente</a></li>
+            <li><a  class="nav-item" href="oficina/cadastro">Cadastro oficina</a></li>
+          </ul>
+	  	</div>
+	  </div>
+	</nav>
 
 	<div class="container">
 
@@ -15,10 +33,10 @@
         <h2 class="form-signin-heading">Acesse sua conta</h2>
         
         <label for="inputEmail" class="sr-only">Login:</label>
-        <input name="login" type="text" class="form-control" placeholder="cpf ou cnpj" autofocus=""/>
+        <input name="login" type="text" class="form-control" placeholder="CPF ou CNPJ" autofocus=""/>
         
         <label for="inputPassword" class="sr-only">Senha</label>
-        <input name="senha" type="password"  class="form-control" placeholder="senha"/>
+        <input name="senha" type="password"  class="form-control" placeholder="Senha"/>
         
         <div class="checkbox">
           <label>

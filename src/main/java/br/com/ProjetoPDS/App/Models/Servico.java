@@ -46,17 +46,15 @@ public class Servico implements Serializable{
 	private String descricao;
 	private String obs;
 	
+	public Servico() {	}
+	
 	public Integer getId() {
 		return id;
 	}
 
-
-
 	public void setId(Integer id) {
 		this.id = id;
 	}
-
-
 
 	public Calendar getPrazoFinal() {
 		return prazoFinal;
@@ -82,9 +80,6 @@ public class Servico implements Serializable{
 	
 	
 	
-	public Servico() {
-		// TODO Auto-generated constructor stub
-	}
 	
 	
 	

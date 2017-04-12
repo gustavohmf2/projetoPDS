@@ -8,6 +8,7 @@ import br.com.ProjetoPDS.App.Repository.ClienteRepository;
 import br.com.ProjetoPDS.App.Repository.EnderecoRepository;
 import br.com.ProjetoPDS.App.Repository.InfoExtraVeiculoRepository;
 import br.com.ProjetoPDS.App.Repository.MarcaModeloRepository;
+import br.com.ProjetoPDS.App.Repository.OficinaRepository;
 import br.com.ProjetoPDS.App.Repository.OrcamentoRepository;
 import br.com.ProjetoPDS.App.Repository.PecaRepository;
 import br.com.ProjetoPDS.App.Repository.ServicoRepository;
@@ -18,6 +19,8 @@ public class DataFacadeService {
 
 	@Autowired
 	private ClienteRepository clienteRepository;
+	@Autowired
+	private OficinaRepository oficinaRepository;
 	@Autowired
 	private EnderecoRepository enderecoRepository;
 	@Autowired
@@ -34,8 +37,6 @@ public class DataFacadeService {
 	private ServicoRepository servicoRepository;
 	@Autowired
 	private AlertaRepository alertaRepository;
-
-	
 
 	public AlertaRepository getAlertaRepository() {
 		return alertaRepository;
@@ -99,6 +100,14 @@ public class DataFacadeService {
 
 	public void setClienteRepository(ClienteRepository clienteRepository) {
 		this.clienteRepository = clienteRepository;
+	}
+	
+	public OficinaRepository getOficinaRepository(){
+		return oficinaRepository;
+	}
+	
+	public void setOficinaRepository(OficinaRepository oficinaRepository){
+		this.oficinaRepository = oficinaRepository;
 	}
 
 	public EnderecoRepository getEnderecoRepository() {

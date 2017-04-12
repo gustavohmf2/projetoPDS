@@ -23,7 +23,7 @@ public class HomeController {
 	private ClienteService clienteService;
 	
 	
-	@RequestMapping(method= RequestMethod.GET)
+	@RequestMapping(method = RequestMethod.GET)
 	public ModelAndView index(){
 		
 		ModelAndView mv = new ModelAndView("index");

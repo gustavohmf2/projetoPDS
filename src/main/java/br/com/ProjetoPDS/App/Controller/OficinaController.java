@@ -10,12 +10,12 @@ import org.springframework.web.servlet.ModelAndView;
 import br.com.ProjetoPDS.App.Enumeracoes.TipoPessoa;
 import br.com.ProjetoPDS.App.Models.Cliente;
 import br.com.ProjetoPDS.App.Service.ClienteService;
+import br.com.ProjetoPDS.App.Service.OficinaService;
 
 @Controller
 @RequestMapping("/oficina")
 public class OficinaController {
-
-
+	
 	@Autowired
 	private ClienteService clienteService;
 	
@@ -31,7 +31,7 @@ public class OficinaController {
 	@PostMapping("/cadastro")
 	public ModelAndView cadastroOficina(Cliente cliente){
 		ModelAndView mv = new ModelAndView("redirect:/oficina/cadastro");
-		cliente.setTipo(TipoPessoa.JURIDICA.ordinal());
+		cliente.setTipo(TipoPessoa.JURIDICA);
 		clienteService.inserir(cliente);
 		mv.addObject("cliente", cliente);
 		return mv;

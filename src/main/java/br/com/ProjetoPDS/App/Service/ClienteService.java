@@ -36,7 +36,8 @@ public class ClienteService implements IClienteService{
 				Alerta alerta2 = logicaAcompanhamento.alinhamentoBalanceamento(veiculos.get(i));
 				
 				alerta1.setVeiculo(veiculos.get(i));
-				if((dataFacade.getAlertaRepository().findByDescricaoVeiculo(alerta1.getDescricao(), alerta1.getVeiculo()).isEmpty()) && (!alerta1.getDescricao().isEmpty())){
+				if((dataFacade.getAlertaRepository().findByDescricaoVeiculo(alerta1.getDescricao(), alerta1.getVeiculo()).isEmpty())
+						&& (!alerta1.getDescricao().isEmpty())){
 					
 					
 					cliente.getVeiculo().get(i).addAlertas(alerta1);
@@ -53,7 +54,7 @@ public class ClienteService implements IClienteService{
 			}
 	
 		}
-		
+
 	}
 	
 	@Override
@@ -83,6 +84,5 @@ public class ClienteService implements IClienteService{
 	public List<Cliente> buscarTodos() {
 		return dataFacade.getClienteRepository().findAll();
 	}
-
 
 }
