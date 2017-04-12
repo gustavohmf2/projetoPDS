@@ -4,7 +4,7 @@
 	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
 	layout:decorator="layout/LayoutPadrao">
 	
-<head>
+<head>										
 	<link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css" />
 	<script src="http://code.jquery.com/jquery-2.0.1.min.js"></script>
 	<script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
@@ -21,8 +21,11 @@
 	
 }
 .botaoAcompanhar{
-	padding-left:1px;
-	padding-right: 1px;
+	padding-left:5px;
+	padding-right: 5px;
+	margin-top:10px;
+	width: 150px;
+	color:rgb(0,0,0);
 }
 
 </style>
@@ -40,26 +43,31 @@
             <table class="table table-striped tabela">
               <thead>
                 <tr>
-                  <th>Tipo</th>
+                  
                   <th>Data</th>
                   <th>Veículo</th>
                   <th>Descrição</th>
-                  <th>Valor</th>
+           		  <th>Status</th>
+                  <th>Ações</th>
                 </tr>
               </thead>
               <tbody>
-                <tr>
-                  <td>Lanternagem</td>
-                  <td>30/03/2015</td>
-                  <td>Wolksvagem Golf - KXJ-1023</td>
-                  <td>Reparo no para-choque dianteiro</td>
-                  <td>750,00</td>
+              
+             
+                <tr th:if="${lista != null}" th:each="lista: ${listaServicos}">
+                  <td th:text="${lista.dataRequerimento}">30/03/2015</td>
+                  <td th:text="${lista.veiculo}">Wolksvagem Golf - KXJ-1023</td>
+                  <td th:text="${lista.descricao}" >Reparo no para-choque dianteiro</td>
+                  <td th:text="#{|enumStatus.${lista.status}|}">30/03/2015</td>
+                  
                   <td>
-                  <br/>
-                  <button class="btn btn-primary botaoAcompanhar" type="button" >Relatório</button>
-                  <button class="btn btn-primary botaoAcompanhar" type="button" >Aprovar serviço</button>
-                  <button class="btn btn-primary botaoAcompanhar" type="button" >Cancelar</button>
-                  <button class="btn btn-primary botaoAcompanhar" type="button" >Acompanhar</button>
+	                  <session  th:if="${lista.status} == 2">
+	                  	<a  class="btn btn-default botaoAcompanhar" th:href="@{../servico/aprovarServico(id=${lista.id})}"> Aprovar serviço</a>
+	                  </session>
+	                  <br/>
+	                  <a class="btn btn-default botaoAcompanhar" th:href="@{cliente/relatorio}"> ...</a>
+	                  <br/>
+	                  <a class="btn btn-default botaoAcompanhar" th:href="@{../servico/relatorio(id=${lista.id})}"> relatorio</a>
                   </td>
                 
                 </tr>

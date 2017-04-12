@@ -3,6 +3,7 @@ package br.com.ProjetoPDS.App.Models;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -18,6 +19,8 @@ import javax.persistence.OneToMany;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
+import br.com.ProjetoPDS.App.Enumeracoes.EnumStatus;
+
 @Entity
 public class Servico implements Serializable{
 
@@ -28,9 +31,9 @@ public class Servico implements Serializable{
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="id_servico")
 	private Integer id;
-	private Integer status;
+	private EnumStatus status;
 	@DateTimeFormat(pattern="dd/mm/yyyy")
-	private Calendar dataRequerimento;
+	private Date dataRequerimento;
 	@DateTimeFormat(pattern="dd/mm/yyyy")
 	private Calendar prazoFinal;
 	@ManyToOne(fetch=FetchType.EAGER, cascade= CascadeType.ALL)
@@ -91,16 +94,16 @@ public class Servico implements Serializable{
 	public void setIdServico(Integer idServico) {
 		this.id = idServico;
 	}
-	public Integer getStatus() {
+	public EnumStatus getStatus() {
 		return status;
 	}
-	public void setStatus(Integer status) {
+	public void setStatus(EnumStatus status) {
 		this.status = status;
 	}
-	public Calendar getDataRequerimento() {
+	public Date getDataRequerimento() {
 		return dataRequerimento;
 	}
-	public void setDataRequerimento(Calendar dataRequerimento) {
+	public void setDataRequerimento(Date dataRequerimento) {
 		this.dataRequerimento = dataRequerimento;
 	}
 	public Cliente getResponsavel() {

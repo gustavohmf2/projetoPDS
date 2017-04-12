@@ -31,7 +31,7 @@ public class Veiculo implements Serializable{
 	@JoinColumn(name="id_marcaModelo")
 	private MarcaModelo marcaModelo;
 	private Integer ano;
-	private Integer cor = new Integer(EnumCores.BRANCO.getId());
+	private EnumCores cor;
 	private Integer cambio;
 	@OneToOne(cascade=CascadeType.MERGE)
 	@JoinColumn(name="id_infoExtraVeiculo")
@@ -67,10 +67,10 @@ public class Veiculo implements Serializable{
 	public void setAno(Integer ano) {
 		this.ano = ano;
 	}
-	public Integer getCor() {
+	public EnumCores getCor() {
 		return cor;
 	}
-	public void setCor(Integer cor) {
+	public void setCor(EnumCores cor) {
 		this.cor = cor;
 	}
 	public Integer getCambio() {
