@@ -3,9 +3,12 @@ package br.com.ProjetoPDS.App.Service;
 
 import java.util.List;
 
+import javax.persistence.EnumType;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import br.com.ProjetoPDS.App.Enumeracoes.TipoAlerta;
 import br.com.ProjetoPDS.App.Models.Alerta;
 import br.com.ProjetoPDS.App.Models.Cliente;
 import br.com.ProjetoPDS.App.Models.Veiculo;
@@ -36,16 +39,36 @@ public class ClienteService implements IClienteService{
 				Alerta alerta2 = logicaAcompanhamento.alinhamentoBalanceamento(veiculos.get(i));
 				
 				alerta1.setVeiculo(veiculos.get(i));
-				if((dataFacade.getAlertaRepository().findByDescricaoVeiculo(alerta1.getDescricao(), alerta1.getVeiculo()).isEmpty())
-						&& (!alerta1.getDescricao().isEmpty())){
+				System.out.println(alerta1.getDescricao());
+				if((dataFacade.getAlertaRepository().findByDescricaoVeiculo(alerta1.getDescricao(), alerta1.getVeiculo()) == null)
+					&& (!alerta1.getDescricao().isEmpty())){
 					
 					
 					cliente.getVeiculo().get(i).addAlertas(alerta1);
 					dataFacade.getClienteRepository().save(cliente);	
+				}else{
+					
+					if((cliente.getVeiculo().get(i).getAlertas().get(i).getTipo().equals(alerta1.getTipo()))
+						&& ((cliente.getVeiculo().get(i).getAlertas().get(i).getData().getTimeInMillis() - alerta1.getData().getTimeInMillis() < 0))
+					){ 
+						System.out.println("delete");
+						
+						
+						int result = dataFacade.getAlertaRepository().deleteByTipoAlerta(cliente.getVeiculo().get(i));
+						
+						cliente.getVeiculo().get(i).addAlertas(alerta1);
+						dataFacade.getClienteRepository().save(cliente);
+						
+					}
+				
 				}
+					
+		
 				
 				alerta2.setVeiculo(veiculos.get(i));
-				if((dataFacade.getAlertaRepository().findByDescricaoVeiculo(alerta2.getDescricao(), alerta2.getVeiculo()).isEmpty()) && (alerta2.getDescricao() != null)){
+				//se não existir um alerta para um veiculo com a mesma descrição e a descrição estiver preenchida adicionar um novo alerta
+				if((dataFacade.getAlertaRepository().findByDescricaoVeiculo(alerta2.getDescricao(), alerta2.getVeiculo()) == null) 
+						&& (alerta2.getDescricao() != null)){
 						
 					cliente.getVeiculo().get(i).addAlertas(alerta2);
 					dataFacade.getClienteRepository().save(cliente);

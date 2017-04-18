@@ -5,6 +5,8 @@ import java.util.Calendar;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -26,6 +28,7 @@ public class Alerta implements Serializable{
 	private Integer id;
 	private String descricao;
 	private Calendar data;
+	@Enumerated(EnumType.STRING)
 	private TipoAlerta tipo;
 	@ManyToOne(fetch= FetchType.EAGER, cascade=CascadeType.ALL)
 	@JoinColumn(name="id_numeroChassi")

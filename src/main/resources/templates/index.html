@@ -8,42 +8,31 @@
     <title>Home</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 	<link rel="stylesheet" type="text/css" th:href="@{/layout/stylesheets/custom.css}"/>
-	
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-    <script type="text/javascript">
 
-		$(document).ready(function() {
-		    $.ajax({
-		        url: "http://rest-service.guides.spring.io/greeting"
-		    }).then(function(data) {
-		       $('.greeting-id').append(data.id);
-		       $('.greeting-content').append(data.content);
-		    });
-		});
-	
-	</script>
 </head>
+
 <body>
 	
 	
 	<section layout:fragment="conteudo">
 	
-  
+  	
+  	
+  	
     <div class="container"  style="padding-top: 5%;">
-
+    
       <!-- Main component for a primary marketing message or call to action -->
       <div class="jumbotron">
-        <h1>Monitore de serviços automotivos</h1>
+        <h1>Monitore seus serviços automotivos</h1>
         <p>Gerencie os seus serviços</p>
         <p>Acompanhe o andamento dos serviços</p>
         <p>Receba notificaçõe de necessidade de serviço</p>
-        <p>
-          <a class="btn btn-lg btn-primary" href="../../components/#navbar" role="button">View navbar docs »</a>
-        </p>
+        
       </div>
 
     </div>
         
    </section>
+   
 </body>
 </html>

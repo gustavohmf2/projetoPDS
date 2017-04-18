@@ -1,17 +1,13 @@
 package br.com.ProjetoPDS.App.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import br.com.ProjetoPDS.App.Models.Cliente;
 import br.com.ProjetoPDS.App.Models.InfoExtraVeiculo;
 import br.com.ProjetoPDS.App.Models.MarcaModelo;
 import br.com.ProjetoPDS.App.Models.Veiculo;
-import br.com.ProjetoPDS.App.Repository.MarcaModeloRepository;
-import br.com.ProjetoPDS.App.Repository.VeiculoRepository;
 
 @Service
 public class VeiculoService implements IVeiculoService{
@@ -23,6 +19,12 @@ public class VeiculoService implements IVeiculoService{
 	@Override
 	public List<String> listarMarcaModelo(String marca) {
 		return dataFacade.getMarcaModeloRepository().buscarModelosPorMarca(marca);
+		
+	}
+	
+	@Override
+	public MarcaModelo listarMarcaModelo(String marca, String modelo) {
+		return dataFacade.getMarcaModeloRepository().buscarModelosPorMarca(marca, modelo);
 		
 	}
 	

@@ -4,10 +4,7 @@
 	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
 	layout:decorator="layout/LayoutPadrao">
 	
-<head>										
-	<link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css" />
-	<script src="http://code.jquery.com/jquery-2.0.1.min.js"></script>
-	<script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+<head>	
 	<meta charset="UTF-8"/>
 <title>Área do Cliente</title>
 
@@ -55,15 +52,17 @@
               
              
                 <tr th:if="${lista != null}" th:each="lista: ${listaServicos}">
+                
                   <td th:text="${lista.dataRequerimento}">30/03/2015</td>
                   <td th:text="${lista.veiculo}">Wolksvagem Golf - KXJ-1023</td>
                   <td th:text="${lista.descricao}" >Reparo no para-choque dianteiro</td>
                   <td th:text="#{|enumStatus.${lista.status}|}">30/03/2015</td>
                   
                   <td>
-	                  <session  th:if="${lista.status} == 2">
+	                  <div  th:if="${lista.status.name() == 'AUTORIZACAO_PENDENTE'}">	
 	                  	<a  class="btn btn-default botaoAcompanhar" th:href="@{../servico/aprovarServico(id=${lista.id})}"> Aprovar serviço</a>
-	                  </session>
+	                  </div>
+	  
 	                  <br/>
 	                  <a class="btn btn-default botaoAcompanhar" th:href="@{cliente/relatorio}"> ...</a>
 	                  <br/>

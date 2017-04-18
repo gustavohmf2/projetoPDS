@@ -5,11 +5,9 @@
 	layout:decorator="layout/navbar">
 	
 <head>
-	<link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css" />
 	<link rel="stylesheet" type="text/css" th:href="@{/layout/stylesheets/bootstrap.min.css}"/>
 	<link rel="stylesheet" type="text/css" th:href="@{/layout/stylesheets/custom.css}"/>
-	<script src="http://code.jquery.com/jquery-2.0.1.min.js"></script>
-	<script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+	<script th:src="@{jquery/jquery-ui.min.js}"></script>
 	<meta charset="UTF-8"/>
 	<title>Novo Cliente</title>
 </head>
@@ -35,27 +33,27 @@
 			
 			<div class="form-group">
 				<label >Nome:</label>
-				<input type="text" th:field="*{nome}"/>
+				<input class="form-control" type="text" th:field="*{nome}"/>
 			</div>
 			<div class="form-group">
 				<label >CPF:</label>
-				<input type="text" th:field="*{id}"/>
+				<input class="form-control" type="text" th:field="*{id}"/>
 			</div>
 			<div class="form-group">
 				<label >Sexo:</label>
-				<input type="text" th:field="*{sexo}"/>
+				<input class="form-control" type="text" th:field="*{sexo}"/>
 			</div>
 			<div class="form-group">
 				<label for="email">Email:</label>
-				<input type="text" th:field="*{email}"/>
+				<input class="form-control" type="text" th:field="*{email}"/>
 			</div>
 			<div class="form-group">
 				<label >Data de Nascimento:</label>
-				<input type="text" th:field="*{dataNascimento}"/>
+				<input class="form-control" type="text" th:field="*{dataNascimento}"/>
 			</div>
 			<div class="form-group">
 				<label >Telefone:</label>
-				<input type="text" th:field="*{telefone}"/>
+				<input class="form-control" type="text" th:field="*{telefone}"/>
 			</div>
 			
 			<input class="btn btn-primary" type="submit" value="Cadastrar" />

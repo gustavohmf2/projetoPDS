@@ -38,7 +38,7 @@ public class LogicaAcompanhamento {
 			
 		
 			System.out.println(infoKmTotal);
-			if((infoKmTotal >= 10000 && infoKmTotal < 20000) || meses >= 6){
+			if((infoKmTotal >= 10000 && infoKmTotal < 20000) || (meses >= 6 && meses < 12)){
 				
 				
 				
@@ -46,7 +46,7 @@ public class LogicaAcompanhamento {
 				alerta.setDescricao("Revisão dos 10.000 Km");
 				alerta.setTipo(TipoAlerta.REVISAO);
 				
-			}else if((infoKmTotal >= 20000 && infoKmTotal < 30000) || meses >= 12){
+			}else if((infoKmTotal >= 20000 && infoKmTotal < 30000) || (meses >= 12 && meses < 18)){
 				
 				
 				
@@ -54,7 +54,7 @@ public class LogicaAcompanhamento {
 				alerta.setDescricao("Revisão dos 20.000 Km");
 				alerta.setTipo(TipoAlerta.REVISAO);
 				
-			}else if((infoKmTotal >= 30000 && infoKmTotal < 40000) || meses >= 18){
+			}else if((infoKmTotal >= 30000 && infoKmTotal < 40000) || (meses >= 18 && meses < 24)){
 				
 				
 				
@@ -62,7 +62,7 @@ public class LogicaAcompanhamento {
 				alerta.setDescricao("Revisão dos 30.000 Km");
 				alerta.setTipo(TipoAlerta.REVISAO);
 				
-			}else if((infoKmTotal >= 40000 && infoKmTotal < 50000)  || meses >= 24){
+			}else if((infoKmTotal >= 40000 && infoKmTotal < 50000)  || (meses >= 24 && meses < 30)){
 				
 				
 				
@@ -70,7 +70,7 @@ public class LogicaAcompanhamento {
 				alerta.setDescricao("Revisão dos 40.000 Km");
 				alerta.setTipo(TipoAlerta.REVISAO);
 				
-			}else if((infoKmTotal >= 50000 && infoKmTotal < 60000)  || meses >= 30){
+			}else if((infoKmTotal >= 50000 && infoKmTotal < 60000)  || (meses >= 30 && meses < 36)){
 				
 				
 				
@@ -78,7 +78,7 @@ public class LogicaAcompanhamento {
 				alerta.setDescricao("Revisão dos 50.000 Km");
 				alerta.setTipo(TipoAlerta.REVISAO);
 				
-			}else if((infoKmTotal >= 60000   && infoKmTotal < 70000)|| meses >= 36){
+			}else if((infoKmTotal >= 60000   && infoKmTotal < 70000)|| meses >= 36 ){
 				
 				alerta.setId(6);
 				alerta.setData(hoje);

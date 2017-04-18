@@ -27,7 +27,7 @@ public class Veiculo implements Serializable{
 	@Column(name="id_numeroChassi")
 	private String numeroChassi;
 	private String placa;
-	@OneToOne
+	@OneToOne(fetch=FetchType.EAGER, cascade=CascadeType.ALL)
 	@JoinColumn(name="id_marcaModelo")
 	private MarcaModelo marcaModelo;
 	private Integer ano;

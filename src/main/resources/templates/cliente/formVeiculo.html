@@ -6,11 +6,43 @@
 <head>
 	<meta charset="UTF-8"/>
 	<title>Adicionar Veículo</title>
+	<link rel="stylesheet" type="text/css" th:href="@{/layout/stylesheets/custom.css}"/>
+	<script th:src="@{/layout/javascripts/bootstrap.min.js}"></script>
+	<script th:src="@{/layout/jquery/jquery-3.2.0.js}"></script>
 	
-	<link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css" />
-	<script src="http://code.jquery.com/jquery-2.0.1.min.js"></script>
-	<script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+	<script type="text/javascript">
+		$(document).ready(function(){
+		    $("#marca").change(function() {
+
+			    var search = $("#marca").val();
+			    if(search != "Selecione a marca do veículo" ){
+					    $.ajax({
+			
+							url: '/cliente/listarModelos',
+							data:{'marca': search},
+							success: function(data){
+								$("#modelo").html("");
+		
+								
+								$.each(data, function(i, val){
+		
+									$("#modelo").append($("<option></option>")
+								    .attr("value", val.text).text(val));
+									
+								});
+								 
+							}
+						});
+		    	}else{
+		    		$("#modelo").html("");
+				}
+		    
+		    });
+		});
+	</script>
+ 
 </head>
+
 
 <body>
 	
@@ -20,7 +52,12 @@
 		<h1>Cadastro de veículo</h1>
 	</div>
 	
-
+		<div>
+			<p id="result">Oi</p>
+		</div>
+		<div>
+			<button type="button" id="mudar">Click</button>
+		</div>
 	
 	<div class="row"></div>
 	
@@ -28,44 +65,46 @@
 		<form  th:action="@{/cliente/novoVeiculo}" th:object="${veiculo}" method="post">
 			<div>
 				
-				<div>
+				<div class="form-group">
 					<div>Chassi e Placa:</div>
-					<input type="text"  th:field="*{numeroChassi}"/>
+					<input class="form-control" type="text"  th:field="*{numeroChassi}"/>
 								
-					<input type="text"  th:field="*{placa}"/>
+					<input class="form-control" type="text"  th:field="*{placa}"/>
 				</div>
-				
-				<div>
+			
+				<div  class="form-group">
 					<div><span>Cor:</span></div>
-					<select th:field="*{cor}">
+					<select class="form-control" th:field="*{cor}">
 						<option value="">Slecione uma cor</option>
 						<option th:each="cor : ${cores}" th:value="${cor}" th:text="#{|enumCores.${cor}|}"></option>
 					</select>
 					
 				</div>
 				
-				<div>
+					<div class="form-group">
 					<div><span>Marca:</span></div>
-					<select id="search" th:field="*{marcaModelo.marca}">
-						<option th:each="marca : ${marcas}" th:text="${marca}" th:value="${marca}"></option>
+					<select class="form-control" id="marca" th:field="*{marcaModelo.marca}">
+						<option value="">Selecione a marca do veículo</option>
+						<option th:each="marca : ${marcas}" th:value="${marca}" th:text="${marca}"></option>
 					</select>
+					
 				</div>
 				
-				<div>
+					<div class="form-group">
 					<div><span>Modelo:</span></div>
-					<select th:field="*{marcaModelo.modelo}" >
-						<option  id="modelo" value=""></option>
+					<select class="form-control" id="modelo" th:field="*{marcaModelo.modelo}">
 					</select>
+					
 				</div>
-				
-				
-				<div>
+			
+			
+				<div class="form-group">
 					<div><span>Ano de fabricação:</span></div>
-					<input type="text"  th:field="*{ano}"/>
+					<input  class="form-control" type="text"  th:field="*{ano}"/>
 				</div>
 				
 				<div>
-					<input type="submit" value="Cadastrar Veículo"/>
+					<input class="btn btn-primary" type="submit" value="Cadastrar Veículo"/>
 				</div>
 				
 			</div>
@@ -75,9 +114,7 @@
 	
 	
 	</section>
-	
-	
-	
-	
+
 </body>
+
 </html>

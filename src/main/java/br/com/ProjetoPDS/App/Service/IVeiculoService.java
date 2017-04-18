@@ -19,5 +19,7 @@ public interface IVeiculoService {
 	public void adicionarInfoExtra(InfoExtraVeiculo infoExtra);
 
 	List<String> listarMarcas();
+
+	MarcaModelo listarMarcaModelo(String marca, String modelo);
 	
 }

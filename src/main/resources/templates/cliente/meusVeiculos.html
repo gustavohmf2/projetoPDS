@@ -30,15 +30,20 @@
             	<table class="table table-striped">
 					<thead>
 						<tr>
-							<th>Montadora</th>
-							<th data-priority="1">Placa</th>
-							<th data-priority="2">Modelo</th>
+							<th>Placa</th>
+							<th data-priority="1">Cor</th>
+							<th data-priority="2">Marca</th>
+							<th data-priority="3">Modelo</th>
 						</tr>
 					</thead>
 					<tbody>
 						<tr th:each="veiculo : ${cliente.veiculo}">
 							<td th:text="${veiculo.placa}"></td>
+							<td th:text="#{|enumCores.${veiculo.cor}|}"></td>
+							<td th:text="${veiculo.marcaModelo.marca}"></td>
+							<td th:text="${veiculo.marcaModelo.modelo}"></td>
 							<td><a th:href="@{addInfoExtraVeiculo(id=${veiculo.numeroChassi})}">Adicionar Informações Extras</a></td>
+							
 						</tr>
 					</tbody>
 				</table>
@@ -54,17 +59,17 @@
 					<thead>
 						<tr>
 							<th data-priority="1">Modelo</th>
-							<th>Revisão</th>
-							<th>Alinhamento Balanceamento</th>
+							<th>Tipo</th>
 						</tr>
 					</thead>
 					<tbody>
 						<tr th:each="veiculo : ${cliente.veiculo}" >
 							<td th:text="${veiculo.placa}"></td>
-							
+							<td>
 							<tr  th:each="alerta : ${veiculo.alertas}" >
 								<td th:text="${alerta.descricao}"></td>
 							</tr>
+							</td>
 						</tr>
 						
 					</tbody>

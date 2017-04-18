@@ -40,6 +40,14 @@ public class HomeController {
 		return mv;
 	}
 	
+	@GetMapping("/teste")
+	public ModelAndView teste(){
+		
+		ModelAndView mv = new ModelAndView("teste");
+		
+		return mv;
+	}
+	
 	@PostMapping("/login")
 	public ModelAndView logar(String login, String senha,RedirectAttributes attributes, HttpSession session){
 		
