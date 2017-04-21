@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -45,7 +46,7 @@ public class ClienteController {
 	private ServicoService servicoService;
 	
 	@RequestMapping(method=RequestMethod.GET)
-	public ModelAndView cliente(Model model, HttpSession session){
+	public ModelAndView cliente(HttpSession session){
 		
 		ModelAndView mv = new ModelAndView("cliente/cliente");
 		//buscar cliente pelo id
@@ -68,7 +69,7 @@ public class ClienteController {
 	}
 	
 	@PostMapping("/novo")
-	public ModelAndView salvarCliente(Cliente cliente,RedirectAttributes attributes){
+	public ModelAndView salvarCliente(Cliente cliente, RedirectAttributes attributes){
 		
 		ModelAndView mv = new ModelAndView("redirect:/cliente/novo");
 		cliente.setTipo(TipoPessoa.FISICA);
@@ -110,7 +111,7 @@ public class ClienteController {
 		cliente.addVeiculo(veiculo);
 		
 		clienteService.inserir(cliente);
-		
+		mv.addObject("message", "Veículo adicionado!");
 		return mv;
 	}
 	
@@ -146,14 +147,31 @@ public class ClienteController {
 	}
 	
 	@PostMapping("/addInfoExtraVeiculo")
-	public ModelAndView saveInfoExtraVeiculo(InfoExtraVeiculo infoExtraVeiculo, HttpSession session, RedirectAttributes attributes, String id){
+	public ModelAndView saveInfoExtraVeiculo(InfoExtraVeiculo infoExtraVeiculo){
 	
-		ModelAndView mv = new ModelAndView("redirect:cliente/formInfoExtra");
+		ModelAndView mv = new ModelAndView("redirect:meusVeiculos");
 		
 		veiculoService.adicionarInfoExtra(infoExtraVeiculo);
 		
-		attributes.addAttribute("mesagem", "Informações adicionadas");
 		return mv;
+	}
+	
+	@PostMapping("/removerVeiculo")
+	public @ResponseBody String removerVeiculo(String id){
+	
+		ModelAndView mv = new ModelAndView("redirect:cliente/meusVeiculos");
+		String result = "";
+		try{
+			
+			veiculoService.deletar(id);
+			result = "Success!";
+			
+		}catch(DataAccessException e){
+			result = "Failed!";
+			e.printStackTrace();
+		}
+		
+		return result;
 	}
 	
 	

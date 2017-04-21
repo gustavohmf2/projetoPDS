@@ -27,18 +27,22 @@ public class Veiculo implements Serializable{
 	@Column(name="id_numeroChassi")
 	private String numeroChassi;
 	private String placa;
-	@OneToOne(fetch=FetchType.EAGER, cascade=CascadeType.ALL)
+	
+	@OneToOne(fetch=FetchType.EAGER, cascade=CascadeType.MERGE)
 	@JoinColumn(name="id_marcaModelo")
 	private MarcaModelo marcaModelo;
 	private Integer ano;
 	private EnumCores cor;
 	private Integer cambio;
-	@OneToOne(cascade=CascadeType.MERGE)
+	
+	@OneToOne(cascade=CascadeType.ALL)
 	@JoinColumn(name="id_infoExtraVeiculo")
 	private InfoExtraVeiculo infoExtraVeiculo;
-	@ManyToOne(fetch=FetchType.EAGER, cascade= CascadeType.ALL)
+	
+	@ManyToOne(fetch=FetchType.EAGER, cascade= CascadeType.PERSIST)
 	@JoinColumn(name="id_cliente")
 	private Cliente cliente;
+	
 	@OneToMany(mappedBy="veiculo", fetch=FetchType.LAZY, cascade=CascadeType.ALL)
 	private List<Alerta> alertas;
 	

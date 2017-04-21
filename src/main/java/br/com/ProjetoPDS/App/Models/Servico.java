@@ -31,18 +31,27 @@ public class Servico implements Serializable{
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="id_servico")
 	private Integer id;
+	
 	private EnumStatus status;
+	
 	@DateTimeFormat(pattern="dd/mm/yyyy")
 	private Date dataRequerimento;
+	
 	@DateTimeFormat(pattern="dd/mm/yyyy")
 	private Calendar prazoFinal;
-	@ManyToOne(fetch=FetchType.EAGER, cascade= CascadeType.ALL)
+	
+	@ManyToOne(fetch=FetchType.EAGER, cascade= CascadeType.MERGE)
 	@JoinColumn(name="id_cliente")
 	private Cliente cliente;
+	
+	@ManyToOne(fetch=FetchType.EAGER, cascade= CascadeType.MERGE)
+	@JoinColumn(name="id_veiculo")
 	private Veiculo veiculo;
 	private String notaFiscal;
+	
 	@OneToMany(mappedBy="servico", fetch=FetchType.LAZY, cascade=CascadeType.ALL)
 	private List<Orcamento> orcamento;
+	
 	private String descricao;
 	private String obs;
 	

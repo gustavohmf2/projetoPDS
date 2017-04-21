@@ -4,11 +4,11 @@
 	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
 	layout:decorator="layout/LayoutPadrao">
 <head>
-	<link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css" />
-	<script src="http://code.jquery.com/jquery-2.0.1.min.js"></script>
-	<script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
-	<meta charset="UTF-8"/>
-<title>Informações Extras do Veículo</title>
+	<title>Informações Extras do Veículo</title>
+	<link rel="stylesheet" type="text/css" th:href="@{/layout/stylesheets/custom.css}"/>
+	<script th:src="@{/layout/javascripts/bootstrap.min.js}"></script>
+	<script th:src="@{/layout/jquery/jquery-3.2.0.js}"></script>
+	
 </head>
 <body>
 	
@@ -19,7 +19,8 @@
 	</div>
 	<div class="row"></div>
 	
-	<div class="col-sm-9 col-md-10"><h2><span th:text="${veiculo.placa}"></span></h2></div>
+	
+	<div class="col-sm-9 col-md-10"><h2><span th:text="${veiculo.marcaModelo.modelo + ' : ' + veiculo.placa}"></span></h2></div>
 	<div class="row"></div>
 	
 	<div class="col-sm-9 col-md-10">
@@ -31,30 +32,30 @@
 		<form  th:action="@{/cliente/addInfoExtraVeiculo(id=${veiculo.numeroChassi})}" th:object="${infoExtraVeiculo}" method="post">
 			<div>
 				
-				<div>
+				<div class="form-group">
 					<label>Quilometragem total:</label>
-					<input type="text"  th:field="*{kmTotal}"/>
+					<input class="form-control" type="text"  th:field="*{kmTotal}"/>
 				</div>
 				
 				
-				<div>
+				<div class="form-group">
 					<label>Data da ultima revisão:</label>
-					<input type="text"  th:field="*{ultimaRevisao}"/>
+					<input class="form-control" type="text"  th:field="*{ultimaRevisao}"/>
 				</div>
 				
 				
-				<div>
-					<div><span>Data da ultima troca de òleo:</span></div>
-					<input type="text" th:field="*{ultimaTrocaOleo}"/>
+				<div class="form-group">
+					<div><label>Data da ultima troca de Óleo:</label></div>
+					<input class="form-control" type="text" th:field="*{ultimaTrocaOleo}"/>
+				</div>
+				
+				<div class="form-group">
+					<div><label>Data da ultima troca de pneu:</label></div>
+					<input  class="form-control" type="text"  th:field="*{ultimaTrocaPneu}"/>
 				</div>
 				
 				<div>
-					<div><span>Data da ultima troca de pneu:</span></div>
-					<input type="text"  th:field="*{ultimaTrocaPneu}"/>
-				</div>
-				
-				<div>
-					<input type="submit" value="Inserir"/>
+					<input  class="btn btn-primary" type="submit" value="Inserir"/>
 				</div>
 				
 			</div>

@@ -4,9 +4,10 @@
 	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
 	layout:decorator="layout/LayoutPadrao">
 <head>
-	<link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css" />
-	<script src="http://code.jquery.com/jquery-2.0.1.min.js"></script>
-	<script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+	<link rel="stylesheet" type="text/css" th:href="@{/layout/stylesheets/custom.css}"/>
+	<script th:src="@{/layout/javascripts/bootstrap.min.js}"></script>
+	<script th:src="@{/layout/jquery/jquery-3.2.0.js}"></script>
+	
 	<meta charset="UTF-8"/>
 	<style type="text/css">
 		.relatorio{
@@ -43,7 +44,7 @@
 			<span th:text="${servico.veiculo}"></span>
 				
 			<h2> Status atual:</h2>
-			<span th:text="#{|enumsStatus.${servico.status}|}"></span>
+			<span th:text="#{|enumStatus.${servico.status}|}"></span>
 			
 			<h2> descrição do serviço:</h2>
 			<span th:text="${servico.descricao}"></span>

@@ -53,20 +53,31 @@ public class VeiculoService implements IVeiculoService{
 	public void deletar(Veiculo veiculo) {
 		dataFacade.getVeiculoRepository().delete(veiculo);
 	}
+	
+	@Override
+	public void deletar(String chassi) {
+		dataFacade.getVeiculoRepository().delete(chassi);
+	}
 
 	@Override
 	public void adicionarInfoExtra(InfoExtraVeiculo infoExtra) {
 		
-		System.out.println(infoExtra.getKmTotal());
-		System.out.println(infoExtra.getId());
+		
+		boolean exist = dataFacade.getInfoExtraVeiculoRepository().exists(infoExtra.getId());
+		
+		if(exist){
+			
+			infoExtra.setKmAnterior(infoExtra.getKmTotal());
+			
+		}
 		
 		Veiculo veiculo = dataFacade.getVeiculoRepository().findOne(infoExtra.getId());
-		System.out.println(veiculo.getPlaca());
-		
-		
+
 		veiculo.setInfoExtraVeiculo(infoExtra);
 		
 		dataFacade.getVeiculoRepository().save(veiculo);
+		
+		
 		
 	}
 

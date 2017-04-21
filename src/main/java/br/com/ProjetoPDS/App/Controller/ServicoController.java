@@ -1,6 +1,7 @@
 package br.com.ProjetoPDS.App.Controller;
 
-import java.io.File;
+
+import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
@@ -15,8 +16,11 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import br.com.ProjetoPDS.App.Enumeracoes.EnumStatus;
+
 import br.com.ProjetoPDS.App.Models.Cliente;
 import br.com.ProjetoPDS.App.Models.Servico;
+import br.com.ProjetoPDS.App.Models.Veiculo;
+
 import br.com.ProjetoPDS.App.Service.ClienteService;
 import br.com.ProjetoPDS.App.Service.ServicoService;
 
@@ -26,16 +30,28 @@ public class ServicoController {
 
 	@Autowired
 	private ClienteService clienteService;
+	
 	@Autowired
 	private ServicoService servicoService;
 
 	@GetMapping("/novoServico")
-	public ModelAndView formServico(@RequestParam(name="id", required=true) String id){
+	public ModelAndView formServico(@RequestParam(name="id", required=true) String id, HttpSession session, String descricao){
 
 		ModelAndView mv = new ModelAndView("/servico/formServico");
 		Servico servico = new Servico();
+		
+		Cliente cliente = (Cliente) session.getAttribute("usuario");
+		Cliente temp = clienteService.buscarPorId(cliente.getId());
+		
+		List<Veiculo> veiculos = temp.getVeiculo();
+				
+		if(descricao != null){
+			servico.setDescricao(descricao);
+		}
+		
 		mv.addObject("servico", servico);
-
+		mv.addObject("veiculos", veiculos);
+		
 		return mv;
 	}
 
@@ -47,6 +63,8 @@ public class ServicoController {
 
 		Cliente cliente = clienteService.buscarPorId(tmp.getId());
 		servico.setStatus(EnumStatus.PRE_DIGNOSTICO);
+		
+		System.out.println("Veiculo: " + servico.getVeiculo().getNumeroChassi());
 		cliente.addServico(servico);
 		servico.setResponsavel(cliente);
 
@@ -69,9 +87,6 @@ public class ServicoController {
 		
 	}
 	
-	
-	
-
 	@GetMapping("/aprovarServico")
 	public ModelAndView aprovarServico(@RequestParam(name="id", required=true) Integer id){
 

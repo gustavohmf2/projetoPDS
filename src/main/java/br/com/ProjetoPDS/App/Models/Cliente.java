@@ -41,9 +41,9 @@ public class Cliente implements Serializable{
 	private Endereco endereco;
 	@DateTimeFormat(pattern="dd/mm/yyyy")
 	private Calendar dataNascimento;
-	@OneToMany(mappedBy="cliente", fetch=FetchType.LAZY, cascade=CascadeType.ALL)
+	@OneToMany(mappedBy="cliente", fetch=FetchType.LAZY, cascade=CascadeType.MERGE)
 	private List<Servico> servico;
-	@OneToMany(mappedBy="cliente", fetch=FetchType.LAZY, cascade=CascadeType.ALL)
+	@OneToMany(mappedBy="cliente", fetch=FetchType.LAZY, cascade=CascadeType.MERGE)
 	private List<Veiculo> veiculo;
 	
 

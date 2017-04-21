@@ -4,11 +4,14 @@
 	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
 	layout:decorator="layout/LayoutPadrao">
 <head>
-	<link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css" />
-	<script src="http://code.jquery.com/jquery-2.0.1.min.js"></script>
-	<script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+	<title>Cadastro de visita</title>
 	<meta charset="UTF-8"/>
-<title>Cadastro de visita</title>
+	
+	<link rel="stylesheet" type="text/css" th:href="@{/layout/stylesheets/custom.css}"/>
+	<script th:src="@{/layout/javascripts/bootstrap.min.js}"></script>
+	<script th:src="@{/layout/jquery/jquery-3.2.0.js}"></script>
+	
+
 </head>
 <body>
 	<section layout:fragment="conteudo">
@@ -32,21 +35,30 @@
 		<form  th:action="@{novoServico}" th:object="${servico}" method="post">
 			<div>
 				
-				<div>
+				<div class="form-group">
 					<label>Data de visita:</label>
-					<input type="text"  th:field="*{dataRequerimento}"/>
+					<input class="form-control" type="text"  th:field="*{dataRequerimento}"/>
 				</div>
 				
-				
-				<div>
+				<div class="form-group"  th:if="${servico.descricao == null}">
 					<label>Descrição resumida do problema:</label>
-					<input type="text"  th:field="*{descricao}"/>
+					<input  class="form-control" type="text"  th:field="*{descricao}"/>
 				</div>
 				
+				<div class="form-group"  th:if="${servico.descricao != null}">
+					<label>Descrição resumida do problema:</label>
+					<input  class="form-control" type="text" th:field="*{descricao}"/>
+				</div>
 				
-				
-				<div>
-					<input type="submit" value="Marcar"/>
+				<div class="form-group"  th:if="${veiculos != null}">
+					<div><label>Veículo:</label></div>
+					<select class="form-control"  th:field="*{veiculo}">
+						<option th:each="v : ${veiculos}" th:value="${v}" th:text="${v.numeroChassi}"></option>
+					</select>
+				</div>
+
+				<div class="form-group"> 
+					<input class="btn btn-primary" type="submit" value="Marcar"/>
 				</div>
 				
 			</div>
