@@ -13,13 +13,20 @@ public interface IVeiculoService {
 	
 	//acesso ao banco
 	public void inserir(Veiculo veiculo);
+	public void adicionarInfoExtra(InfoExtraVeiculo infoExtra);
+	
 	public void deletar(Veiculo veiculo);
+	public void deletar(String chassi);
+	
 	public Veiculo buscarPorId(String id);
 	public List<Veiculo> buscarTodos();
-	public void adicionarInfoExtra(InfoExtraVeiculo infoExtra);
+	
+	public List<String> listarMarcas();
+	public MarcaModelo listarMarcaModelo(String marca, String modelo);
+	
+	
 
-	List<String> listarMarcas();
-
-	MarcaModelo listarMarcaModelo(String marca, String modelo);
+	
+	
 	
 }

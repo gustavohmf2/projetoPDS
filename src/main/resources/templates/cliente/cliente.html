@@ -6,7 +6,25 @@
 	
 <head>	
 	<meta charset="UTF-8"/>
-<title>Área do Cliente</title>
+	<title>Área do Cliente</title>
+	
+	<link rel="stylesheet" type="text/css" th:href="@{/layout/stylesheets/custom.css}"/>
+	<script th:src="@{/layout/javascripts/bootstrap.min.js}"></script>
+	<script th:src="@{/layout/jquery/jquery-3.2.0.js}"></script>
+
+	<script type="text/javascript">
+
+		$(document).ready(function(){
+
+			var msg = $("#message").html();
+			if(msg == null){
+
+				$("#messagePanel").removeAttr("hidden");
+			}
+		});
+
+		
+	</script>		
 
 <style type="text/css">
 	
@@ -53,10 +71,10 @@
              
                 <tr th:if="${lista != null}" th:each="lista: ${listaServicos}">
                 
-                  <td th:text="${lista.dataRequerimento}">30/03/2015</td>
-                  <td th:text="${lista.veiculo}">Wolksvagem Golf - KXJ-1023</td>
-                  <td th:text="${lista.descricao}" >Reparo no para-choque dianteiro</td>
-                  <td th:text="#{|enumStatus.${lista.status}|}">30/03/2015</td>
+                  <td th:text="${lista.dataRequerimento}"></td>
+                  <td th:text="${lista.veiculo}"></td>
+                  <td th:text="${lista.descricao}" ></td>
+                  <td th:text="#{|enumStatus.${lista.status}|}"></td>
                   
                   <td>
 	                  <div  th:if="${lista.status.name() == 'AUTORIZACAO_PENDENTE'}">	
@@ -70,8 +88,7 @@
                   </td>
                 
                 </tr>
-              
-               
+                            
               </tbody>
             </table>
           </div>

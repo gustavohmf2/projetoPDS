@@ -5,12 +5,54 @@
 	layout:decorator="layout/LayoutPadrao">
 	
 <head>
-	<link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css" />
-	<script src="http://code.jquery.com/jquery-2.0.1.min.js"></script>
-	<script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+	<link rel="stylesheet" type="text/css" th:href="@{/layout/stylesheets/custom.css}"/>
+	<script th:src="@{/layout/javascripts/bootstrap.min.js}"></script>
+	<script th:src="@{/layout/jquery/jquery-3.2.0.js}"></script>
 	<meta charset="UTF-8"/>
 	
 <title>Meus Veículos</title>
+	
+	<script type="text/javascript">
+
+		$(document).ready(function(){
+
+			var id = $("#chassi").html();
+			if(id == null){
+
+				$("#messagePanel").removeAttr("hidden");
+				$("#message").html("Você não possui veículos cadastrados no momento!");
+			}
+		});
+
+		
+	</script>		
+		
+	<script type="text/javascript">
+
+		$(document).ready(function(){
+
+			$("#remove").click(function(){
+
+				var id = $("#chassi").html();
+				alert(id);
+				$.ajax({
+					type: 'POST',
+					url: '/cliente/removerVeiculo',
+					data:{'id': id},
+					success: function(data){
+
+						
+						$("#message").html("Veículo removido!"+data);
+					}
+
+				});
+
+			});
+		});
+	
+
+	</script>
+	
 </head>
 
 <body>
@@ -20,63 +62,80 @@
 			<h1><span th:text="${session.usuario.nome}"></span></h1>
 		</div>
 		<div class="row"></div>
-		
-			<div class="col-sm-9 col-md-10">
-				<h1>Veiculos Cadastrados</h1>
+			
+			<div id="messagePanel" hidden="true" class="alert alert-warning alert-dismissible" role="alert">
+			  <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+			  <strong><span id="message" th:text="${messagem}"></span></strong>
 			</div>
+			
 			<div class="row"></div>
 			
-			<div class="table-responsive">
-            	<table class="table table-striped">
-					<thead>
-						<tr>
-							<th>Placa</th>
-							<th data-priority="1">Cor</th>
-							<th data-priority="2">Marca</th>
-							<th data-priority="3">Modelo</th>
-						</tr>
-					</thead>
-					<tbody>
-						<tr th:each="veiculo : ${cliente.veiculo}">
-							<td th:text="${veiculo.placa}"></td>
-							<td th:text="#{|enumCores.${veiculo.cor}|}"></td>
-							<td th:text="${veiculo.marcaModelo.marca}"></td>
-							<td th:text="${veiculo.marcaModelo.modelo}"></td>
-							<td><a th:href="@{addInfoExtraVeiculo(id=${veiculo.numeroChassi})}">Adicionar Informações Extras</a></td>
-							
-						</tr>
-					</tbody>
-				</table>
+			<div style="padding-left: 2%;padding-right: 2%;" class="table-responsive">
+				<div  class="panel panel-default">
+				  <!-- Default panel contents -->
+				 	 <div class="panel-heading"><h3>Veículos Cadastrados</h3></div>
+				  	<div class="panel-body">
+				  </div>
+				 
+				  <div th:if="${cliente.veiculo != null}">
+				  <!-- Table -->
+				  <table class="table">
+				   <thead>
+							<tr>
+								<th>Chassi</th>
+								<th>Placa</th>
+								<th data-priority="1">Cor</th>
+								<th data-priority="2">Marca</th>
+								<th data-priority="3">Modelo</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr th:each="veiculo : ${cliente.veiculo}">
+								<td ><span id="chassi" th:text="${veiculo.numeroChassi}"></span></td>
+								<td th:text="${veiculo.placa}"></td>
+								<td th:text="#{|enumCores.${veiculo.cor}|}"></td>
+								<td th:if="${veiculo.marcaModelo != null}" ><span th:text="${veiculo.marcaModelo.marca}"></span></td>
+								<td th:if="${veiculo.marcaModelo != null}" ><span th:text="${veiculo.marcaModelo.modelo}"></span></td>
+								<td><a th:href="@{addInfoExtraVeiculo(id=${veiculo.numeroChassi})}">Adicionar Informações Extras</a></td>
+								<td><button title="REMOVER" id="remove" class="btn btn-danger btn-xs"><label class="glyphicon glyphicon-trash"></label></button></td>
+								
+							</tr>
+						</tbody>
+				  </table>
+				  </div>
+				</div>
+			</div>
 		
 			<!--     Bloco 2 de informações       -->
 			
-			<div class="col-sm-9 col-md-10">
-				<h1>Alertas de Manutenção</h1>
-			</div>
+		
 			<div class="row"></div>
-			<div class="table-responsive">
-	            <table class="table table-striped">
-					<thead>
-						<tr>
-							<th data-priority="1">Modelo</th>
-							<th>Tipo</th>
-						</tr>
-					</thead>
-					<tbody>
-						<tr th:each="veiculo : ${cliente.veiculo}" >
-							<td th:text="${veiculo.placa}"></td>
-							<td>
-							<tr  th:each="alerta : ${veiculo.alertas}" >
-								<td th:text="${alerta.descricao}"></td>
-							</tr>
-							</td>
-						</tr>
-						
-					</tbody>
-				</table>
-			</div>
-			
-		</div>
+				<div style="padding-left: 2%;padding-right: 2%;" class="table-responsive">
+				
+					<div class="panel panel-default">
+					
+						<div class="panel-heading" >
+							<h3>Alertas de Manutenção</h3>
+						</div>
+					
+						<div  class="panel-body" th:each="veiculo : ${cliente.veiculo}">
+							<div>
+								<label th:text="${veiculo.MarcaModelo.modelo + ':  ' + veiculo.placa}"><button><label class="glyphicon glyphicon-calendar"></label>Agendar visita</button></label>
+							</div>
+
+							
+							<div class="panel-body">
+								<div  th:each="alerta : ${veiculo.alertas}" class="alert alert-warning">
+								  
+								  <strong><label th:text="${alerta.descricao}"></label></strong>
+								   <a th:href="@{~/servico/novoServico(id=${session.usuario.id},descricao=${alerta.descricao})}" class="btn btn-success" title="Agendar esse serviço"><span  class="glyphicon glyphicon-calendar"></span></a>
+								</div>
+							</div>
+						</div>
+					</div>
+					
+				</div>
+		
 	</section>
 </body>
 </html>

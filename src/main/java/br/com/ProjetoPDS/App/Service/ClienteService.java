@@ -35,45 +35,46 @@ public class ClienteService implements IClienteService{
 			
 			if(veiculos.get(i).getInfoExtraVeiculo() != null){
 				
-				Alerta alerta1 = logicaAcompanhamento.verificarRevisao(veiculos.get(i));
-				Alerta alerta2 = logicaAcompanhamento.alinhamentoBalanceamento(veiculos.get(i));
-				
-				alerta1.setVeiculo(veiculos.get(i));
-				System.out.println(alerta1.getDescricao());
-				if((dataFacade.getAlertaRepository().findByDescricaoVeiculo(alerta1.getDescricao(), alerta1.getVeiculo()) == null)
-					&& (!alerta1.getDescricao().isEmpty())){
+				for(int j = 0; j < veiculos.get(i).getAlertas().size();j++){
 					
+					Alerta alerta1 = logicaAcompanhamento.verificarRevisao(veiculos.get(i));
+					Alerta alerta2 = logicaAcompanhamento.alinhamentoBalanceamento(veiculos.get(i));
 					
-					cliente.getVeiculo().get(i).addAlertas(alerta1);
-					dataFacade.getClienteRepository().save(cliente);	
-				}else{
+					alerta1.setVeiculo(veiculos.get(i));
 					
-					if((cliente.getVeiculo().get(i).getAlertas().get(i).getTipo().equals(alerta1.getTipo()))
-						&& ((cliente.getVeiculo().get(i).getAlertas().get(i).getData().getTimeInMillis() - alerta1.getData().getTimeInMillis() < 0))
-					){ 
-						System.out.println("delete");
+					if((dataFacade.getAlertaRepository().findByDescricaoVeiculo(alerta1.getDescricao(), alerta1.getVeiculo()) == null)
+						&& (!alerta1.getDescricao().isEmpty())){
 						
-						
-						int result = dataFacade.getAlertaRepository().deleteByTipoAlerta(cliente.getVeiculo().get(i));
 						
 						cliente.getVeiculo().get(i).addAlertas(alerta1);
-						dataFacade.getClienteRepository().save(cliente);
+						dataFacade.getClienteRepository().save(cliente);	
+					}else{
 						
+						if((cliente.getVeiculo().get(i).getAlertas().get(j).getTipo().equals(alerta1.getTipo()))
+							&& ((cliente.getVeiculo().get(i).getAlertas().get(j).getData().getTimeInMillis() - alerta1.getData().getTimeInMillis() < 0))
+						){ 
+							
+							int result = dataFacade.getAlertaRepository().deleteByTipoAlerta(cliente.getVeiculo().get(i));
+							
+							cliente.getVeiculo().get(i).addAlertas(alerta1);
+							dataFacade.getClienteRepository().save(cliente);
+							
+						}
+					
 					}
-				
-				}
-					
-		
-				
-				alerta2.setVeiculo(veiculos.get(i));
-				//se não existir um alerta para um veiculo com a mesma descrição e a descrição estiver preenchida adicionar um novo alerta
-				if((dataFacade.getAlertaRepository().findByDescricaoVeiculo(alerta2.getDescricao(), alerta2.getVeiculo()) == null) 
-						&& (alerta2.getDescricao() != null)){
 						
-					cliente.getVeiculo().get(i).addAlertas(alerta2);
-					dataFacade.getClienteRepository().save(cliente);
-				}
+			
 					
+					alerta2.setVeiculo(veiculos.get(i));
+					//se não existir um alerta para um veiculo com a mesma descrição e a descrição estiver preenchida adicionar um novo alerta
+					if((dataFacade.getAlertaRepository().findByDescricaoVeiculo(alerta2.getDescricao(), alerta2.getVeiculo()) == null) 
+							&& (alerta2.getDescricao() != null)){
+							
+						cliente.getVeiculo().get(i).addAlertas(alerta2);
+						dataFacade.getClienteRepository().save(cliente);
+					}
+				}
+				
 			}
 	
 		}
