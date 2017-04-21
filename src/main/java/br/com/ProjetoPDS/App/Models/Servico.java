@@ -31,6 +31,15 @@ public class Servico implements Serializable{
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="id_servico")
 	private Integer id;
+	@OneToMany
+	private List<CheckIn> listaCheckIn;
+	public List<CheckIn> getListaCheckIn() {
+		return listaCheckIn;
+	}
+
+	public void setListaCheckIn(List<CheckIn> listaCheckIn) {
+		this.listaCheckIn = listaCheckIn;
+	}
 	private EnumStatus status;
 	@DateTimeFormat(pattern="dd/mm/yyyy")
 	private Date dataRequerimento;

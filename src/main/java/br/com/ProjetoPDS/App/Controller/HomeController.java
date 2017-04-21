@@ -1,5 +1,8 @@
 package br.com.ProjetoPDS.App.Controller;
 
+import java.sql.Date;
+import java.util.ArrayList;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,8 +15,13 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
+import br.com.ProjetoPDS.App.Models.CheckIn;
 import br.com.ProjetoPDS.App.Models.Cliente;
+import br.com.ProjetoPDS.App.Models.Servico;
+import br.com.ProjetoPDS.App.Service.CheckInService;
 import br.com.ProjetoPDS.App.Service.ClienteService;
+import br.com.ProjetoPDS.App.Service.DataFacadeService;
 
 @Controller
 @RequestMapping("/")
@@ -21,12 +29,18 @@ public class HomeController {
 	
 	@Autowired
 	private ClienteService clienteService;
-	
+	@Autowired
+	private CheckInService checkInService;
 	
 	@RequestMapping(method = RequestMethod.GET)
 	public ModelAndView index(){
 		
 		ModelAndView mv = new ModelAndView("index");
+		
+		ArrayList<CheckIn> lista = (ArrayList<CheckIn>) checkInService.buscarCheckInPorId(321321);
+		for (CheckIn checkIn : lista) {
+			System.out.println(checkIn.getDataHora()+"  "+checkIn.getAcao());
+		}
 		
         return mv;
 	}
