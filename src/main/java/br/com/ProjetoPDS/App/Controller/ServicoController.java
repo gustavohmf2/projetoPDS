@@ -65,6 +65,8 @@ public class ServicoController {
 		servico.setStatus(EnumStatus.PRE_DIGNOSTICO);
 		
 		System.out.println("Veiculo: " + servico.getVeiculo().getNumeroChassi());
+		
+		
 		cliente.addServico(servico);
 		servico.setResponsavel(cliente);
 

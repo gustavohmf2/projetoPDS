@@ -4,6 +4,7 @@ import java.util.List;
 
 import br.com.ProjetoPDS.App.Models.Cliente;
 import br.com.ProjetoPDS.App.Models.Servico;
+import br.com.ProjetoPDS.App.Models.Veiculo;
 
 public interface IServicoService {
 
@@ -15,7 +16,13 @@ public interface IServicoService {
 	public Servico buscarPorId(Integer id);
 	public List<Servico> buscarTodos();
 
-	void aprovarOrcamentoServico(Integer idServico);
+	public void aprovarOrcamentoServico(Integer idServico);
 
-	List<Servico> buscarServicosPorIdCliente(Cliente idCliente);
+	public List<Servico> buscarServicosPorIdCliente(Cliente idCliente);
+
+	public void atualizarVeiculo(Veiculo veiculo);
+
+	public void deletarTodos(Veiculo veiculo);
+	
+	
 }

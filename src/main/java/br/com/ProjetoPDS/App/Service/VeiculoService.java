@@ -8,13 +8,14 @@ import org.springframework.stereotype.Service;
 import br.com.ProjetoPDS.App.Models.InfoExtraVeiculo;
 import br.com.ProjetoPDS.App.Models.MarcaModelo;
 import br.com.ProjetoPDS.App.Models.Veiculo;
+import br.com.ProjetoPDS.App.Repository.VeiculoRepository;
 
 @Service
 public class VeiculoService implements IVeiculoService{
 
 	@Autowired
 	private DataFacadeService dataFacade;
-
+	
 	
 	@Override
 	public List<String> listarMarcaModelo(String marca) {
@@ -48,6 +49,19 @@ public class VeiculoService implements IVeiculoService{
 	public List<Veiculo> buscarTodos() {
 		return dataFacade.getVeiculoRepository().findAll();
 	}
+	
+	@Override
+	public void deletePorId(String chassi) {
+		
+		dataFacade.getVeiculoRepository().deletePorId(chassi);
+	}
+	
+	@Override
+	public void deleteAlertasVeiculo(Veiculo veiculo) {
+		
+		dataFacade.getAlertaRepository().deleteByTipoAlerta(veiculo);
+	}
+
 
 	@Override
 	public void deletar(Veiculo veiculo) {
@@ -56,7 +70,9 @@ public class VeiculoService implements IVeiculoService{
 	
 	@Override
 	public void deletar(String chassi) {
+		
 		dataFacade.getVeiculoRepository().delete(chassi);
+		dataFacade.getVeiculoRepository().flush();
 	}
 
 	@Override
@@ -64,16 +80,17 @@ public class VeiculoService implements IVeiculoService{
 		
 		
 		boolean exist = dataFacade.getInfoExtraVeiculoRepository().exists(infoExtra.getId());
-		
+	
 		if(exist){
-			
-			infoExtra.setKmAnterior(infoExtra.getKmTotal());
+
+			infoExtra.setKmAnterior(dataFacade.getInfoExtraVeiculoRepository().getKmTotalVeiculo(infoExtra.getId()));
 			
 		}
 		
 		Veiculo veiculo = dataFacade.getVeiculoRepository().findOne(infoExtra.getId());
-
+		
 		veiculo.setInfoExtraVeiculo(infoExtra);
+		
 		
 		dataFacade.getVeiculoRepository().save(veiculo);
 		
@@ -81,6 +98,7 @@ public class VeiculoService implements IVeiculoService{
 		
 	}
 
+	
 	
 
 }

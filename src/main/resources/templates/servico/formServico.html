@@ -52,8 +52,8 @@
 				
 				<div class="form-group"  th:if="${veiculos != null}">
 					<div><label>Veículo:</label></div>
-					<select class="form-control"  th:field="*{veiculo}">
-						<option th:each="v : ${veiculos}" th:value="${v}" th:text="${v.numeroChassi}"></option>
+					<select class="form-control"  th:field="*{veiculo.numeroChassi}">
+						<option th:each="v : ${veiculos}" th:value="${v.numeroChassi}" th:text="${v.numeroChassi}"></option>
 					</select>
 				</div>
 

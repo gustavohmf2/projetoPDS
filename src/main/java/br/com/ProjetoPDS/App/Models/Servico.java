@@ -16,7 +16,9 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.validation.constraints.Null;
 
+import org.hibernate.annotations.Cascade;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import br.com.ProjetoPDS.App.Enumeracoes.EnumStatus;
@@ -44,12 +46,13 @@ public class Servico implements Serializable{
 	@JoinColumn(name="id_cliente")
 	private Cliente cliente;
 	
-	@ManyToOne(fetch=FetchType.EAGER, cascade= CascadeType.MERGE)
+	@ManyToOne(fetch=FetchType.LAZY, cascade={CascadeType.MERGE})
 	@JoinColumn(name="id_veiculo")
 	private Veiculo veiculo;
+	
 	private String notaFiscal;
 	
-	@OneToMany(mappedBy="servico", fetch=FetchType.LAZY, cascade=CascadeType.ALL)
+	@OneToMany(mappedBy="servico", fetch=FetchType.LAZY, cascade={CascadeType.REMOVE, CascadeType.PERSIST})
 	private List<Orcamento> orcamento;
 	
 	private String descricao;

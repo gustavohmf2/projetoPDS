@@ -17,12 +17,15 @@ public interface IVeiculoService {
 	
 	public void deletar(Veiculo veiculo);
 	public void deletar(String chassi);
+	public void deletePorId(String chassi);
 	
 	public Veiculo buscarPorId(String id);
 	public List<Veiculo> buscarTodos();
 	
 	public List<String> listarMarcas();
 	public MarcaModelo listarMarcaModelo(String marca, String modelo);
+
+	public void deleteAlertasVeiculo(Veiculo veiculo);
 	
 	
 

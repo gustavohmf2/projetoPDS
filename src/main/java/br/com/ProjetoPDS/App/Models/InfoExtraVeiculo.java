@@ -6,9 +6,11 @@ import java.util.Calendar;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 
 import org.springframework.format.annotation.DateTimeFormat;
@@ -38,17 +40,7 @@ public class InfoExtraVeiculo implements Serializable{
 		private Calendar ultimaTrocaPneu;
 		@DateTimeFormat(pattern="dd/mm/yyyy")
 		private Calendar ultimaRevisao;
-		@OneToOne
-		private Veiculo veiculo;
 		
-		public Veiculo getVeiculo() {
-			return veiculo;
-		}
-
-		public void setVeiculo(Veiculo veiculo) {
-			this.veiculo = veiculo;
-		}
-
 		public InfoExtraVeiculo() {
 			// TODO Auto-generated constructor stub
 		}

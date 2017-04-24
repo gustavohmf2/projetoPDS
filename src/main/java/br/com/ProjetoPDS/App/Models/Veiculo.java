@@ -31,20 +31,25 @@ public class Veiculo implements Serializable{
 	@OneToOne(fetch=FetchType.EAGER, cascade=CascadeType.MERGE)
 	@JoinColumn(name="id_marcaModelo")
 	private MarcaModelo marcaModelo;
+	
 	private Integer ano;
 	private EnumCores cor;
 	private Integer cambio;
 	
-	@OneToOne(cascade=CascadeType.ALL)
+	@OneToOne(cascade={CascadeType.REMOVE, CascadeType.MERGE, CascadeType.PERSIST})
 	@JoinColumn(name="id_infoExtraVeiculo")
 	private InfoExtraVeiculo infoExtraVeiculo;
 	
-	@ManyToOne(fetch=FetchType.EAGER, cascade= CascadeType.PERSIST)
+	@ManyToOne(fetch=FetchType.EAGER, cascade= CascadeType.MERGE)
 	@JoinColumn(name="id_cliente")
 	private Cliente cliente;
 	
-	@OneToMany(mappedBy="veiculo", fetch=FetchType.LAZY, cascade=CascadeType.ALL)
+	@OneToMany(mappedBy="veiculo", fetch=FetchType.EAGER, 
+			cascade={CascadeType.ALL})
 	private List<Alerta> alertas;
+	
+	@OneToMany(mappedBy="veiculo", fetch=FetchType.LAZY, cascade={CascadeType.REFRESH})
+	private List<Servico> servico;
 	
 
 	public String getNumeroChassi() {
@@ -104,6 +109,16 @@ public class Veiculo implements Serializable{
 	public void addAlertas(Alerta novoAlerta){
 		setAlertas();
 		this.alertas.add(novoAlerta);
+	}
+	public List<Servico> getServico() {
+		return servico;
+	}
+	public void setServico() {
+		this.servico = new ArrayList<Servico>();
+	}
+	public void addServico(Servico servico){
+		setServico();
+		this.servico.add(servico);
 	}
 	
 	

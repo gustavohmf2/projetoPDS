@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import br.com.ProjetoPDS.App.Enumeracoes.EnumStatus;
 import br.com.ProjetoPDS.App.Models.Cliente;
 import br.com.ProjetoPDS.App.Models.Servico;
+import br.com.ProjetoPDS.App.Models.Veiculo;
 
 @Service
 public class ServicoService implements IServicoService{
@@ -44,6 +45,16 @@ public class ServicoService implements IServicoService{
 	public void deletar(Servico servico) {
 		dataFacade.getServicoRepository().delete(servico);
 	}
+	
+	@Override
+	public void deletarTodos(Veiculo veiculo) {
+		
+		for(Servico serv: veiculo.getServico()){
+			
+					dataFacade.getServicoRepository().delete(serv);
+		}
+		
+	}
 
 	@Override
 	public Servico buscarPorId(Integer id) {
@@ -60,6 +71,12 @@ public class ServicoService implements IServicoService{
 	public List<Servico> buscarServicosPorIdCliente(String idCliente) {
 		// TODO Auto-generated method stub
 		return null;
+	}
+	
+	@Override
+	public void atualizarVeiculo(Veiculo veiculo ) {
+		// TODO Auto-generated method stub
+		dataFacade.getServicoRepository().updateVeiculo(veiculo);
 	}
 
 

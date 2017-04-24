@@ -23,14 +23,15 @@ public class Alerta implements Serializable{
 
 	private static final long serialVersionUID = 1L;
 	
-	@Id@GeneratedValue(strategy=GenerationType.TABLE)
+	@Id@GeneratedValue(strategy=GenerationType.AUTO)
 	@Column(name="id_alerta")
 	private Integer id;
 	private String descricao;
 	private Calendar data;
 	@Enumerated(EnumType.STRING)
 	private TipoAlerta tipo;
-	@ManyToOne(fetch= FetchType.EAGER, cascade=CascadeType.ALL)
+	
+	@ManyToOne(fetch= FetchType.EAGER, cascade= CascadeType.REMOVE)
 	@JoinColumn(name="id_numeroChassi")
 	private Veiculo veiculo;
 	

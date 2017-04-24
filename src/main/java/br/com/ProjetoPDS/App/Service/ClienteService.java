@@ -31,48 +31,97 @@ public class ClienteService implements IClienteService{
 
 		List<Veiculo> veiculos = cliente.getVeiculo();
 		
+		Alerta alerta1;
+		Alerta alerta2;
+		
 		for(int i = 0;  i < veiculos.size(); i++){
+			
+			System.out.println("For veiculo");
 			
 			if(veiculos.get(i).getInfoExtraVeiculo() != null){
 				
-				for(int j = 0; j < veiculos.get(i).getAlertas().size();j++){
+				System.out.println("Info Extra");
+				
+				if(!(veiculos.get(i).getAlertas().isEmpty())){
 					
-					Alerta alerta1 = logicaAcompanhamento.verificarRevisao(veiculos.get(i));
-					Alerta alerta2 = logicaAcompanhamento.alinhamentoBalanceamento(veiculos.get(i));
+					System.out.println("Tem alertas");
 					
-					alerta1.setVeiculo(veiculos.get(i));
-					
-					if((dataFacade.getAlertaRepository().findByDescricaoVeiculo(alerta1.getDescricao(), alerta1.getVeiculo()) == null)
-						&& (!alerta1.getDescricao().isEmpty())){
+					for(int j = 0; j < veiculos.get(i).getAlertas().size();j++){
+						System.out.println("For alertas");
 						
+						alerta1 = logicaAcompanhamento.verificarRevisao(veiculos.get(i));
+						alerta2 = logicaAcompanhamento.alinhamentoBalanceamento(veiculos.get(i));
 						
+						alerta1.setVeiculo(veiculos.get(i));
+						
+						if((dataFacade.getAlertaRepository().findByDescricaoVeiculo(alerta1.getDescricao(), alerta1.getVeiculo()) == null)
+							&& (!alerta1.getDescricao().isEmpty())){
+							
+							System.out.println("Alerta 1");
+							
+							alerta1.setVeiculo(cliente.getVeiculo().get(i));
+							cliente.getVeiculo().get(i).addAlertas(alerta1);
+							dataFacade.getClienteRepository().save(cliente);	
+							
+						}else{
+							
+							if((cliente.getVeiculo().get(i).getAlertas().get(j).getTipo().equals(alerta1.getTipo()))
+								&& ((cliente.getVeiculo().get(i).getAlertas().get(j).getData().getTimeInMillis() - alerta1.getData().getTimeInMillis() < 0))
+							){ 
+								
+								System.out.println("Alerta 2");
+								int result = dataFacade.getAlertaRepository().deleteByTipoAlerta(cliente.getVeiculo().get(i));
+								
+								alerta1.setVeiculo(cliente.getVeiculo().get(i));
+								cliente.getVeiculo().get(i).addAlertas(alerta1);
+								dataFacade.getClienteRepository().save(cliente);
+								
+							}
+						
+						}
+							
+				
+						System.out.println("Alerta 3");
+						alerta2.setVeiculo(veiculos.get(i));
+						//se não existir um alerta para um veiculo com a mesma descrição e a descrição estiver preenchida adicionar um novo alerta
+						if((dataFacade.getAlertaRepository().findByDescricaoVeiculo(alerta2.getDescricao(), alerta2.getVeiculo()) == null) 
+								&& (alerta2.getDescricao() != null)){
+							alerta2.setVeiculo(cliente.getVeiculo().get(i));
+							cliente.getVeiculo().get(i).addAlertas(alerta2);
+							dataFacade.getClienteRepository().save(cliente);
+						}
+					}
+				}else{
+					
+					System.out.println("Alerta 4");
+					alerta1 = logicaAcompanhamento.verificarRevisao(veiculos.get(i));
+					alerta2 = logicaAcompanhamento.alinhamentoBalanceamento(veiculos.get(i));
+					
+					
+					if(alerta1.getDescricao() != null ){
+						
+						alerta1.setVeiculo(veiculos.get(i));
 						cliente.getVeiculo().get(i).addAlertas(alerta1);
 						dataFacade.getClienteRepository().save(cliente);	
-					}else{
-						
-						if((cliente.getVeiculo().get(i).getAlertas().get(j).getTipo().equals(alerta1.getTipo()))
-							&& ((cliente.getVeiculo().get(i).getAlertas().get(j).getData().getTimeInMillis() - alerta1.getData().getTimeInMillis() < 0))
-						){ 
-							
-							int result = dataFacade.getAlertaRepository().deleteByTipoAlerta(cliente.getVeiculo().get(i));
-							
-							cliente.getVeiculo().get(i).addAlertas(alerta1);
-							dataFacade.getClienteRepository().save(cliente);
-							
-						}
-					
+						System.out.println(alerta1.getDescricao());
 					}
-						
-			
 					
-					alerta2.setVeiculo(veiculos.get(i));
-					//se não existir um alerta para um veiculo com a mesma descrição e a descrição estiver preenchida adicionar um novo alerta
-					if((dataFacade.getAlertaRepository().findByDescricaoVeiculo(alerta2.getDescricao(), alerta2.getVeiculo()) == null) 
-							&& (alerta2.getDescricao() != null)){
-							
+					if(alerta2.getDescricao() != null ){
+						
+						alerta2.setVeiculo(veiculos.get(i));
 						cliente.getVeiculo().get(i).addAlertas(alerta2);
 						dataFacade.getClienteRepository().save(cliente);
+						System.out.println(alerta2.getDescricao());
 					}
+					
+					
+					
+					
+					
+					
+					
+					
+					
 				}
 				
 			}

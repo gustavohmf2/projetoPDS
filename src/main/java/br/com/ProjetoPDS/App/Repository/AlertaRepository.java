@@ -14,8 +14,8 @@ import br.com.ProjetoPDS.App.Enumeracoes.TipoAlerta;
 import br.com.ProjetoPDS.App.Models.Alerta;
 import br.com.ProjetoPDS.App.Models.Veiculo;
 
-@Transactional
 @Repository
+@Transactional
 public interface AlertaRepository extends JpaRepository<Alerta, Integer>{
 
 	@Query("SELECT a FROM Alerta a WHERE a.descricao = :descricao AND a.veiculo = :veiculo")
