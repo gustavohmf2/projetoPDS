@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import br.com.ProjetoPDS.App.Repository.AlertaRepository;
+import br.com.ProjetoPDS.App.Repository.CheckInRepository;
 import br.com.ProjetoPDS.App.Repository.ClienteRepository;
 import br.com.ProjetoPDS.App.Repository.EnderecoRepository;
 import br.com.ProjetoPDS.App.Repository.InfoExtraVeiculoRepository;
@@ -37,6 +38,8 @@ public class DataFacadeService {
 	private ServicoRepository servicoRepository;
 	@Autowired
 	private AlertaRepository alertaRepository;
+	@Autowired
+	private CheckInRepository checkInRepository;
 
 	public AlertaRepository getAlertaRepository() {
 		return alertaRepository;
@@ -116,6 +119,14 @@ public class DataFacadeService {
 
 	public void setEnderecoRepository(EnderecoRepository enderecoRepository) {
 		this.enderecoRepository = enderecoRepository;
+	}
+
+	public CheckInRepository getCheckInRepository() {
+		return checkInRepository;
+	}
+
+	public void setCheckInRepository(CheckInRepository checkInRepository) {
+		this.checkInRepository = checkInRepository;
 	}
 	
 

@@ -33,28 +33,39 @@ public class Servico implements Serializable{
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="id_servico")
 	private Integer id;
-	
+	@OneToMany
+	private List<CheckIn> listaCheckIn;
+	public List<CheckIn> getListaCheckIn() {
+		return listaCheckIn;
+	}
+
+	public void setListaCheckIn(List<CheckIn> listaCheckIn) {
+		this.listaCheckIn = listaCheckIn;
+	}
 	private EnumStatus status;
-	
 	@DateTimeFormat(pattern="dd/mm/yyyy")
 	private Date dataRequerimento;
-	
 	@DateTimeFormat(pattern="dd/mm/yyyy")
 	private Calendar prazoFinal;
-	
-	@ManyToOne(fetch=FetchType.EAGER, cascade= CascadeType.MERGE)
+	@ManyToOne(fetch=FetchType.EAGER, cascade= CascadeType.ALL)
 	@JoinColumn(name="id_cliente")
 	private Cliente cliente;
+<<<<<<< HEAD
 	
 	@ManyToOne(fetch=FetchType.LAZY, cascade={CascadeType.MERGE})
 	@JoinColumn(name="id_veiculo")
+=======
+>>>>>>> af65a4cead09d8f48d07aa9c39d3fd1fa53581fb
 	private Veiculo veiculo;
 	
 	private String notaFiscal;
+<<<<<<< HEAD
 	
 	@OneToMany(mappedBy="servico", fetch=FetchType.LAZY, cascade={CascadeType.REMOVE, CascadeType.PERSIST})
+=======
+	@OneToMany(mappedBy="servico", fetch=FetchType.LAZY, cascade=CascadeType.ALL)
+>>>>>>> af65a4cead09d8f48d07aa9c39d3fd1fa53581fb
 	private List<Orcamento> orcamento;
-	
 	private String descricao;
 	private String obs;
 	
