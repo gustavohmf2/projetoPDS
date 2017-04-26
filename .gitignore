@@ -19,8 +19,9 @@
 
 # Others #
 #################
+/target/*
 /target/
-/bin/
+bin/
 
 
 *.classpath
