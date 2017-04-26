@@ -14,7 +14,7 @@
 
 # Resource Files #
 #################
-.properties
+*.properties
 
 
 # Others #
