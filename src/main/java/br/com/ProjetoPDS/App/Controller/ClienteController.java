@@ -23,6 +23,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import br.com.ProjetoPDS.App.Enumeracoes.EnumCores;
 import br.com.ProjetoPDS.App.Enumeracoes.EnumStatus;
 import br.com.ProjetoPDS.App.Enumeracoes.TipoPessoa;
+import br.com.ProjetoPDS.App.Exceptions.CamadaServicoException;
 import br.com.ProjetoPDS.App.Models.Alerta;
 import br.com.ProjetoPDS.App.Models.Cliente;
 import br.com.ProjetoPDS.App.Models.InfoExtraVeiculo;
@@ -31,6 +32,7 @@ import br.com.ProjetoPDS.App.Models.Servico;
 import br.com.ProjetoPDS.App.Models.Veiculo;
 import br.com.ProjetoPDS.App.Service.ClienteService;
 import br.com.ProjetoPDS.App.Service.ServicoService;
+import br.com.ProjetoPDS.App.Service.ValidacoesService;
 import br.com.ProjetoPDS.App.Service.VeiculoService;
 
 @Controller
@@ -72,9 +74,19 @@ public class ClienteController {
 	@PostMapping("/novo")
 	public ModelAndView salvarCliente(Cliente cliente, RedirectAttributes attributes){
 		
-		ModelAndView mv = new ModelAndView("redirect:/cliente/novo");
+		boolean cpfValido = true;
+		ModelAndView mv = new ModelAndView("cliente/form");
 		cliente.setTipo(TipoPessoa.FISICA);
-		clienteService.inserir(cliente);
+		
+		ValidacoesService validacaoCpf = ValidacoesService.getInstance();
+		try {
+			
+			validacaoCpf.validarCpf(cliente.getId());
+			clienteService.inserir(cliente);
+		} catch (CamadaServicoException e) {
+			cpfValido = false;
+		}
+		mv.addObject("cpfValido", cpfValido);
 		attributes.addFlashAttribute("message", "O cliente foi cadastrado!");
 		return mv;
 		

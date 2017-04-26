@@ -6,6 +6,7 @@ import java.util.List;
 import javax.persistence.EnumType;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Service;
 
 import br.com.ProjetoPDS.App.Enumeracoes.TipoAlerta;
@@ -114,14 +115,7 @@ public class ClienteService implements IClienteService{
 						System.out.println(alerta2.getDescricao());
 					}
 					
-					
-					
-					
-					
-					
-					
-					
-					
+
 				}
 				
 			}
@@ -132,30 +126,68 @@ public class ClienteService implements IClienteService{
 	
 	@Override
 	public Cliente buscarPF(String cpf){
-		return dataFacade.getClienteRepository().findOne(cpf);
+		Cliente cliente = null;
+		try {
+			cliente = dataFacade.getClienteRepository().findOne(cpf);
+		} catch (DataAccessException e) {
+			System.err.println("Erro na camada de dados!");
+			e.printStackTrace();
+		}
+		return cliente;
 	}
 	@Override
 	public Cliente buscarPJ(String cnpj){
-		return dataFacade.getClienteRepository().findOne(cnpj);
+		Cliente cliente = null;
+		try {
+			cliente = dataFacade.getClienteRepository().findOne(cnpj);
+		} catch (DataAccessException e) {
+			System.err.println("Erro na camada de dados!");	
+			e.printStackTrace();
+		}
+		return cliente ;
 	}
 	
 	@Override
 	public void inserir(Cliente cliente) {
-		dataFacade.getClienteRepository().save(cliente);
+		try {
+			dataFacade.getClienteRepository().save(cliente);
+		} catch (DataAccessException e) {
+			System.err.println("Erro na camada de dados!");	
+			e.printStackTrace();
+		}
 	}
 	@Override
 	public void deletar(Cliente cliente) {
-		dataFacade.getClienteRepository().delete(cliente);
+		try {
+			dataFacade.getClienteRepository().delete(cliente);
+		} catch (DataAccessException e) {
+			System.err.println("Erro na camada de dados!");	
+			e.printStackTrace();
+		}
 	}
 
 	@Override
 	public Cliente buscarPorId(String id) {
-		return dataFacade.getClienteRepository().findOne(id);	
+		Cliente cliente = null;
+		try {
+			cliente = dataFacade.getClienteRepository().findOne(id);
+		} catch (DataAccessException e) {
+			System.err.println("Erro na camada de dados!");	
+			e.printStackTrace();
+		}
+		return cliente;	
 	}
 
 	@Override
 	public List<Cliente> buscarTodos() {
-		return dataFacade.getClienteRepository().findAll();
+		List<Cliente> clientes = null;
+		try {
+			clientes = dataFacade.getClienteRepository().findAll();
+		} catch (DataAccessException e) {
+			System.err.println("Erro na camada de dados!");	
+			e.printStackTrace();
+		}
+		return clientes;
 	}
 
 }

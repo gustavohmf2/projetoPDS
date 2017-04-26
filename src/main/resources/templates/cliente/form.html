@@ -10,6 +10,16 @@
 	<script th:src="@{jquery/jquery-ui.min.js}"></script>
 	<meta charset="UTF-8"/>
 	<title>Novo Cliente</title>
+	<style type="text/css">
+	
+	.divAlert{
+		border-left:10px solid red;
+		padding:10px;
+		margin-bottom: 5px;
+	}
+	</style>
+	
+	
 </head>
 <body>
 
@@ -17,6 +27,13 @@
 
 
 	<div class="container" style="padding-top: 5%;">
+	
+	
+	<div th:if="${cpfValido} == false" >
+		<div class="divAlert"> Você digitou um CPF invalido!</div>
+	</div>
+	
+	
 	<h1>Novo Cliente <span class="glyphicon glyphicon-plus"></span></h1>
 	<div class="">
 		<form th:action="@{/cliente/novo}" th:object="${cliente}" method="post">
