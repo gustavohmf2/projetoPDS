@@ -1,0 +1,81 @@
+
+<!DOCTYPE html>
+<html lang="pt" xmlns="http://www.w3.org/1999/xhtml" 
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="layout/LayoutPadrao">
+<head>
+	<title>Acompanhamento</title>
+	<meta charset="UTF-8"/>
+	
+	<link rel="stylesheet" type="text/css" th:href="@{/layout/stylesheets/custom.css}"/>
+	<link rel="stylesheet" type="text/css" th:href="@{/layout/stylesheets/timeline.css}"/>
+	<script th:src="@{/layout/javascripts/bootstrap.min.js}"></script>
+	<script th:src="@{/layout/jquery/jquery-3.2.0.js}"></script>
+	
+	
+</head>
+
+<body>
+	<section layout:fragment="conteudo">
+	
+	<div class="col-sm-9 col-md-10">
+			
+	</div>
+	<div class="row"></div>
+	
+	<div class="col-sm-9 col-md-10">
+	
+	</div>
+	<div class="row"></div>
+	
+	<div class="col-sm-9 col-md-10">
+		<h1>Acompanhamento dos serviços</h1>
+	</div>
+	
+	<div class="row"></div>
+		
+		<div class="container" th:if="${msg != null}">
+			<div><h3> Não há informações sobre o andamento do serviço nesse momento!</h3></div>
+		</div>
+		
+		<div class="container" th:if="${lista != null}">
+		        <div class="page-header">
+		            <h1 id="timeline">Progresso</h1>
+		        </div>
+		        
+		        
+		        <ul class="timeline">
+		        
+		            <li th:each="checkin : ${lista}">
+		              
+		              <div th:if="${checkin.acao == 'Servico Finalizado'}" class="timeline-badge danger"><i class="glyphicon glyphicon-ok"></i></div>
+		               <div th:if="${checkin.acao != 'Servico Finalizado'}" class="timeline-badge success"><i class="glyphicon glyphicon-check"></i></div>
+		               
+		              <div class="timeline-panel">
+		                <div class="timeline-heading">
+		                  
+		                  <h4 id="classificacao" class="timeline-title" th:text="${checkin.acao}"></h4>
+		                  <p><small class="text-muted" th:text="${checkin.dataHora}"><i class="glyphicon glyphicon-time"></i></small></p>
+		                </div>
+		                <div class="timeline-body">
+		                  <p th:text="${checkin.descricao}"></p>
+		                  <div th:if="${checkin.acao == 'Servico Finalizado'}">
+		                  		<label>Confirmar Finalização do Serviço </label> <a title="CLIQUE PARA CONFIRMAR" th:href="@{~/servico/finalizar(id=${checkin.servico.id})}" class="btn md"><span class="glyphicon glyphicon-ok-sign"></span></a>
+		                  </div>																						
+		                  
+		                </div>
+		              </div>
+		            </li>
+
+		        </ul>
+		    </div>
+	
+	
+	
+	</section>
+	
+		
+</body>
+</html>
+

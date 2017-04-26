@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import br.com.ProjetoPDS.App.Enumeracoes.EnumStatus;
+import br.com.ProjetoPDS.App.Models.CheckIn;
 import br.com.ProjetoPDS.App.Models.Cliente;
 import br.com.ProjetoPDS.App.Models.Servico;
 import br.com.ProjetoPDS.App.Models.Veiculo;
@@ -77,6 +78,28 @@ public class ServicoService implements IServicoService{
 	public void atualizarVeiculo(Veiculo veiculo ) {
 		// TODO Auto-generated method stub
 		dataFacade.getServicoRepository().updateVeiculo(veiculo);
+	}
+	
+	@Override
+	public List<CheckIn> listarChekin(Integer id) {
+		// TODO Auto-generated method stub
+		return dataFacade.getCheckInRepository().listarCheckInPorServico(id);
+	}
+	
+	@Override
+	public void verificarServico(Integer id){
+		
+		Servico servi = dataFacade.getServicoRepository().findOne(id);
+		
+		for (CheckIn checkin : servi.getCheckin()) {
+			
+			if(checkin.getClassficacao() == 0){
+				
+				//dataFacade.getCheckInRepository().delete(checkin);
+				dataFacade.getServicoRepository().delete(servi);
+			}
+			
+		}
 	}
 
 

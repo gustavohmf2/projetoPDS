@@ -16,7 +16,7 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import br.com.ProjetoPDS.App.Enumeracoes.EnumStatus;
-
+import br.com.ProjetoPDS.App.Models.CheckIn;
 import br.com.ProjetoPDS.App.Models.Cliente;
 import br.com.ProjetoPDS.App.Models.Servico;
 import br.com.ProjetoPDS.App.Models.Veiculo;
@@ -98,5 +98,47 @@ public class ServicoController {
 		return mv;
 
 	}
+	
+	@GetMapping("/acompanhamento")
+	public ModelAndView acompanhamento(@RequestParam(name="id", required=true) Integer id){
+		
+		ModelAndView mv = new ModelAndView("/servico/acompanhamento");	
+		
+		Servico servico =  servicoService.buscarPorId(id);
+		List<CheckIn> lista = null;
+		
+		
+		
+		if(servico != null){
+			
+			lista = servico.getCheckin();
+			
+			if(lista.isEmpty()){
+				
+				mv.addObject("msg", "Não há informações sobre o andamento do serviço nesse momento!");
+				
+			}else{
+				
+				mv.addObject("lista", lista);
+			}
+				
+		}
+		
+		return mv;
+	}
+	
+	
+	@GetMapping("/finalizar")
+	public ModelAndView finalizarServico(@RequestParam(name="id", required=true) Integer id, RedirectAttributes attributes){
+		
+		ModelAndView mv = new ModelAndView("redirect:/cliente");	
+		
+		//verifica se chegou no checkin de serviço finalizado para remover o servico
+		servicoService.verificarServico(id);
+		attributes.addAttribute("msg", "Serviço finalizado !");
 
+		return mv;
+	}
+
+	
 }

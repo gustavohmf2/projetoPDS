@@ -48,7 +48,7 @@ public class Veiculo implements Serializable{
 			cascade={CascadeType.ALL})
 	private List<Alerta> alertas;
 	
-	@OneToMany(mappedBy="veiculo", fetch=FetchType.LAZY, cascade={CascadeType.REFRESH})
+	@OneToMany(mappedBy="veiculo", fetch=FetchType.LAZY, cascade={CascadeType.REMOVE, CascadeType.REFRESH})
 	private List<Servico> servico;
 	
 
