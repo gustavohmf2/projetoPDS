@@ -27,7 +27,7 @@ public class Oficina implements Serializable{
 	@OneToOne
 	private Endereco endereco;
 	@OneToMany(mappedBy="oficina", fetch=FetchType.LAZY, cascade=CascadeType.ALL)
-	private List<Cliente> clientes;
+	private List<Servico> servicos;
 	
 	public Oficina(){}
 	
@@ -68,15 +68,15 @@ public class Oficina implements Serializable{
 		this.endereco = endereco;
 	}
 	
-/*	public List<Cliente> getClientes() {
-		return clientes;
+	public List<Servico> getServicos() {
+		return servicos;
 	}
-	public void setClientes() {
-		this.clientes = new ArrayList<Cliente>();
+	public void setServicos() {
+		this.servicos = new ArrayList<Servico>();
 	}
-	public void addCliente(Cliente cliente){
-		setClientes();
-		this.clientes.add(cliente);
-	}*/
+	public void addServico(Servico servico){
+		setServicos();
+		this.servicos.add(servico);
+	}
 	
 }
