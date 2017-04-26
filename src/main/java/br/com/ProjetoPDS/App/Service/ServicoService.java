@@ -135,8 +135,7 @@ public class ServicoService implements IServicoService{
 		// TODO Auto-generated method stub
 		dataFacade.getServicoRepository().updateVeiculo(veiculo);
 	}
-<<<<<<< HEAD
-	
+
 	@Override
 	public List<CheckIn> listarChekin(Integer id) {
 		// TODO Auto-generated method stub
@@ -160,8 +159,5 @@ public class ServicoService implements IServicoService{
 	}
 
 
-=======
->>>>>>> 314d07b4cca447222600bd3c3a2fa5c739bd0fdd
-	
 
 }

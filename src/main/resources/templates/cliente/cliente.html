@@ -73,7 +73,7 @@
                 <tr th:if="${lista != null}" th:each="lista: ${listaServicos}">
                 
                   <td th:text="${lista.dataRequerimento}"></td>
-                  <td th:text="${lista.oficina.nome}"></td>
+                  <td th:if="${lista.oficina != null}" th:text="${lista.oficina.nome}"></td>
                   <td th:text="${lista.veiculo.placa}"></td>
                   <td th:text="${lista.descricao}" ></td>
                   <td th:text="#{|enumStatus.${lista.status}|}"></td>
