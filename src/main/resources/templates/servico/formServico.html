@@ -56,6 +56,13 @@
 						<option th:each="v : ${veiculos}" th:value="${v.numeroChassi}" th:text="${v.numeroChassi}"></option>
 					</select>
 				</div>
+			
+				<div class="form-group"  th:if="${oficinas != null}">
+					<div><label>Oficinas:</label></div>
+					<select class="form-control" th:field="*{oficina.id}">
+						<option th:each="o : ${oficinas}" th:value="${o.id}" th:text="${o.id}"></option>
+					</select>
+				</div>
 
 				<div class="form-group"> 
 					<input class="btn btn-primary" type="submit" value="Marcar"/>
