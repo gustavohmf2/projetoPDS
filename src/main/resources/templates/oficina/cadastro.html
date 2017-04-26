@@ -18,7 +18,7 @@
 		<div class="container" style="padding-top: 5%;">
 		<h1>Nova Oficina <span class="glyphicon glyphicon-plus"></span></h1>
 			<div class="">
-				<form th:action="@{/oficina/cadastro}" th:object="${cliente}" method="post">
+				<form th:action="@{/oficina/cadastro}" th:object="${oficina}" method="post">
 					
 					<div class="alert  alert-danger  alert-dismissible" role="alert" th:if="${#fields.hasAnyErrors()}">
 						<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>

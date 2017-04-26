@@ -32,52 +32,86 @@
 
 </head>
 <body>
-	<section layout:fragment="conteudo">
+<section layout:fragment="conteudo">
 	<div class="col-sm-9 col-md-10">
 		<h1><span th:text="${session.usuario.nome}"></span></h1>
 	</div>
 	<div class="row"></div>
-	<h2 class="col-sm-9 col-md-10 sub-header">Serviços em andamento</h2>
+	<h2 class="col-sm-9 col-md-10 sub-header">Últimos serviços realizados</h2>
 	<div class="row"></div>
 	<div class="table-responsive">
             <table class="table table-striped tabela">
               <thead>
                 <tr>
                   
-                  <th>Responsável</th>
                   <th>Data</th>
+                  <th>Cliente</th>
                   <th>Veículo</th>
                   <th>Descrição</th>
-           		<th>Status</th>
+           		  <th>Status</th>
                   <th>Ações</th>
                 </tr>
               </thead>
               <tbody>
               
              
-                <tr th:each="lista,iter: ${listaServicos}" th:object="${listaStatus}">
-                  
-                  <td th:text="${lista.nome}">fulano</td>
-                  <td >30/03/2015</td>
-                  <td >Wolksvagem Golf - KXJ-1023</td>
-                  <td th:text="${lista.descricao}" >Reparo no para-choque dianteiro</td>
-                  <td th:text="${listaStatus[iter.index]}">30/03/2015</td>
+                <tr th:if="${lista != null}" th:each="lista: ${listaServicos}">
+                
+                  <td th:text="${lista.dataRequerimento}"></td>
+                  <td th:text="${lista.cliente.nome}"></td>
+                  <td th:text="${lista.veiculo.placa}"></td>
+                  <td th:text="${lista.descricao}" ></td>
+                  <td th:text="#{|enumStatus.${lista.status}|}"></td>
                   
                   <td>
-                  <session  th:if="${lista.status} == 2">
-                  <a  class="btn btn-default botaoAcompanhar" th:href="@{../servico/aprovarServico(id=${lista.id})}"> Aprovar serviço</a>
-                  </session>
-                  <br/>
-                  <a class="btn btn-default botaoAcompanhar" th:href="@{cliente/relatorio}"> ...</a>
-                  <br/>
-                  <a class="btn btn-default botaoAcompanhar" th:href="@{../servico/relatorio(id=${lista.id})}"> relatorio</a>
-                 
-                 
+	                  <div  th:if="${lista.status.name() == 'PRE_DIAGNOSTICO'}">	
+	                  	<a  class="btn btn-default botaoAcompanhar" th:href="@{../servico/vistoriaPendente(id=${lista.id})}"> Vistoria pendente</a>
+	                  </div>
+	                  
+	                  <div  th:if="${lista.status.name() == 'VISTORIA_PENDENTE'}">	
+	                  	<a  class="btn btn-default botaoAcompanhar" th:href="@{../servico/proximoStatus(id=${lista.id})}"> Autorização pendente</a>
+	                  </div>
+	                  
+	                  <div  th:if="${lista.status.name() == 'AUTORIZACAO_PENDENTE'}">	
+	                  	<a  class="btn btn-default botaoAcompanhar" th:href="@{../servico/aprovarServico(id=${lista.id})}"> Serviço autorizado</a>
+	                  	<a  class="btn btn-default botaoAcompanhar" th:href="@{../servico/naoAutorizado(id=${lista.id})}"> Serviço não autorizado</a>
+	                  </div>
+	                  
+	                  <div  th:if="${lista.status.name() == 'SERVICO_AUTORIZADO'}">	
+	                  	<a  class="btn btn-default botaoAcompanhar" th:href="@{../servico/aguardandoPecas(id=${lista.id})}"> Aguardando peças</a>
+	                  	<a  class="btn btn-default botaoAcompanhar" th:href="@{../servico/aguardandoCliente(id=${lista.id})}"> Aguardando cliente</a>
+	                  	<a  class="btn btn-default botaoAcompanhar" th:href="@{../servico/emAndamento(id=${lista.id})}"> Em andamento</a>
+	                  </div>
+	                  
+	                  <div  th:if="${lista.status.name() == 'SERVICO_NAO_AUTORIZADO'}">	
+	                  	<a  class="btn btn-default botaoAcompanhar" th:href="@{../servico/aprovarServico(id=${lista.id})}"> Serviço autorizado</a>
+	                  </div>
+	                  
+	                  <div  th:if="${lista.status.name() == 'AGUARDANDO_PECAS'}">	
+	                  	<a  class="btn btn-default botaoAcompanhar" th:href="@{../servico/aguardandoCliente(id=${lista.id})}"> Aguardando cliente</a>
+	                  </div>
+	                  
+	                  <div  th:if="${lista.status.name() == 'AGUARDANDO_CLIENTE'}">	
+	                  	<a  class="btn btn-default botaoAcompanhar" th:href="@{../servico/emAndamento(id=${lista.id})}"> Em andamento</a>
+	                  </div>
+	                  
+	                  <div  th:if="${lista.status.name() == 'EM_ANDAMENTO'}">	
+	                  	<a  class="btn btn-default botaoAcompanhar" th:href="@{../servico/finalizado(id=${lista.id})}"> Finalizado</a>
+	                  	<a  class="btn btn-default botaoAcompanhar" th:href="@{../servico/proximoStatus(id=${lista.id})}"> Aguardando complemento</a>
+	                  </div>
+	                  
+	                  <div  th:if="${lista.status.name() == 'AGUARDANDO_COMPLEMENTO'}">	
+	                  	<a  class="btn btn-default botaoAcompanhar" th:href="@{../servico/emAndamento(id=${lista.id})}"> Em andamento</a>
+	                  	<a  class="btn btn-default botaoAcompanhar" th:href="@{../servico/finalizado(id=${lista.id})}"> Finalizado</a>
+	                  </div>
+	                  
+	                  <div  th:if="${lista.status.name() == 'FINALIZADO'}">	
+	                  	<a  class="btn btn-default botaoAcompanhar" th:href="@{../servico/aprovarServico(id=${lista.id})}"> Emitir NF-e</a>
+	                  </div>
                   </td>
                 
                 </tr>
-              
-               
+                            
               </tbody>
             </table>
           </div>

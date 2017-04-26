@@ -16,6 +16,10 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+<<<<<<< HEAD
+=======
+
+>>>>>>> 314d07b4cca447222600bd3c3a2fa5c739bd0fdd
 import org.springframework.format.annotation.DateTimeFormat;
 
 import br.com.ProjetoPDS.App.Enumeracoes.EnumStatus;
@@ -30,21 +34,39 @@ public class Servico implements Serializable{
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="id_servico")
 	private Integer id;
+<<<<<<< HEAD
+=======
+	
+>>>>>>> 314d07b4cca447222600bd3c3a2fa5c739bd0fdd
 	private EnumStatus status;
+	
 	@DateTimeFormat(pattern="dd/mm/yyyy")
 	private Date dataRequerimento;
+	
 	@DateTimeFormat(pattern="dd/mm/yyyy")
 	private Calendar prazoFinal;
 	
+<<<<<<< HEAD
 	@ManyToOne(fetch=FetchType.EAGER, cascade= CascadeType.MERGE)
 	@JoinColumn(name="id_cliente")
 	private Cliente cliente;
 
+=======
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name="id_oficina")
+	private Oficina oficina;
+	
+	@ManyToOne(fetch=FetchType.EAGER, cascade= CascadeType.MERGE)
+	@JoinColumn(name="id_cliente")
+	private Cliente cliente;
+	
+>>>>>>> 314d07b4cca447222600bd3c3a2fa5c739bd0fdd
 	@ManyToOne(fetch=FetchType.LAZY, cascade={CascadeType.MERGE})
 	@JoinColumn(name="id_veiculo")
 	private Veiculo veiculo;
 	
 	private String notaFiscal;
+<<<<<<< HEAD
 
 	@OneToMany(mappedBy="servico", fetch=FetchType.LAZY, cascade={CascadeType.REMOVE, CascadeType.PERSIST})
 	private List<Orcamento> orcamento;
@@ -53,6 +75,12 @@ public class Servico implements Serializable{
 	private List<CheckIn> checkin;
 	
 	
+=======
+	
+	@OneToMany(mappedBy="servico", fetch=FetchType.LAZY, cascade={CascadeType.REMOVE, CascadeType.PERSIST})
+	private List<Orcamento> orcamento;
+	
+>>>>>>> 314d07b4cca447222600bd3c3a2fa5c739bd0fdd
 	private String descricao;
 	private String obs;
 	
@@ -70,25 +98,30 @@ public class Servico implements Serializable{
 		return prazoFinal;
 	}
 
-
-
 	public void setPrazoFinal(Calendar prazoFinal) {
 		this.prazoFinal = prazoFinal;
 	}
+	
+	public Oficina getOficina(){
+		return oficina;
+	}
 
-
+	public void setOficina(Oficina oficina){
+		this.oficina = oficina;
+	}
 
 	public Cliente getCliente() {
 		return cliente;
 	}
 
-
-
 	public void setCliente(Cliente cliente) {
 		this.cliente = cliente;
 	}
 	
+<<<<<<< HEAD
 	
+=======
+>>>>>>> 314d07b4cca447222600bd3c3a2fa5c739bd0fdd
 	public Integer getIdServico() {
 		return id;
 	}
@@ -162,7 +195,5 @@ public class Servico implements Serializable{
 		setCheckin(new ArrayList<CheckIn>());
 		this.checkin.add(checkin);
 	}
-	
-	
 	
 }

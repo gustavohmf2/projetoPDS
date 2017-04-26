@@ -34,20 +34,29 @@ public class Cliente implements Serializable{
 	private String email;
 	private String sexo;
 	private TipoPessoa tipo;
+<<<<<<< HEAD
 	
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name="id_oficina")
 	private Oficina oficina;
 	
+=======
+>>>>>>> 314d07b4cca447222600bd3c3a2fa5c739bd0fdd
 	@OneToOne
 	private Endereco endereco;
 	@DateTimeFormat(pattern="dd/mm/yyyy")
 	private Calendar dataNascimento;
+<<<<<<< HEAD
 	
 	@OneToMany(mappedBy="cliente", fetch=FetchType.LAZY, cascade={CascadeType.MERGE, CascadeType.REMOVE})
 	private List<Servico> servico;
 	
 	@OneToMany(mappedBy="cliente", fetch=FetchType.LAZY, cascade={CascadeType.MERGE, CascadeType.REMOVE})
+=======
+	@OneToMany(mappedBy="cliente", fetch=FetchType.LAZY, cascade=CascadeType.MERGE)
+	private List<Servico> servico;
+	@OneToMany(mappedBy="cliente", fetch=FetchType.LAZY, cascade=CascadeType.MERGE)
+>>>>>>> 314d07b4cca447222600bd3c3a2fa5c739bd0fdd
 	private List<Veiculo> veiculo;
 	
 

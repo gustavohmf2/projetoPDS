@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="pt" xmlns="http://www.w3.org/1999/xhtml" 
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="layout/layoutPadraoOficina">
+<head>
+	<meta charset="UTF-8"/>
+	<title>Adicionar Veículo</title>
+	<link rel="stylesheet" type="text/css" th:href="@{/layout/stylesheets/custom.css}"/>
+	<script th:src="@{/layout/javascripts/bootstrap.min.js}"></script>
+	<script th:src="@{/layout/jquery/jquery-3.2.0.js}"></script>
+	
+	<script type="text/javascript">
+		$(document).ready(function(){
+		    $("#marca").change(function() {
+
+			    var search = $("#marca").val();
+			    if(search != "Selecione a marca do veículo" ){
+					    $.ajax({
+			
+							url: '/oficina/listarModelos',
+							data:{'marca': search},
+							success: function(data){
+								$("#modelo").html("");
+		
+								
+								$.each(data, function(i, val){
+		
+									$("#modelo").append($("<option></option>")
+								    .attr("value", val.text).text(val));
+									
+								});
+								 
+							}
+						});
+		    	}else{
+		    		$("#modelo").html("");
+				}
+		    
+		    });
+		});
+	</script>
+ 
+</head>
+
+
+<body>
+	
+	<section layout:fragment="conteudo">
+	
+	<div class="col-sm-9 col-md-10">
+		<h1>Cadastro de cliente</h1>
+	</div>
+	
+	<div class="row"></div>
+	
+	<div class="col-sm-9 col-md-10">
+		
+		<form th:action="@{/oficina/novoCliente}" th:object="${cliente}" method="post">
+			
+			<div class="alert  alert-danger  alert-dismissible" role="alert" th:if="${#fields.hasAnyErrors()}">
+				<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+				<th:block th:each="error : ${#fields.detailedErrors()}">
+					<div>
+						<i class="fa  fa-exclamation-circle"></i>
+						<span th:text="${error.message}"></span>
+					</div>
+				</th:block>
+			</div>
+			
+			<div class="form-group">
+				<label >Nome:</label>
+				<input class="form-control" type="text" th:field="*{nome}"/>
+			</div>
+			<div class="form-group">
+				<label >CPF:</label>
+				<input class="form-control" type="text" th:field="*{id}"/>
+			</div>
+			<div class="form-group">
+				<label >Sexo:</label>
+				<input class="form-control" type="text" th:field="*{sexo}"/>
+			</div>
+			<div class="form-group">
+				<label for="email">Email:</label>
+				<input class="form-control" type="text" th:field="*{email}"/>
+			</div>
+			<div class="form-group">
+				<label >Data de Nascimento:</label>
+				<input class="form-control" type="text" th:field="*{dataNascimento}"/>
+			</div>
+			<div class="form-group">
+				<label >Telefone:</label>
+				<input class="form-control" type="text" th:field="*{telefone}"/>
+			</div>
+			
+			<input class="btn btn-primary" type="submit" value="Cadastrar" />
+		</form>
+	</div>
+	
+	
+	</section>
+
+</body>
+
+</html>

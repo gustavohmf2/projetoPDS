@@ -12,6 +12,7 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import br.com.ProjetoPDS.App.Models.Cliente;
+import br.com.ProjetoPDS.App.Models.Oficina;
 import br.com.ProjetoPDS.App.Models.Servico;
 import br.com.ProjetoPDS.App.Models.Veiculo;
 
@@ -22,6 +23,9 @@ public interface ServicoRepository extends JpaRepository<Servico, Integer>{
 
 	@Query("SELECT s FROM  Servico s WHERE s.cliente = :cliente")
 	ArrayList<Servico> listarServicoPorId(@Param("cliente") Cliente cliente);
+	
+	@Query("SELECT s FROM  Servico s WHERE s.oficina = :oficina")
+	ArrayList<Servico> listarServicoPorIdOficina(@Param("oficina") Oficina oficina);
 	
 	@Modifying
 	@Query("UPDATE Servico s SET s.veiculo = '' WHERE s.veiculo =:veiculo")
