@@ -63,7 +63,6 @@ public class ClienteController {
 	
 	@GetMapping("/novo")
 	public ModelAndView formCliente(){
-		
 		ModelAndView mv = new ModelAndView("cliente/form");
 		Cliente cliente = new Cliente();
 		mv.addObject("cliente", cliente);
