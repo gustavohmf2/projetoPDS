@@ -26,30 +26,29 @@ public class Contratante implements Serializable{
 
 
 	@Id
-	@Column(name="id_cliente")
+	@Column(name="id_contratante")
 	private String id;
 	private String nome;
 	private String telefone;
 	private String telefoneAlt;
 	private String email;
 	private String sexo;
-	private TipoPessoa tipo;
 
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name="id_oficina")
-	private Prestadora oficina;
+	@JoinColumn(name="id_prestadora")
+	private Prestadora prestadora;
 	
 	@OneToOne
 	private Endereco endereco;
 	@DateTimeFormat(pattern="dd/mm/yyyy")
 	private Calendar dataNascimento;
 
-	@OneToMany(mappedBy="cliente", fetch=FetchType.LAZY, cascade={CascadeType.MERGE, CascadeType.REMOVE})
-	private List<Servico> servico;
+	@OneToMany(mappedBy="contratante", fetch=FetchType.LAZY, cascade={CascadeType.MERGE, CascadeType.REMOVE})
+	private List<Servico> servicos;
 	
 	
-	@OneToMany(mappedBy="cliente", fetch=FetchType.LAZY, cascade={CascadeType.MERGE, CascadeType.REMOVE})
-	private List<Produto> produto;
+	@OneToMany(mappedBy="contratante", fetch=FetchType.LAZY, cascade={CascadeType.MERGE, CascadeType.REMOVE})
+	private List<Produto> produtos;
 	
 
 	public Contratante(){};
@@ -101,32 +100,26 @@ public class Contratante implements Serializable{
 		this.email = email;
 	}
 	public List<Servico> getServico() {
-		return servico;
+		return servicos;
 	}
 	public void setServico() {
-		this.servico = new ArrayList<Servico>();
+		this.servicos = new ArrayList<Servico>();
 	}
 	public void addServico(Servico servico){
 		setServico();
-		this.servico.add(servico);
-	}
-	public TipoPessoa getTipo() {
-		return tipo;
-	}
-	public void setTipo(TipoPessoa tipo) {
-		this.tipo = tipo;
+		this.servicos.add(servico);
 	}
 	public List<Produto> getVeiculo() {
-		return produto;
+		return produtos;
 	}
 	public void setVeiculo() {
 		
-		this.produto = new ArrayList<Produto>();
+		this.produtos = new ArrayList<Produto>();
 	}
 	public void addVeiculo(Produto veiculo){
 		
 		setVeiculo();
-		this.produto.add(veiculo);
+		this.produtos.add(veiculo);
 	}
 	public String getId() {
 		return id;

@@ -2,47 +2,31 @@ package br.com.ProjetoPDS.framework.service;
 
 import java.util.List;
 
-import br.com.ProjetoPDS.App.Models.CheckIn;
-import br.com.ProjetoPDS.App.Models.Cliente;
-import br.com.ProjetoPDS.App.Models.Oficina;
-import br.com.ProjetoPDS.App.Models.Servico;
-import br.com.ProjetoPDS.App.Models.Veiculo;
+import br.com.ProjetoPDS.framework.models.CheckIn;
+import br.com.ProjetoPDS.framework.models.Contratante;
+import br.com.ProjetoPDS.framework.models.Prestadora;
+import br.com.ProjetoPDS.framework.models.Produto;
+import br.com.ProjetoPDS.framework.models.Servico;
 
 public interface IServicoService {
 
-	public List<Servico> buscarServicosPorIdCliente(String idCliente);
+	public List<Servico> buscarServicosPorIdContratante(String contratante);
 	
 	//acesso ao banco
 	public void inserir(Servico servico);
 	public void deletar(Servico servico);
 	public Servico buscarPorId(Integer id);
 	public List<Servico> buscarTodos();
-	
-	public void proximoStatus(Integer idServico);
-	
-	public void aprovarOrcamentoServico(Integer idServico);
-	
-	public void vistoriaPendente(Integer idServico);
-	
-	public void naoAutorizado(Integer idServico);
-	
-	public void aguardandoPecas(Integer idServico);
-	
-	public void aguardandoCliente(Integer idServico);
-	
-	public void emAndamento(Integer idServico);
-	
-	public void finalizado(Integer idServico);
 
-	public List<Servico> buscarServicosPorIdCliente(Cliente idCliente);
+	public List<Servico> buscarServicosPorContratante(Contratante contratante);
 	
-	public List<Servico> buscarServicosPorIdOficina(Oficina idOficina);
+	public List<Servico> buscarServicosPorPrestadora(Prestadora prestadora);
 
-	public void atualizarVeiculo(Veiculo veiculo);
+	public void atualizarProduto(Produto produto);
 
-	public void deletarTodos(Veiculo veiculo);
+	public void deletarTodos(Produto produto);
 
-	public List<CheckIn> listarChekin(Integer id);
+	public List<CheckIn> listarCheckIn(Integer id);
 
 	public void verificarServico(Integer id);
 	

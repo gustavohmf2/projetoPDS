@@ -8,16 +8,17 @@ import org.springframework.stereotype.Service;
 
 import br.com.ProjetoPDS.App.Models.CheckIn;
 import br.com.ProjetoPDS.App.Models.Servico;
+import br.com.ProjetoPDS.App.Repository.CheckInRepository;
 @Service
 public class CheckInService implements ICheckInService{
 	
 	@Autowired
-	private DataFacadeService dataFacade;
+	private CheckInRepository checkInRepository;
 
 	@Override
 	public void inserir(CheckIn checkIn) {
 		try {
-			dataFacade.getCheckInRepository().save(checkIn);
+			checkInRepository.save(checkIn);
 		} catch (DataAccessException e) {
 			System.err.println("Erro na camada de dados. [checkIn]");
 			e.printStackTrace();
@@ -28,14 +29,7 @@ public class CheckInService implements ICheckInService{
 	@Override
 	public List<CheckIn> buscarCheckInPorId(Integer idServico) {
 		
-		return dataFacade.getCheckInRepository().listarCheckInPorServico(idServico);
+		return checkInRepository.listarCheckInPorServico(idServico);
 	}
-
-	
-
-	
-
-
-	
 	
 }

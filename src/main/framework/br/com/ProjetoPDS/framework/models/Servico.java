@@ -39,28 +39,25 @@ public class Servico implements Serializable{
 	@DateTimeFormat(pattern="dd/mm/yyyy")
 	private Calendar prazoFinal;
 
-
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name="id_oficina")
-	private Prestadora oficina;
+	@JoinColumn(name="id_prestadora")
+	private Prestadora prestadora;
 	
 	@ManyToOne(fetch=FetchType.EAGER, cascade= CascadeType.MERGE)
-	@JoinColumn(name="id_cliente")
-	private Contratante cliente;
+	@JoinColumn(name="id_contratante")
+	private Contratante contratante;
 	
 	@ManyToOne(fetch=FetchType.LAZY, cascade={CascadeType.MERGE})
-	@JoinColumn(name="id_veiculo")
-	private Produto veiculo;
+	@JoinColumn(name="id_produto")
+	private Produto produto;
 	
 	private String notaFiscal;
 
 	@OneToMany(mappedBy="servico", fetch=FetchType.LAZY, cascade={CascadeType.REMOVE, CascadeType.PERSIST})
-	private List<Orcamento> orcamento;
+	private List<Orcamento> orcamentos;
 	
 	@OneToMany(mappedBy="servico", fetch=FetchType.LAZY, cascade={CascadeType.REMOVE, CascadeType.PERSIST})
-	private List<CheckIn> checkin;
-
-
+	private List<CheckIn> checkIns;
 	
 	private String descricao;
 	private String obs;
@@ -84,19 +81,19 @@ public class Servico implements Serializable{
 	}
 	
 	public Prestadora getOficina(){
-		return oficina;
+		return prestadora;
 	}
 
 	public void setOficina(Prestadora oficina){
-		this.oficina = oficina;
+		this.prestadora = oficina;
 	}
 
 	public Contratante getCliente() {
-		return cliente;
+		return contratante;
 	}
 
 	public void setCliente(Contratante cliente) {
-		this.cliente = cliente;
+		this.contratante = cliente;
 	}
 	
 	public Integer getIdServico() {
@@ -118,16 +115,16 @@ public class Servico implements Serializable{
 		this.dataRequerimento = dataRequerimento;
 	}
 	public Contratante getResponsavel() {
-		return cliente;
+		return contratante;
 	}
 	public void setResponsavel(Contratante cliente) {
-		this.cliente = cliente;
+		this.contratante = cliente;
 	}
 	public Produto getVeiculo() {
-		return veiculo;
+		return produto;
 	}
 	public void setVeiculo(Produto veiculo) {
-		this.veiculo = veiculo;
+		this.produto = veiculo;
 	}
 	public String getNotaFiscal() {
 		return notaFiscal;
@@ -136,15 +133,15 @@ public class Servico implements Serializable{
 		this.notaFiscal = notaFiscal;
 	}
 	public List<Orcamento> getOrcamento() {
-		return orcamento;
+		return orcamentos;
 	}
 	public void setOrcamento(List<Orcamento> orcamento) {
-		this.orcamento = orcamento;
+		this.orcamentos = orcamento;
 	}
 	public void addOrcamento(Orcamento orcamento){
 		
 		setOrcamento(new ArrayList<Orcamento>());
-		this.orcamento.add(orcamento);
+		this.orcamentos.add(orcamento);
 	}
 	public String getDescricao() {
 		return descricao;
@@ -159,18 +156,18 @@ public class Servico implements Serializable{
 		this.obs = obs;
 	}
 
-	public List<CheckIn> getCheckin() {
-		return checkin;
+	public List<CheckIn> getCheckIns() {
+		return checkIns;
 	}
 
-	public void setCheckin(List<CheckIn> checkin) {
-		this.checkin = checkin;
+	public void setCheckIns(List<CheckIn> checkin) {
+		this.checkIns = checkin;
 	}
 	
-	public void addCheckin(CheckIn checkin){
+	public void addCheckIn(CheckIn checkin){
 		
-		setCheckin(new ArrayList<CheckIn>());
-		this.checkin.add(checkin);
+		setCheckIns(new ArrayList<CheckIn>());
+		this.checkIns.add(checkin);
 	}
 	
 }

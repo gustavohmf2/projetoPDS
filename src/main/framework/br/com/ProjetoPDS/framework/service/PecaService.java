@@ -6,31 +6,32 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import br.com.ProjetoPDS.App.Models.Peca;
+import br.com.ProjetoPDS.App.Repository.PecaRepository;
 
 @Service
 public class PecaService implements IPecaService{
 
 	@Autowired
-	private DataFacadeService datafacade;
+	private PecaRepository pecaRepository;
 	
 	@Override
 	public void inserir(Peca peca) {
-		datafacade.getPecaRepository().save(peca);
+		pecaRepository.save(peca);
 	}
 
 	@Override
 	public void deletar(Peca peca) {
-		datafacade.getPecaRepository().delete(peca);
+		pecaRepository.delete(peca);
 	}
 
 	@Override
 	public List<Peca> buscarTodos() {
-		return datafacade.getPecaRepository().findAll();
+		return pecaRepository.findAll();
 	}
 
 	@Override
 	public Peca buscarPorId(Long id) {
-		return datafacade.getPecaRepository().getOne(id);
+		return pecaRepository.getOne(id);
 	}
 
 	

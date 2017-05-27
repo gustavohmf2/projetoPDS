@@ -64,6 +64,4 @@ public class Orcamento {
 		this.obs = obs;
 	}
 	
-	
-	
 }

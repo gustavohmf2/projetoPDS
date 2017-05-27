@@ -6,34 +6,35 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import br.com.ProjetoPDS.App.Models.Orcamento;
+import br.com.ProjetoPDS.App.Repository.OrcamentoRepository;
 
 @Service
 public class OrcamentoService implements IOrcamentoService{
 
 	@Autowired
-	private DataFacadeService dataFacade;
+	private OrcamentoRepository orcamentoRepository;
 	
 	
 	
 	// acesso banco de dados
 	@Override
 	public void inserir(Orcamento orcamento) {
-		dataFacade.getOrcamentoRepository().save(orcamento);
+		orcamentoRepository.save(orcamento);
 	}
 
 	@Override
 	public void deletar(Orcamento orcamento) {
-		dataFacade.getOrcamentoRepository().delete(orcamento);
+		orcamentoRepository.delete(orcamento);
 	}
 
 	@Override
 	public Orcamento buscarPorId(Long id) {
-		return dataFacade.getOrcamentoRepository().getOne(id);
+		return orcamentoRepository.getOne(id);
 	}
 
 	@Override
 	public List<Orcamento> buscarTodos() {
-		return dataFacade.getOrcamentoRepository().findAll();
+		return orcamentoRepository.findAll();
 	}
 
 }

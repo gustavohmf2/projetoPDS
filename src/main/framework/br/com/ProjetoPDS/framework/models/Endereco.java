@@ -22,12 +22,11 @@ public class Endereco implements Serializable{
 	private String bairro;
 	private int numero;
 	@OneToOne(cascade= CascadeType.PERSIST)
-	private Contratante cliente;
+	private Contratante contratante;
 	
 	public Endereco() {
 		// TODO Auto-generated constructor stub
 	}
-	
 	
 	public String getCep() {
 		return cep;

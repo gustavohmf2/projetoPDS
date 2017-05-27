@@ -28,8 +28,6 @@ public class CheckIn {
 	@JoinColumn(name="id_servico")
 	private Servico servico;
 	
-	
-
 	public CheckIn(Integer id, Date dataHora, String acao) {
 		this.id = id;
 		this.dataHora = dataHora;
@@ -38,8 +36,6 @@ public class CheckIn {
 	
 	public CheckIn() {
 	}
-
-	
 	
 	public Integer getId() {
 		return id;

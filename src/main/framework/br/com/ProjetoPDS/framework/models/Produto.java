@@ -24,17 +24,14 @@ public class Produto implements Serializable{
 	private static final long serialVersionUID = 1L;
 	
 	@Id
-	@Column(name="id_numeroChassi")
-	private String identificador;
+	@Column(name="id_produto")
+	private String id;
 	@ManyToOne(fetch=FetchType.EAGER, cascade= CascadeType.MERGE)
-	@JoinColumn(name="id_cliente")
+	@JoinColumn(name="id_contratante")
 	private Contratante cliente;
 
-	
-	@OneToMany(mappedBy="veiculo", fetch=FetchType.LAZY, cascade={CascadeType.REMOVE, CascadeType.REFRESH})
-	private List<Servico> servico;
-	
-
+	@OneToMany(mappedBy="produto", fetch=FetchType.LAZY, cascade={CascadeType.REMOVE, CascadeType.REFRESH})
+	private List<Servico> servicos;
 	
 
 	public Contratante getCliente() {
@@ -43,15 +40,15 @@ public class Produto implements Serializable{
 	public void setCliente(Contratante cliente) {
 		this.cliente = cliente;
 	}
-	public List<Servico> getServico() {
-		return servico;
+	public List<Servico> getServicos() {
+		return servicos;
 	}
-	public void setServico() {
-		this.servico = new ArrayList<Servico>();
+	public void setServicos() {
+		this.servicos = new ArrayList<Servico>();
 	}
 	public void addServico(Servico servico){
-		setServico();
-		this.servico.add(servico);
+		setServicos();
+		this.servicos.add(servico);
 	}
 	
 	
